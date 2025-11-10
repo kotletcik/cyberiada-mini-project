@@ -5,4 +5,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+<<<<<<< Updated upstream
 	pass
+=======
+print("hau");
+>>>>>>> Stashed changes

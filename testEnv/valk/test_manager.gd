@@ -1,12 +1,7 @@
 extends Node
 
-func _ready() -> void:
-	print("meow");
+var counter: int;
 
-
-func _process(delta: float) -> void:
-<<<<<<< Updated upstream
-	pass
-=======
-print("hau");
->>>>>>> Stashed changes
+func increment() -> void:
+	counter += 1;
+	print(counter);

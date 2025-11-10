@@ -11,5 +11,10 @@ config_version=5
 [application]
 
 config/name="Cyberiada - Mini Projekt"
+run/main_scene="uid://btrjl4srws114"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+TestManager="*res://testEnv/valk/test_manager.gd"

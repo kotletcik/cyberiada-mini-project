@@ -1,8 +1,7 @@
 extends Node
 
-func _ready() -> void:
-	print("meow");
+var counter: int;
 
-
-func _process(delta: float) -> void:
-	print("hau");
+func increment() -> void:
+	counter += 1;
+	print(counter);

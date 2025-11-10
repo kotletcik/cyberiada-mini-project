@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://pi8o5qu4gaig"]
 
-[ext_resource type="Script" uid="uid://by4uogseh06rs" path="res://testEnv/valk/counterTest.gd" id="1_26bmd"]
+[ext_resource type="Script" path="res://testEnv/valk/counterTest.gd" id="1_26bmd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_26bmd"]
 

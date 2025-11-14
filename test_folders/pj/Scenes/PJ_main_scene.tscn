@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8g6wakvw0py4"]
+
+[ext_resource type="PackedScene" uid="uid://cyybsaqsl3q66" path="res://test_folders/pj/Scenes/Location.tscn" id="1_uesbc"]
+[ext_resource type="PackedScene" uid="uid://cudyv1fqrlo12" path="res://test_folders/pj/Scenes/Shell.tscn" id="2_87vgk"]
+[ext_resource type="PackedScene" uid="uid://d2itobj36oc5y" path="res://test_folders/pj/Scenes/Player.tscn" id="3_87vgk"]
+
+[node name="PjMainScene" type="Node3D"]
+
+[node name="Location" parent="." instance=ExtResource("1_uesbc")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.90277565, 0.2993181, -0.308877, -0.010595194, 0.7333897, 0.679726, 0.42998144, -0.6103674, 0.66525763, -9.104174, 21.456577, 21.67141)
+fov = 38.7
+
+[node name="Shell" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_87vgk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4385829, 0)
+player = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("3_87vgk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3299594, 1.8646083, 4.428186)

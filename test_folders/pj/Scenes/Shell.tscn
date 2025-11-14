@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://cudyv1fqrlo12"]
+
+[ext_resource type="Script" uid="uid://bf6ixn28itwsd" path="res://test_folders/pj/scripts/Mob.gd" id="1_7s1mr"]
+[ext_resource type="Script" uid="uid://cxanx1emdbq8r" path="res://test_folders/pj/scripts/state_machine/Idle.gd" id="1_bdnvm"]
+[ext_resource type="Script" uid="uid://bt2rps524x0ph" path="res://test_folders/pj/scripts/state_machine/State_machine.gd" id="1_gcmoi"]
+[ext_resource type="Script" uid="uid://bnwduhvsot5bk" path="res://test_folders/pj/scripts/state_machine/shell.gd" id="1_p4d8o"]
+[ext_resource type="Script" uid="uid://cosu5u4u5tn61" path="res://test_folders/pj/scripts/state_machine/Follow.gd" id="4_l6k5k"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0u6et"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0u6et"]
+
+[node name="Shell" type="Node3D"]
+script = ExtResource("1_p4d8o")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_7s1mr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_0u6et")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("CapsuleMesh_0u6et")
+
+[node name="State_machine" type="Node" parent="CharacterBody3D" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_gcmoi")
+initial_state = NodePath("EnemyFollow")
+
+[node name="Idle" type="Node" parent="CharacterBody3D/State_machine" node_paths=PackedStringArray("mob")]
+script = ExtResource("1_bdnvm")
+mob = NodePath("../..")
+metadata/_custom_type_script = "uid://cxanx1emdbq8r"
+
+[node name="EnemyFollow" type="Node" parent="CharacterBody3D/State_machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_l6k5k")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://cosu5u4u5tn61"

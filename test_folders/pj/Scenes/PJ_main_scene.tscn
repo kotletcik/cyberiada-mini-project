@@ -1,20 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8g6wakvw0py4"]
+[gd_scene load_steps=5 format=3 uid="uid://b8g6wakvw0py4"]
 
-[ext_resource type="PackedScene" uid="uid://cyybsaqsl3q66" path="res://test_folders/pj/Scenes/Location.tscn" id="1_uesbc"]
-[ext_resource type="PackedScene" uid="uid://cudyv1fqrlo12" path="res://test_folders/pj/Scenes/Shell.tscn" id="2_87vgk"]
-[ext_resource type="PackedScene" uid="uid://d2itobj36oc5y" path="res://test_folders/pj/Scenes/Player.tscn" id="3_87vgk"]
+[ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://test_folders/pj/Scenes/Locations/nav_region_floor.tscn" id="1_jpura"]
+[ext_resource type="PackedScene" uid="uid://c6h31nhsej0tn" path="res://test_folders/pj/Scenes/Locations/nav_region_floor_2.tscn" id="2_1ioa7"]
+[ext_resource type="PackedScene" uid="uid://6malwfmg48s6" path="res://test_folders/pj/Scenes/Locations/nav_region_floor_3.tscn" id="3_1ioa7"]
+[ext_resource type="PackedScene" uid="uid://d2itobj36oc5y" path="res://test_folders/pj/Scenes/Mobs/Player.tscn" id="3_87vgk"]
 
 [node name="PjMainScene" type="Node3D"]
 
-[node name="Location" parent="." instance=ExtResource("1_uesbc")]
+[node name="NavRegionFloor" parent="." instance=ExtResource("1_jpura")]
+
+[node name="NavRegionFloor2" parent="." instance=ExtResource("2_1ioa7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.839546, 0, 0)
+
+[node name="NavRegionFloor3" parent="." instance=ExtResource("3_1ioa7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.430538, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.90277565, 0.2993181, -0.308877, -0.010595194, 0.7333897, 0.679726, 0.42998144, -0.6103674, 0.66525763, -9.104174, 21.456577, 21.67141)
-fov = 38.7
-
-[node name="Shell" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_87vgk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4385829, 0)
-player = NodePath("../Player")
+transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, -21.988592, 25, 0)
+fov = 57.7
+near = 0.016
 
 [node name="Player" parent="." instance=ExtResource("3_87vgk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3299594, 1.8646083, 4.428186)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.78518, 3.6797724, -6.009724)

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://elmpcqsoarjp"]
+
+[ext_resource type="Script" uid="uid://bnwduhvsot5bk" path="res://test_folders/pj/scripts/state_machine/shell.gd" id="1_yvw8q"]
+
+[node name="Shell" type="Node3D"]
+script = ExtResource("1_yvw8q")

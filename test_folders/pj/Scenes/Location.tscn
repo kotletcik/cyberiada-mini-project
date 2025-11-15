@@ -1,11 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://cyybsaqsl3q66"]
 
-[ext_resource type="PackedScene" uid="uid://bjej5vgy0wpux" path="res://test_folders/pj/Scenes/Floor.tscn" id="1_eri21"]
 [ext_resource type="PackedScene" uid="uid://clt361dqika0r" path="res://test_folders/pj/Scenes/Wall.tscn" id="2_2to0n"]
+[ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://test_folders/pj/Scenes/Locations/nav_region_floor.tscn" id="2_eri21"]
 
 [node name="Location" type="Node3D"]
-
-[node name="Floor" parent="." instance=ExtResource("1_eri21")]
 
 [node name="Wall" parent="." instance=ExtResource("2_2to0n")]
 
@@ -49,3 +47,5 @@ light_indirect_energy = 2.465
 light_volumetric_fog_energy = 1.33
 light_size = 0.42
 omni_range = 30.271
+
+[node name="NavRegionFloor" parent="." instance=ExtResource("2_eri21")]

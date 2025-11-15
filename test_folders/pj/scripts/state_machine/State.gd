@@ -2,13 +2,15 @@ extends Node
 
 class_name State
 
+var state_is_active: bool = true
 signal Transitioned
 
+
 func Enter():
-	pass
+	state_is_active = true
 	
 func Exit():
-	pass
+	state_is_active = false
 	
 func Update(_delta: float):
 	pass

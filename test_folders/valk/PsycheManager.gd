@@ -9,7 +9,12 @@ var instance: PsycheManager;
 var serumLevel: float;
 
 func _ready() -> void:
-	serumLevel = serumOnStart;
+	if(instance == null):
+		instance = self;
+		serumLevel = serumOnStart;
+	else:
+		print("More than one PsycheManager exists!!!");
+		queue_free();
 	
 func _process(delta: float) -> void:
 	serumLevel -= delta * serumDischargeRate;

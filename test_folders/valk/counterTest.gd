@@ -8,3 +8,5 @@ func _process(delta: float) -> void:
 	if(Input.is_key_pressed(KEY_E)):
 		TestManager.increment();
 		position.y += delta;
+		print(Manager.instance.player_health);
+		Manager.instance.DamagePlayer(1);

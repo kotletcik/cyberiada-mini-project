@@ -1,7 +1,7 @@
 class_name PsycheManager
 extends Node3D
 
-var instance: PsycheManager;
+static var instance: PsycheManager;
 
 @export var serumOnStart: int;
 @export var serumDischargeRate: float;

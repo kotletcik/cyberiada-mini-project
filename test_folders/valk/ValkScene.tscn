@@ -8,6 +8,7 @@
 
 [sub_resource type="Environment" id="Environment_xblbw"]
 fog_enabled = true
+fog_light_color = Color(0.10691092, 0.0987831, 0.108827345, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_xblbw"]
 
@@ -31,12 +32,16 @@ script = ExtResource("2_hhieh")
 [node name="PsycheManager" type="Node3D" parent="Managers" node_paths=PackedStringArray("camera")]
 script = ExtResource("3_xblbw")
 serumOnStart = 100
-serumDischargeRate = 20.0
+serumDischargeRate = 5.0
 camera = NodePath("../../Camera3D")
 normalFogDensity = 0.2
 serumFogDensity = 0.005
-serumToNormalFogSpeed = 0.01
+serumToNormalFogSpeed = 0.005
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(32.316223, 0, 0, 0, 1, 0, 0, 0, 25.31698, 0, -1, 0)
 mesh = SubResource("BoxMesh_xblbw")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.08929412, 0, 0.9960053, 0, 1, 0, -0.9960053, 0, -0.08929412, 3.3462143, 0, -3.7595387)
+shadow_enabled = true

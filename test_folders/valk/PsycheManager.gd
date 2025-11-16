@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 	if(serumLevel <= 0):
 		get_tree().change_scene_to_file("res://test_folders/valk/ValkScene.tscn");
 
-func takeSerum() -> void:
+func TakeSerum() -> void:
 	serumLevel += 20;
 	camera.fov *= serumFOVMultiplier;
 	environment.fog_density = serumFogDensity;

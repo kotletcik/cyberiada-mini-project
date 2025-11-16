@@ -33,5 +33,5 @@ serumDischargeRate = 20.0
 camera = NodePath("../../Camera3D")
 cameraFOVMultiplier = 0.9
 normalFogDensity = 0.2
-serumFogDensity = 0.01
-serumToNormalFogSpeed = 1.0
+serumFogDensity = 0.005
+serumToNormalFogSpeed = 0.01

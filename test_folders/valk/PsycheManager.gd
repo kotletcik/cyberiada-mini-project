@@ -36,8 +36,10 @@ func _process(delta: float) -> void:
 	environment.fog_density += delta * serumToNormalFogSpeed;
 	if(environment.fog_density > normalFogDensity):
 		environment.fog_density = normalFogDensity;
-	if(serumLevel <= 0):
+	if(Input.is_action_just_pressed("Interact")):
 		serumLevel += 20;
 		camera.fov *= cameraFOVMultiplier;
 		environment.fog_density = serumFogDensity;
 		print("USED SERUM!!!");
+	if(serumLevel <= 0):
+		get_tree().change_scene_to_file("res://test_folders/valk/ValkScene.tscn");

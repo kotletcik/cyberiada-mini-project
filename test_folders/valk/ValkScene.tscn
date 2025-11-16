@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://pi8o5qu4gaig"]
+[gd_scene load_steps=6 format=3 uid="uid://pi8o5qu4gaig"]
 
 [ext_resource type="Script" uid="uid://by4uogseh06rs" path="res://test_folders/valk/counterTest.gd" id="1_26bmd"]
 [ext_resource type="Script" uid="uid://cq3ikk3npkdg4" path="res://test_folders/valk/static_manager_test.gd" id="2_hhieh"]
 [ext_resource type="Script" uid="uid://jlq64hfq7bpi" path="res://test_folders/valk/PsycheManager.gd" id="3_xblbw"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_26bmd"]
+
+[sub_resource type="Environment" id="Environment_xblbw"]
+fog_enabled = true
 
 [node name="ValkScene" type="Node3D"]
 
@@ -16,13 +19,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01905799, 0, -3.6893795)
 mesh = SubResource("BoxMesh_26bmd")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+environment = SubResource("Environment_xblbw")
 
 [node name="Managers" type="Node3D" parent="."]
 
 [node name="StaticManagerTest" type="Node3D" parent="Managers"]
 script = ExtResource("2_hhieh")
 
-[node name="PsycheManager" type="Node3D" parent="Managers"]
+[node name="PsycheManager" type="Node3D" parent="Managers" node_paths=PackedStringArray("camera")]
 script = ExtResource("3_xblbw")
 serumOnStart = 100
 serumDischargeRate = 20.0
+camera = NodePath("../../Camera3D")
+cameraFOVMultiplier = 0.9
+normalFogDensity = 0.2
+serumFogDensity = 0.01
+serumToNormalFogSpeed = 1.0

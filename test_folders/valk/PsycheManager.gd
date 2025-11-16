@@ -8,16 +8,36 @@ var instance: PsycheManager;
 
 var serumLevel: float;
 
+@export var camera: Camera3D;
+@export var cameraFOVMultiplier: float;
+
+@export var normalFogDensity: float;
+@export var serumFogDensity: float;
+
+@export var serumToNormalFogSpeed: float;
+
+var baseCameraFOV: float;
+
+var environment: Environment
+
 func _ready() -> void:
 	if(instance == null):
 		instance = self;
 		serumLevel = serumOnStart;
+		baseCameraFOV = camera.fov;
+		environment = camera.environment;
+		environment.fog_density = normalFogDensity;
 	else:
 		print("More than one PsycheManager exists!!!");
 		queue_free();
 	
 func _process(delta: float) -> void:
 	serumLevel -= delta * serumDischargeRate;
+	environment.fog_density += delta * serumToNormalFogSpeed;
+	if(environment.fog_density > normalFogDensity):
+		environment.fog_density = normalFogDensity;
 	if(serumLevel <= 0):
 		serumLevel += 20;
+		camera.fov *= cameraFOVMultiplier;
+		environment.fog_density = serumFogDensity;
 		print("USED SERUM!!!");

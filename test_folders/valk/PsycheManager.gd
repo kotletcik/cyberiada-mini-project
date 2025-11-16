@@ -16,16 +16,14 @@ var serumLevel: float;
 
 @export var serumToNormalFogSpeed: float;
 
-var baseCameraFOV: float;
-
-var environment: Environment
+@onready var baseCameraFOV: float = camera.fov;
+@onready var environment: Environment = camera.environment;
 
 func _ready() -> void:
 	if(instance == null):
 		instance = self;
 		serumLevel = serumOnStart;
-		baseCameraFOV = camera.fov;
-		environment = camera.environment;
+		print("Camera FOV: ", camera.fov);
 		environment.fog_density = normalFogDensity;
 	else:
 		print("More than one PsycheManager exists!!!");

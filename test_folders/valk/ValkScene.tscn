@@ -36,7 +36,7 @@ serumDischargeRate = 5.0
 camera = NodePath("../../Camera3D")
 normalFogDensity = 0.2
 serumFogDensity = 0.005
-serumToNormalFogSpeed = 0.005
+serumToNormalFogSpeed = 0.01
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(32.316223, 0, 0, 0, 1, 0, 0, 0, 25.31698, 0, -1, 0)

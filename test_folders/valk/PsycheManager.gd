@@ -9,7 +9,7 @@ static var instance: PsycheManager;
 var serumLevel: float;
 
 @export var camera: Camera3D;
-@export var cameraFOVMultiplier: float;
+@export var serumFOVMultiplier: float;
 
 @export var normalFogDensity: float;
 @export var serumFogDensity: float;
@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 		environment.fog_density = normalFogDensity;
 	if(Input.is_action_just_pressed("Interact")):
 		serumLevel += 20;
-		camera.fov *= cameraFOVMultiplier;
+		camera.fov *= serumFOVMultiplier;
 		environment.fog_density = serumFogDensity;
 		print("USED SERUM!!!");
 	if(serumLevel <= 0):

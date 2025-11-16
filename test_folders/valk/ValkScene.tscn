@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://pi8o5qu4gaig"]
+[gd_scene load_steps=7 format=3 uid="uid://pi8o5qu4gaig"]
 
 [ext_resource type="Script" uid="uid://by4uogseh06rs" path="res://test_folders/valk/counterTest.gd" id="1_26bmd"]
 [ext_resource type="Script" uid="uid://cq3ikk3npkdg4" path="res://test_folders/valk/static_manager_test.gd" id="2_hhieh"]
@@ -8,6 +8,8 @@
 
 [sub_resource type="Environment" id="Environment_xblbw"]
 fog_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_xblbw"]
 
 [node name="ValkScene" type="Node3D"]
 
@@ -31,7 +33,10 @@ script = ExtResource("3_xblbw")
 serumOnStart = 100
 serumDischargeRate = 20.0
 camera = NodePath("../../Camera3D")
-cameraFOVMultiplier = 0.9
 normalFogDensity = 0.2
 serumFogDensity = 0.005
 serumToNormalFogSpeed = 0.01
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(32.316223, 0, 0, 0, 1, 0, 0, 0, 25.31698, 0, -1, 0)
+mesh = SubResource("BoxMesh_xblbw")

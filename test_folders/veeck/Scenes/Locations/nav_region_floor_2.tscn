@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6h31nhsej0tn"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_13hkq"]
+vertices = PackedVector3Array(-8.25, 1, -8.25, -8.25, 1, 8.5, 8.5, 1, 8.5, 8.5, 1, -8.25)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_parsed_geometry_type = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13hkq"]
+albedo_color = Color(0.27450982, 0.27450982, 0.27450982, 1)
+
+[node name="NavRegionFloor2" type="Node3D"]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.54604, 0, 0)
+navigation_mesh = SubResource("NavigationMesh_13hkq")
+
+[node name="floor" type="CSGBox3D" parent="NavigationRegion3D"]
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 2
+size = Vector3(20, 1, 20)
+
+[node name="wall1" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 9.5)
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 2
+size = Vector3(20, 5, 1)
+
+[node name="wall2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9.5, 2, 0)
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 2
+size = Vector3(20, 5, 1)
+
+[node name="wall3" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -9.5)
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 2
+size = Vector3(20, 5, 1)
+
+[node name="wall4" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.5, 2, 0)
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 2
+size = Vector3(20, 5, 1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.253002, 9.102599, -6.223734)
+light_energy = 2.815
+light_indirect_energy = 2.465
+light_volumetric_fog_energy = 1.33
+light_size = 0.42
+omni_range = 30.271
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7112684, 9.102599, -6.223734)
+light_energy = 2.815
+light_indirect_energy = 2.465
+light_volumetric_fog_energy = 1.33
+light_size = 0.42
+omni_range = 30.271
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7112684, 9.102599, 5.027376)
+light_energy = 2.815
+light_indirect_energy = 2.465
+light_volumetric_fog_energy = 1.33
+light_size = 0.42
+omni_range = 30.271
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3108835, 9.102599, 5.782342)
+light_energy = 2.815
+light_indirect_energy = 2.465
+light_volumetric_fog_energy = 1.33
+light_size = 0.42
+omni_range = 30.271

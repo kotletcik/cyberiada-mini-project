@@ -2,7 +2,8 @@ extends State
 class_name Follow_player
 
 @export var player: CharacterBody3D
-var timer:= 5.0
+@export var follow_state_duration:= 5.0
+var timer:= follow_state_duration
 var time = timer
 
 func _ready() -> void:
@@ -11,6 +12,7 @@ func _ready() -> void:
 func Enter():
 	super.Enter()
 	nav_agent.target = player
+	timer = follow_state_duration
 
 func Update(delta: float):
 	nav_agent.set_target_position(player.position)

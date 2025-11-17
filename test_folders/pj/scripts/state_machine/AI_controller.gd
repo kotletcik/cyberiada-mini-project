@@ -20,7 +20,7 @@ func _physics_process(delta: float):
 	mob.velocity = direction.normalized() * move_speed
 	mob.velocity.y = _y_vel
 	mob.move_and_slide()
-	
+
 func update_target_pos_every(_update_target_pos_timer: float):
 	if target:
 		set_target_position(target.position)

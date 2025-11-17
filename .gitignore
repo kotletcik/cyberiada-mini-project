@@ -17,3 +17,6 @@ data_*/
 mono_crash.*.json
 
 build/
+
+# VS Code Local Settings
+.vscode

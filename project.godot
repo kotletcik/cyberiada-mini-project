@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-TestManager="*res://testEnv/valk/test_manager.gd"
 EventBus="*res://test_folders/pj/scripts/Event_bus.gd"
+TestManager="*res://test_folders/valk/test_manager.gd"
 
 [input]
 
@@ -59,3 +59,4 @@ move_right={
 
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=5
 lights_and_shadows/directional_shadow/16_bits=false
+anti_aliasing/quality/use_debanding=true

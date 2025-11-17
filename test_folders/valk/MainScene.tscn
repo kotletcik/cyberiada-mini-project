@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1s6oip0oyac7"]
+
+[ext_resource type="Script" uid="uid://c0efpmrwgdwgj" path="res://test_folders/valk/load_scene.gd" id="1_phbdq"]
+
+[node name="MainScene" type="Node3D"]
+
+[node name="LoadScene" type="Node3D" parent="."]
+script = ExtResource("1_phbdq")

@@ -5,10 +5,11 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if(Input.is_action_just_pressed("Interact")):
-		PsycheManager.instance.TakeSerum();
+	# if(Input.is_action_just_pressed("Interact")):
+	# 	PsycheManager.instance.TakeSerum();
+	rotate(Vector3(0,1,0), delta);
 	if(Input.is_key_pressed(KEY_E)):
 		TestManager.increment();
 		position.y += delta;
-		print(Manager.instance.player_health);
-		Manager.instance.DamagePlayer(1);
+		# print(Manager.instance.player_health);
+		# Manager.instance.DamagePlayer(1);

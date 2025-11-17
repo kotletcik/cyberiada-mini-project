@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://pi8o5qu4gaig"]
+[gd_scene load_steps=11 format=3 uid="uid://pi8o5qu4gaig"]
 
 [ext_resource type="Script" uid="uid://by4uogseh06rs" path="res://test_folders/valk/counterTest.gd" id="1_26bmd"]
+[ext_resource type="Script" uid="uid://ghea8h1oesu5" path="res://test_folders/valk/player_interactions.gd" id="2_8tw3q"]
 [ext_resource type="Script" uid="uid://cq3ikk3npkdg4" path="res://test_folders/valk/static_manager_test.gd" id="2_hhieh"]
 [ext_resource type="Script" uid="uid://jlq64hfq7bpi" path="res://test_folders/valk/PsycheManager.gd" id="3_xblbw"]
+[ext_resource type="Script" uid="uid://cf1xdbcigovnv" path="res://test_folders/valk/serum_item.gd" id="5_3q2fw"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_26bmd"]
 
@@ -11,6 +13,10 @@ fog_enabled = true
 fog_light_color = Color(0.10691092, 0.0987831, 0.108827345, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_xblbw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xblbw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8tw3q"]
 
 [node name="ValkScene" type="Node3D"]
 
@@ -22,7 +28,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01905799, 0, -3.6893795)
 mesh = SubResource("BoxMesh_26bmd")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.0005879)
 environment = SubResource("Environment_xblbw")
+
+[node name="PlayerInteractions" type="Node3D" parent="Camera3D"]
+process_mode = 3
+script = ExtResource("2_8tw3q")
+metadata/_custom_type_script = "uid://ghea8h1oesu5"
 
 [node name="Managers" type="Node3D" parent="."]
 
@@ -45,3 +57,13 @@ mesh = SubResource("BoxMesh_xblbw")
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(-0.08929412, 0, 0.9960053, 0, 1, 0, -0.9960053, 0, -0.08929412, 3.3462143, 0, -3.7595387)
 shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+script = ExtResource("5_3q2fw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_xblbw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00012581004, -0.0001416225, -2.9085204e-05)
+mesh = SubResource("BoxMesh_8tw3q")

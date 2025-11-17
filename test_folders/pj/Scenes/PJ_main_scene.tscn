@@ -33,4 +33,3 @@ start_pos = [Vector3(-30, 2, -7), Vector3(-7, 2, -7), Vector3(23, 2, -7)]
 [node name="Shell" parent="." instance=ExtResource("5_1ioa7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.697441, 2.3624077, 5.529626)
 start_pos = [Vector3(-17, 2, 6), Vector3(7, 2, -7), Vector3(26, 2, 5)]
-attack_range = 2.0

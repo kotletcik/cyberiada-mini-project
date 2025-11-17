@@ -1,28 +1,33 @@
 extends NavigationAgent3D
 
-@export var mob: CharacterBody3D
-@export var move_speed := 2.0
-@export var update_target_pos_timer: float = 1
+@onready var mob: CharacterBody3D = $"../"
+@export var general_move_speed: float = 1.0
+var move_speed : float = 2.0
+var update_target_pos_timer: float = 1.0
+var target: Node3D
 var is_active: bool = true
-var target_pos: Vector3
+var timer
 
 func _ready() -> void:
 	mob = get_parent()
-	target_pos = mob.position
+	update_target_pos_every(update_target_pos_timer)
 	
-func Physics_Update(delta: float):
+func _physics_process(delta: float):
 	var destination = get_next_path_position()
-	var local_destination = destination - $"../..".global_position
+	var local_destination = destination - mob.global_position
 	var direction = local_destination.normalized()
 	var _y_vel = mob.velocity.y
 	mob.velocity = direction.normalized() * move_speed
 	mob.velocity.y = _y_vel
+	mob.move_and_slide()
 	
-func Set_target_position(pos: Vector3):
-	set_target_position(pos)
-	
-func update_target_pos_every(_update_target_pos_timer: float):	
-	Set_target_position(target_pos)
-	await get_tree().create_timer(_update_target_pos_timer).timeout
+func update_target_pos_every(_update_target_pos_timer: float):
+	if target:
+		set_target_position(target.position)
+	timer = get_tree().create_timer(_update_target_pos_timer)
+	await timer.timeout
 	if is_active:
 		update_target_pos_every(update_target_pos_timer)
+		
+func update_target():
+	timer.stop()

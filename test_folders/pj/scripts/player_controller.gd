@@ -1,6 +1,7 @@
 extends CharacterBody3D
-
-@export var move_speed: float = 5.0
+class_name player_controller
+ 
+var move_speed = 5
 
 func _physics_process(delta: float) -> void:
 	var input_dir = Vector3.ZERO
@@ -20,3 +21,8 @@ func _physics_process(delta: float) -> void:
 	
 	# zastosowanie ruchu
 	move_and_slide()
+	
+func _input(event):
+	if event is InputEventKey:
+		if event.pressed and event.keycode == Key.KEY_SPACE:			
+			EventBus.emit_signal("sound_emitted_by_player")

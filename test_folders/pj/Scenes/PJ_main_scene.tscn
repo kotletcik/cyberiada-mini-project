@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8g6wakvw0py4"]
+[gd_scene load_steps=6 format=3 uid="uid://b8g6wakvw0py4"]
 
 [ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://test_folders/pj/Scenes/Locations/nav_region_floor.tscn" id="1_jpura"]
 [ext_resource type="PackedScene" uid="uid://c6h31nhsej0tn" path="res://test_folders/pj/Scenes/Locations/nav_region_floor_2.tscn" id="2_1ioa7"]
 [ext_resource type="PackedScene" uid="uid://6malwfmg48s6" path="res://test_folders/pj/Scenes/Locations/nav_region_floor_3.tscn" id="3_1ioa7"]
 [ext_resource type="PackedScene" uid="uid://d2itobj36oc5y" path="res://test_folders/pj/Scenes/Mobs/Player.tscn" id="3_87vgk"]
+[ext_resource type="PackedScene" uid="uid://elmpcqsoarjp" path="res://test_folders/pj/Scenes/Mobs/Shell.tscn" id="5_1ioa7"]
 
 [node name="PjMainScene" type="Node3D"]
 
@@ -21,4 +22,7 @@ fov = 57.7
 near = 0.016
 
 [node name="Player" parent="." instance=ExtResource("3_87vgk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.78518, 3.6797724, -6.009724)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.698818, 1.085, 5.1427627)
+
+[node name="Shell" parent="." instance=ExtResource("5_1ioa7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.768394, 2.17272, 6.0065155)

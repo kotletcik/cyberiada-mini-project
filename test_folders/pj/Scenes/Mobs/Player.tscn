@@ -1,15 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://d2itobj36oc5y"]
 
-[ext_resource type="Script" uid="uid://67dqw2stjnr6" path="res://test_folders/pj/scripts/controller.gd" id="1_xogrw"]
+[ext_resource type="Script" uid="uid://67dqw2stjnr6" path="res://test_folders/pj/scripts/player_controller.gd" id="1_xogrw"]
 [ext_resource type="PackedScene" uid="uid://b4512qioi3g1i" path="res://test_folders/pj/Scenes/Gravity.tscn" id="2_6e4r0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6e4r0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hbmk6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nyxyb"]
 albedo_color = Color(0.89735097, 0.63779366, 3.080368e-06, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bdu2t"]
-material = SubResource("StandardMaterial3D_hbmk6")
+material = SubResource("StandardMaterial3D_nyxyb")
 
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 14

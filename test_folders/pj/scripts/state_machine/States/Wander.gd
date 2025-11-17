@@ -19,6 +19,7 @@ func _random_pos_in_current_region() -> Vector3:
 func Enter():
 	super.Enter()
 	EventBus.connect("sound_emitted_by_player", change_state_to_follow)
+	print("empty_target_setted")
 	nav_agent.target = empty_target
 	randomize_wander()
 

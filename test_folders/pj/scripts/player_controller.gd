@@ -1,7 +1,16 @@
 extends CharacterBody3D
 class_name player_controller
  
-var move_speed = 5
+@export var start_pos: = []
+@export var move_speed = 5.0
+
+func _ready() -> void:
+	set_start_pos(1)
+	EventBus.connect("game_restarted", set_start_pos)
+	EventBus.connect("level_changed", set_start_pos)
+
+func set_start_pos(level):
+	position = start_pos[level-1]
 
 func _physics_process(delta: float) -> void:
 	var input_dir = Vector3.ZERO
@@ -24,5 +33,11 @@ func _physics_process(delta: float) -> void:
 	
 func _input(event):
 	if event is InputEventKey:
-		if event.pressed and event.keycode == Key.KEY_SPACE:			
+		if event.pressed and event.keycode == Key.KEY_SPACE:
 			EventBus.emit_signal("sound_emitted_by_player")
+		if event.pressed and event.keycode == Key.KEY_1:
+			EventBus.level_changed.emit(1)
+		if event.pressed and event.keycode == Key.KEY_2:
+			EventBus.level_changed.emit(2)
+		if event.pressed and event.keycode == Key.KEY_3:
+			EventBus.level_changed.emit(3)

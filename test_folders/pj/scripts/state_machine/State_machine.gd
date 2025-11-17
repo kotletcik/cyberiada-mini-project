@@ -17,6 +17,8 @@ func _ready():
 		initial_state.Enter()
 		current_state = initial_state
 	print(states)
+	EventBus.connect("game_restarted", transit_to_initial_state)
+	EventBus.connect("level_changed", transit_to_initial_state)
 
 func _process(delta):
 	if current_state:
@@ -26,6 +28,9 @@ func _physics_process(delta):
 	if current_state:
 		current_state.Physics_Update(delta)
 
+func transit_to_initial_state():
+	transit_to_state(current_state, initial_state.name)
+
 func transit_to_state(_state, _new_state_name:String):
 	if _state != current_state:
 		return
@@ -34,6 +39,7 @@ func transit_to_state(_state, _new_state_name:String):
 		return
 	if current_state:
 		current_state.Exit()
-		
+	
 	_new_state.Enter()
 	current_state = _new_state 
+	

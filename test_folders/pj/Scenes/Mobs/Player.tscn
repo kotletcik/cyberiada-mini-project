@@ -14,6 +14,8 @@ material = SubResource("StandardMaterial3D_nyxyb")
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 14
 script = ExtResource("1_xogrw")
+start_pos = [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+move_speed = 8.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_6e4r0")

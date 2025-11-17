@@ -1,6 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8wfahed5pckx"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_13hkq"]
+vertices = PackedVector3Array(-4.75, 5, -9.5, -4.5, 5, -0.25, -4, 5, -9.25, 4.5, 5, -9.5, 4.75, 5, -0.25, 5.25, 5, -9.25, -0.5, 1, 0.25, -3.25, 1, 0, -3.5, 1, 0.75, -0.5, 1, 8.5, -5.5, 1, 0.5, -5.5, 1, -8.25, -8.25, 1, -8.25, -8.25, 1, 8.5, 1.5, 1, -0.75, 1.75, 1, 0, 3.75, 1, 0, 3.75, 1, -8.25, -0.25, 1, -0.75, -3.25, 1, -8.25, 4, 1, 0.75, 1.75, 1, 8.5, 8.5, 1, -8.25, 6, 1, -8.25, 6, 1, 0.5, 8.5, 1, 8.5, 0.25, 5, 9.25, 1, 5, 9.5, 0.75, 5, 0.25)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(10, 8, 13), PackedInt32Array(13, 8, 9), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(6, 7, 18), PackedInt32Array(18, 7, 19), PackedInt32Array(14, 18, 17), PackedInt32Array(17, 18, 19), PackedInt32Array(16, 20, 15), PackedInt32Array(15, 20, 21), PackedInt32Array(23, 22, 24), PackedInt32Array(24, 22, 25), PackedInt32Array(20, 24, 21), PackedInt32Array(21, 24, 25), PackedInt32Array(28, 27, 26)]
 geometry_parsed_geometry_type = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13hkq"]

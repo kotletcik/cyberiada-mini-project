@@ -19,4 +19,10 @@ func Update(delta: float):
 	else:
 		change_state_to("wander")
 		time = timer
+	if (state_machine.mob.global_position-player.global_position).length() < state_machine.mob.attack_range:
+		var _timer = get_tree().create_timer(0.5)
+		await _timer.timeout
+		#change_state_to("attack")
+		change_state_to("wander")
+
 	

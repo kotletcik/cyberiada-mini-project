@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyybsaqsl3q66"]
+
+[ext_resource type="PackedScene" uid="uid://clt361dqika0r" path="res://test_folders/pj/Scenes/Wall.tscn" id="2_2to0n"]
+[ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://test_folders/pj/Scenes/Locations/nav_region_floor.tscn" id="2_eri21"]
+
+[node name="Location" type="Node3D"]
+
+[node name="Wall" parent="." instance=ExtResource("2_2to0n")]
+
+[node name="Wall2" parent="." instance=ExtResource("2_2to0n")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Wall3" parent="." instance=ExtResource("2_2to0n")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Wall4" parent="." instance=ExtResource("2_2to0n")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.253002, 9.102599, -6.223734)
+light_energy = 2.815
+light_indirect_energy = 2.465
+light_volumetric_fog_energy = 1.33
+light_size = 0.42
+omni_range = 30.271
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7112684, 9.102599, -6.223734)
+light_energy = 2.815
+light_indirect_energy = 2.465
+light_volumetric_fog_energy = 1.33
+light_size = 0.42
+omni_range = 30.271
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7112684, 9.102599, 5.027376)
+light_energy = 2.815
+light_indirect_energy = 2.465
+light_volumetric_fog_energy = 1.33
+light_size = 0.42
+omni_range = 30.271
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3108835, 9.102599, 5.782342)
+light_energy = 2.815
+light_indirect_energy = 2.465
+light_volumetric_fog_energy = 1.33
+light_size = 0.42
+omni_range = 30.271
+
+[node name="NavRegionFloor" parent="." instance=ExtResource("2_eri21")]

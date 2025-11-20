@@ -4,6 +4,7 @@
 extends Node
 class_name State_machine
 
+@export var animator: AnimationPlayer
 @export var initial_state: State
 #mob do którego się odnosi ten skrypt
 @export var mob: CharacterBody3D

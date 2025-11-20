@@ -1,7 +1,7 @@
 extends Node
 
 class_name State
-
+@export var animation: String
 signal Transitioned
 
 @onready var state_machine: State_machine = $"../"
@@ -16,6 +16,8 @@ var state_is_active: bool = true
 func Enter():
 	state_is_active = true	
 	nav_agent.move_speed = move_speed
+	state_machine.animator.play(animation)
+	print("animation is playing:", animation)
 
 #Wywoływany zawsze przy przełączeniu z tego state	
 func Exit():

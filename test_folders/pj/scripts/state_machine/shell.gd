@@ -3,7 +3,7 @@ extends Node3D
 @export var start_pos: = []
 @export var attack_range: float = 0.5
 @onready var nav_agent: NavigationAgent3D = $"NavigationAgent3D"
-var player: player_controller
+@export var player: player_controller
 
 func _ready() -> void:
 	set_start_pos(1)
@@ -12,6 +12,3 @@ func _ready() -> void:
 
 func set_start_pos(level):
 	position = start_pos[level-1]
-	
-func _enter_tree():
-	player  = $"../Player"

@@ -9,12 +9,14 @@
 [ext_resource type="Script" uid="uid://cc74fqip5mv6y" path="res://test_folders/pj/scripts/state_machine/States/Attack.gd" id="6_lj2st"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lj2st"]
+height = 3.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nyxyb"]
 albedo_color = Color(1.2513996e-06, 0.6162296, 0.3239598, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ajbgq"]
 material = SubResource("StandardMaterial3D_nyxyb")
+height = 3.0
 
 [node name="Shell" type="CharacterBody3D"]
 collision_layer = 8
@@ -61,6 +63,7 @@ move_speed = 0.0
 metadata/_custom_type_script = "uid://foywhiftl87x"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = -0.5
 path_postprocessing = 1
 debug_enabled = true
 debug_path_custom_color = Color(0.95686275, 0.13333334, 0.23137255, 1)

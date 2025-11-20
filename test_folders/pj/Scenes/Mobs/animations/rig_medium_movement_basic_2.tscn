@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtt8ro64wjdp4"]
+
+[ext_resource type="PackedScene" uid="uid://cxqyvrslg07yj" path="res://test_folders/pj/Assets/KayKit_Character_Animations_1.0/Animations/gltf/Rig_Medium/Rig_Medium_MovementBasic.glb" id="1_0qlcq"]
+
+[node name="Rig_Medium_MovementBasic" instance=ExtResource("1_0qlcq")]
+
+[node name="Skeleton3D" parent="Rig_Medium" index="0"]
+bones/1/position = Vector3(0, 0.39206383, 0)
+bones/2/position = Vector3(-0.17094505, 0.11358726, 1.3923275e-08)
+bones/2/rotation = Quaternion(0.9958909, 1.3462449e-07, -2.7306665e-08, 0.09056074)
+bones/3/rotation = Quaternion(0.2913201, -6.604816e-08, 2.0231164e-07, 0.95662564)
+bones/4/rotation = Quaternion(-0.55491084, 1.9804872e-07, -7.8918305e-08, 0.8319099)
+bones/5/rotation = Quaternion(-4.879908e-09, 0.92023516, -0.39136574, 5.328422e-08)
+bones/9/rotation = Quaternion(-0.5802813, 0.15828462, 0.66605324, 0.44112664)
+bones/10/rotation = Quaternion(9.095458e-09, 4.8284473e-08, 0.42497087, 0.9052071)
+bones/12/rotation = Quaternion(-0.35023588, 0.29147267, -0.1967616, 0.86813796)
+bones/13/rotation = Quaternion(-9.535865e-10, -4.3147668e-09, 0.7071068, 0.7071067)
+bones/14/rotation = Quaternion(-0.58795244, -0.10844585, -0.645398, 0.47540814)
+bones/15/rotation = Quaternion(2.1184832e-08, -5.03675e-08, -0.4973854, 0.86752975)
+bones/17/rotation = Quaternion(-0.31667742, -0.34757897, 0.22899799, 0.8523287)
+bones/18/rotation = Quaternion(-3.58774e-09, 6.9489703e-09, -0.7071068, 0.7071067)
+bones/19/position = Vector3(0.17094505, 0.11358726, 1.3923275e-08)
+bones/19/rotation = Quaternion(0.9958909, -1.2840718e-07, -1.6118022e-08, 0.09056074)
+bones/20/rotation = Quaternion(0.2913201, 6.604815e-08, -2.0231167e-07, 0.95662564)
+bones/21/rotation = Quaternion(-0.55491084, -3.3250753e-08, 7.4074116e-09, 0.8319099)
+bones/22/rotation = Quaternion(3.4523623e-08, 0.92023516, -0.39136574, 7.0025166e-08)

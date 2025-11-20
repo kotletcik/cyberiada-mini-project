@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8g6wakvw0py4"]
+[gd_scene load_steps=10 format=3 uid="uid://b8g6wakvw0py4"]
 
 [ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://test_folders/pj/Scenes/Locations/nav_region_floor.tscn" id="1_jpura"]
 [ext_resource type="Script" uid="uid://co6mha3tai36x" path="res://test_folders/pj/scripts/pj_game_manager.gd" id="1_uwrug"]
 [ext_resource type="PackedScene" uid="uid://c6h31nhsej0tn" path="res://test_folders/pj/Scenes/Locations/nav_region_floor_2.tscn" id="2_1ioa7"]
 [ext_resource type="PackedScene" uid="uid://6malwfmg48s6" path="res://test_folders/pj/Scenes/Locations/nav_region_floor_3.tscn" id="3_1ioa7"]
-[ext_resource type="PackedScene" uid="uid://d2itobj36oc5y" path="res://test_folders/pj/Scenes/Mobs/Player.tscn" id="3_87vgk"]
-[ext_resource type="PackedScene" uid="uid://elmpcqsoarjp" path="res://test_folders/pj/Scenes/Mobs/Shell.tscn" id="5_1ioa7"]
-[ext_resource type="Script" uid="uid://bqn6kcag86uce" path="res://test_folders/pj/Scenes/Cam_pos.gd" id="5_vdut2"]
+[ext_resource type="PackedScene" uid="uid://bs84gaxhmaiy4" path="res://test_folders/pj/Scenes/Locations/nav_region_floor_4.tscn" id="5_4n5ri"]
+[ext_resource type="Script" uid="uid://bqn6kcag86uce" path="res://test_folders/pj/scripts/Cam_pos.gd" id="5_vdut2"]
+[ext_resource type="PackedScene" uid="uid://b48uiu5u5tfxh" path="res://test_folders/pj/Scenes/nav_region_floor_5.tscn" id="6_6gddj"]
+[ext_resource type="PackedScene" uid="uid://cq8fniqqr7g32" path="res://test_folders/pj/Scenes/Mobs/Lucy_2.tscn" id="8_6gddj"]
+[ext_resource type="PackedScene" uid="uid://ubt4cy268hf6" path="res://test_folders/pj/Scenes/Mobs/Shell_2.tscn" id="9_of4ly"]
 
 [node name="PjMainScene" type="Node3D"]
 script = ExtResource("1_uwrug")
@@ -19,17 +21,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.839546, 0, 0)
 [node name="NavRegionFloor3" parent="." instance=ExtResource("3_1ioa7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.430538, 0, 0)
 
+[node name="NavRegionFloor4" parent="." instance=ExtResource("5_4n5ri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.444607, 0, 0)
+
+[node name="NavRegionFloor5" parent="." instance=ExtResource("6_6gddj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.56294, 0, 0)
+
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, -23.564457, 25, 0)
+transform = Transform3D(1, 0, 0, 0, 1.1924881e-08, 1, 0, -1, 1.1924881e-08, -68.7809, 25, 0)
 fov = 57.7
 near = 0.016
 script = ExtResource("5_vdut2")
-start_pos = [Vector3(-21, 25, 0), Vector3(-2, 25, 0), Vector3(25, 25, 0)]
+start_pos = [Vector3(-21, 25, 0), Vector3(-2, 25, 0), Vector3(25, 25, 0), Vector3(-44.85522, 25, 0), Vector3(-68.7809, 25, 0)]
 
-[node name="Player" parent="." instance=ExtResource("3_87vgk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.041346, 1.085, -7.272553)
-start_pos = [Vector3(-30, 2, -7), Vector3(-7, 2, -7), Vector3(23, 2, -7)]
+[node name="Player" parent="." instance=ExtResource("8_6gddj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.23326, 1.0284457, -6.1052155)
+move_speed = 7.0
 
-[node name="Shell" parent="." instance=ExtResource("5_1ioa7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.697441, 2.3624077, 5.529626)
-start_pos = [Vector3(-17, 2, 6), Vector3(7, 2, -7), Vector3(26, 2, 5)]
+[node name="Shell" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_of4ly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.697815, 0.78412724, -0.57935095)
+player = NodePath("../Player")

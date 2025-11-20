@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddoxldofmyp6t"]
+
+[ext_resource type="PackedScene" uid="uid://do1xcryc632fw" path="res://test_folders/pj/Assets/olivia_free_fire/Lucy.gltf" id="1_dfocr"]
+[ext_resource type="Script" uid="uid://67dqw2stjnr6" path="res://test_folders/pj/scripts/player_controller.gd" id="2_tjjqm"]
+[ext_resource type="PackedScene" uid="uid://b4512qioi3g1i" path="res://test_folders/pj/Scenes/Gravity.tscn" id="3_4g6gj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nxhst"]
+radius = 0.3
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_dfocr")]
+script = ExtResource("2_tjjqm")
+
+[node name="Sketchfab_model" parent="." index="0"]
+transform = Transform3D(0.4, 0, 0, 0, -1.7484556e-08, 0.4, 0, -0.4, -1.7484556e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_nxhst")
+
+[node name="Gravity" parent="." index="2" node_paths=PackedStringArray("_body") instance=ExtResource("3_4g6gj")]
+_body = NodePath("..")

@@ -3,6 +3,8 @@ class_name player_controller
  
 @export var start_pos: = []
 @export var move_speed = 5.0
+@export var model: Node3D
+@export var scream_animator: AnimationPlayer
 
 func _ready() -> void:
 	set_start_pos(1)
@@ -35,9 +37,14 @@ func _input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == Key.KEY_SPACE:
 			EventBus.emit_signal("sound_emitted_by_player")
+			scream_animator.play("scream")
 		if event.pressed and event.keycode == Key.KEY_1:
 			EventBus.level_changed.emit(1)
 		if event.pressed and event.keycode == Key.KEY_2:
 			EventBus.level_changed.emit(2)
 		if event.pressed and event.keycode == Key.KEY_3:
 			EventBus.level_changed.emit(3)
+		if event.pressed and event.keycode == Key.KEY_4:
+			EventBus.level_changed.emit(4)
+		if event.pressed and event.keycode == Key.KEY_5:
+			EventBus.level_changed.emit(5)

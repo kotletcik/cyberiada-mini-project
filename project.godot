@@ -12,7 +12,6 @@ config_version=5
 
 config/name="Cyberiada - Mini Projekt"
 run/main_scene="uid://b8g6wakvw0py4"
-config/use_hidden_project_data_directory=false
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqxg81o8ie1x8"]
-
-[ext_resource type="PackedScene" uid="uid://b3q0xri78rjpu" path="res://test_folders/pj/Assets/KayKit_Character_Animations_1.0/Mannequin Character/characters/Mannequin_Large.fbx" id="1_mvw52"]
-
-[node name="Mannequin_Large" instance=ExtResource("1_mvw52")]

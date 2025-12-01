@@ -58,3 +58,11 @@ shadow_enabled = true
 
 [node name="Serum2" parent="." instance=ExtResource("5_3q2fw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2289304)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Node"]
+
+[node name="CanvasGroup" type="CanvasGroup" parent="Node/CanvasLayer"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Node/CanvasLayer/CanvasGroup"]

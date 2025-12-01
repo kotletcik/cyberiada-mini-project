@@ -12,13 +12,14 @@ config_version=5
 
 config/name="Cyberiada - Mini Projekt"
 run/main_scene="uid://b8g6wakvw0py4"
+config/use_hidden_project_data_directory=false
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 EventBus="*res://test_folders/veeck/scripts/Event_bus.gd"
-"#zaktualizowanaÅcieÅ¼ka(poprzedniakatalog'pj'nieistnieje)TestManager"="*res://test_folders/valk/test_manager.gd"
+TestManager="*res://test_folder/test_manager.gd"
 
 [input]
 

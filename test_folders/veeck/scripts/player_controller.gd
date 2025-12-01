@@ -113,7 +113,7 @@ func _unhandled_input(event):
 	# Ruch myszy steruje obrotem
 	if event is InputEventMouseMotion:
 		if head:
-			head.rotate_y(-event.relative.x * SENSITIVITY)
+			camera.rotate_y(-event.relative.x * SENSITIVITY)
 		if camera:
 			camera.rotate_x(-event.relative.y * SENSITIVITY)
 			# Ograniczenie pitch aby nie przekręcić głowy

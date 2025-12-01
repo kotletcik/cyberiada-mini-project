@@ -52,22 +52,16 @@ func _physics_process(delta: float) -> void:
 	# Docelowe zachowanie FPS: W (move_forward) zawsze porusza w kierunku patrzenia poziomo (yaw kamery), ignorujemy pitch.
 	var direction := Vector3.ZERO
 	if head:
-		var head_basis: Basis = head.transform.basis
-		var forward: Vector3 = head_basis.z # odwrócone
-		var right: Vector3 = -head_basis.x # odwrócone
+		var head_basis: Basis = transform.basis
+		var forward: Vector3 = -head_basis.z
+		var right: Vector3 = head_basis.x
 		# Input: input_dir.z dodatnie przy S, ujemne przy W; invertujemy aby W dawało +forward
 		var move_vec: Vector3 = right * input_dir.x + forward * (-input_dir.z)
 		move_vec.y = 0.0
 		if move_vec != Vector3.ZERO:
 			direction = move_vec.normalized()
 	else:
-		var world_basis: Basis = transform.basis
-		var forward2: Vector3 = world_basis.z
-		var right2: Vector3 = -world_basis.x
-		var move_vec2: Vector3 = right2 * input_dir.x + forward2 * (-input_dir.z)
-		move_vec2.y = 0.0
-		if move_vec2 != Vector3.ZERO:
-			direction = move_vec2.normalized()
+		print("No head node found!!!")
 
 	# Ustawienie prędkości poziomej z lekkim wygładzaniem gdy brak inputu
 	if input_dir != Vector3.ZERO:
@@ -84,11 +78,6 @@ func _physics_process(delta: float) -> void:
 
 	# zastosowanie ruchu
 	move_and_slide()
-
-	
-	if head:
-		rotation.y = head.rotation.y
-
 
 func _input(event):
 	if event is InputEventKey:
@@ -112,8 +101,7 @@ func _input(event):
 func _unhandled_input(event):
 	# Ruch myszy steruje obrotem
 	if event is InputEventMouseMotion:
-		if head:
-			head.rotate_y(-event.relative.x * SENSITIVITY)
+		rotate_y(-event.relative.x * SENSITIVITY)
 		if camera:
 			camera.rotate_x(-event.relative.y * SENSITIVITY)
 			# Ograniczenie pitch aby nie przekręcić głowy

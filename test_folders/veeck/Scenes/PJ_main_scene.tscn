@@ -1,51 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://b8g6wakvw0py4"]
+[gd_scene load_steps=9 format=3 uid="uid://bqfiwk04y7f5p"]
 
 [ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://test_folders/veeck/Scenes/Locations/nav_region_floor.tscn" id="1_jpura"]
 [ext_resource type="PackedScene" uid="uid://c6h31nhsej0tn" path="res://test_folders/veeck/Scenes/Locations/nav_region_floor_2.tscn" id="2_1ioa7"]
 [ext_resource type="PackedScene" uid="uid://6malwfmg48s6" path="res://test_folders/veeck/Scenes/Locations/nav_region_floor_3.tscn" id="3_1ioa7"]
 [ext_resource type="PackedScene" uid="uid://d2itobj36oc5y" path="res://test_folders/veeck/Scenes/Mobs/Player.tscn" id="3_87vgk"]
 [ext_resource type="PackedScene" uid="uid://elmpcqsoarjp" path="res://test_folders/veeck/Scenes/Mobs/Shell.tscn" id="5_1ioa7"]
-[ext_resource type="Script" uid="uid://bmcl11cfck27u" path="res://scenes/stone_instance.gd" id="6_c16ls"]
-[ext_resource type="Script" uid="uid://dfbrhflxud7x8" path="res://scripts/stone/stone.gd" id="6_rt2n2"]
-
-[sub_resource type="GDScript" id="GDScript_gubc5"]
-script/source = "extends Node3D
-
-@export var player: CharacterBody3D
-@export var shells = []
-
-func _ready() -> void:
-	EventBus.connect(\"game_restarted\", restart_game)
-
-func restart_game(level: int):
-	player.position = player.start_pos[level]
-	shells[0].position = player.start_pos[level]
-"
+[ext_resource type="Script" uid="uid://bqn6kcag86uce" path="res://test_folders/veeck/Scenes/Cam_pos.gd" id="5_vdut2"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ubq8g"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_80gx2"]
 points = PackedVector3Array(-0.12520654, -0.532801, -0.4805069, 0.022783129, 0.4760704, 0.49888408, 0.16971254, 0.5591441, 0.46417162, 0.23105091, -0.8035912, 0.32045516, 0.40741014, 0.651043, -0.24352328, -0.4827893, 0.59484255, 0.082213186, -0.3628679, -0.68231165, 0.2896967, 0.46904355, -0.65452886, -0.06627126, -0.12744367, 0.8427015, -0.33810276, -0.39343542, -0.6839421, -0.24471663, 0.43825462, 0.62330925, 0.20084947, 0.0841477, 0.977454, 0.11479468, -0.06820232, -0.9764576, -0.12927033, 0.20054972, -0.56312895, -0.4514544, -0.18552664, 0.59545326, -0.4534751, -0.27336287, 0.59226835, 0.40775412, -0.0069364863, -0.47682306, 0.49966025, 0.37582088, -0.5886136, 0.31695515, 0.111579016, 0.5630594, -0.48117727, -0.41725034, 0.5278656, -0.27049688, -0.48454633, -0.59697217, -0.06650971, -0.27974695, 0.90856135, 0.05333608, -0.25019687, -0.8807117, 0.20531891, 0.263647, -0.90277094, -0.1273943, 0.29336792, 0.8715263, -0.15719566, 0.3734115, -0.5263189, -0.32824618, 0.4996626, 0.47664148, -0.0068885577, 0.053105574, 0.8750009, 0.32470253, -0.15454252, -0.5908538, 0.4658794, -0.09727988, -0.7823577, -0.39818847, -0.3876489, -0.49817133, 0.31564978, -0.30067965, -0.58799505, -0.38890144)
 
-[sub_resource type="GDScript" id="GDScript_rt2n2"]
-script/source = "extends Camera3D
-
-@export var start_pos: = []
-
-#func _ready() -> void:
-	
-	
-
-func set_start_pos(level):
-	position = start_pos[level-1]
-"
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_c16ls"]
-
-[sub_resource type="Skin" id="Skin_gubc5"]
-
 [node name="PjMainScene" type="Node3D"]
-script = SubResource("GDScript_gubc5")
 
 [node name="NavRegionFloor" parent="." instance=ExtResource("1_jpura")]
 
@@ -69,25 +36,11 @@ shape = SubResource("ConvexPolygonShape3D_80gx2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5344191, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.037160873, 2.438234, -0.6021042)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35825014, 2.438234, -0.6021042)
 fov = 57.7
 near = 0.016
-script = SubResource("GDScript_rt2n2")
+script = ExtResource("5_vdut2")
 start_pos = [Vector3(-21, 25, 0), Vector3(-2, 25, 0), Vector3(25, 25, 0)]
-
-[node name="Stone" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3741302, -0.3561194, -0.73674154)
-script = ExtResource("6_rt2n2")
-
-[node name="StoneInstance" type="MeshInstance3D" parent="Player/Stone"]
-transform = Transform3D(0.079747364, 0, -0.31894302, 0, 0.110000014, 0, 0.40726572, 0, 0.062452752, 0, 0, 0)
-mesh = SubResource("CylinderMesh_c16ls")
-skin = SubResource("Skin_gubc5")
-script = ExtResource("6_c16ls")
-
-[node name="HoldingStoneMarker" type="Marker3D" parent="Player"]
-unique_name_in_owner = true
-transform = Transform3D(0.079747364, 0, -0.31894302, 0, 0.110000014, 0, 0.40726572, 0, 0.062452752, 0.20246506, 0.6406715, -0.73674154)
 
 [node name="Shell" parent="." instance=ExtResource("5_1ioa7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.697441, 2.3624077, 5.529626)

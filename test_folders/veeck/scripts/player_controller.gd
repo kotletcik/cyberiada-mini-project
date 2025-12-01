@@ -92,6 +92,11 @@ func _input(event):
 			EventBus.level_changed.emit(2)
 		if event.pressed and event.keycode == Key.KEY_3:
 			EventBus.level_changed.emit(3)
+			
+	if event.is_action_pressed("pick_up_stone") and pickedObject:
+		pickedObject.reparent(get_tree().current_scene)
+		pickedObject = null
+
 
 	# Kliknięcie lewym przyciskiem ponownie przechwytuje kursor jeśli był zwolniony 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -112,3 +117,7 @@ func _headbob(time) -> Vector3:
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
+	
+
+#handling picking up stone
+var marker = %HoldingStoneMarker

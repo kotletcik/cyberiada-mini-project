@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 EventBus="*res://test_folders/veeck/scripts/Event_bus.gd"
-"#zaktualizowanaÅcieÅ¼ka(poprzedniakatalog'pj'nieistnieje)TestManager"="*res://test_folders/valk/test_manager.gd"
+TestManager="*res://test_folder/test_manager.gd"
 
 [input]
 

@@ -20,3 +20,6 @@ build/
 
 # VS Code Local Settings
 .vscode
+
+#test folders
+test_folder/

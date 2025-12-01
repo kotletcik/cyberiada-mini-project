@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1sqgxoxmqw7e"
-path="res://godot/imported/Vision3D.svg-d3f2dde5b7f8cccfb4ee709180f0af55.ctex"
+path="res://.godot/imported/Vision3D.svg-d3f2dde5b7f8cccfb4ee709180f0af55.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://test_folders/pj/Toolkits/3D_enemy_toolkit/addons/3dEnemyToolkit/icons/Vision3D.svg"
-dest_files=["res://godot/imported/Vision3D.svg-d3f2dde5b7f8cccfb4ee709180f0af55.ctex"]
+dest_files=["res://.godot/imported/Vision3D.svg-d3f2dde5b7f8cccfb4ee709180f0af55.ctex"]
 
 [params]
 

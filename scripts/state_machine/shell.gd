@@ -1,4 +1,5 @@
 extends Node3D
+class_name shell
 
 @export var start_pos: = []
 @export var attack_range: float = 0.5

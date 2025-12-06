@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2itobj36oc5y"]
+[gd_scene load_steps=7 format=3 uid="uid://d2itobj36oc5y"]
 
-[ext_resource type="Script" uid="uid://67dqw2stjnr6" path="res://test_folders/pj/scripts/player_controller.gd" id="1_xogrw"]
-[ext_resource type="PackedScene" uid="uid://b4512qioi3g1i" path="res://test_folders/pj/Scenes/Gravity.tscn" id="2_6e4r0"]
+[ext_resource type="Script" uid="uid://67dqw2stjnr6" path="res://scripts/custom_player_controller.gd" id="1_xogrw"]
+[ext_resource type="PackedScene" uid="uid://b4512qioi3g1i" path="res://scenes/Gravity.tscn" id="2_6e4r0"]
+[ext_resource type="Script" uid="uid://bqn6kcag86uce" path="res://scripts/Cam_pos.gd" id="3_msvm6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6e4r0"]
 
@@ -14,8 +15,6 @@ material = SubResource("StandardMaterial3D_nyxyb")
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 14
 script = ExtResource("1_xogrw")
-start_pos = [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
-move_speed = 8.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_6e4r0")
@@ -25,3 +24,13 @@ mesh = SubResource("CapsuleMesh_bdu2t")
 
 [node name="Gravity" parent="." node_paths=PackedStringArray("_body") instance=ExtResource("2_6e4r0")]
 _body = NodePath("..")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5344191, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.438, 0)
+fov = 57.7
+near = 0.016
+script = ExtResource("3_msvm6")
+start_pos = [Vector3(-21, 25, 0), Vector3(-2, 25, 0), Vector3(25, 25, 0)]

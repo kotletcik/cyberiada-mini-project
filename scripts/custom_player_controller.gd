@@ -10,7 +10,6 @@ const SOBER_WALK_SPEED = 5.0
 const SUBSTANCE_WALK_SPEED = 8.0
 const SENSITIVITY = 0.004
 
-
 #bobbing
 const BOB_FREQ = 2.4
 const BOB_AMP = 0.08
@@ -92,6 +91,10 @@ func _input(event):
 			EventBus.level_changed.emit(2)
 		if event.pressed and event.keycode == Key.KEY_3:
 			EventBus.level_changed.emit(3)
+		if event.pressed and event.keycode == Key.KEY_4:
+			EventBus.level_changed.emit(4)
+		if event.pressed and event.keycode == Key.KEY_5:
+			EventBus.level_changed.emit(5)
 
 	# Kliknięcie lewym przyciskiem ponownie przechwytuje kursor jeśli był zwolniony 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:

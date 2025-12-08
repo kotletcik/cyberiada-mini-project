@@ -13,10 +13,12 @@ var serum_level: float;
 
 @export var serum_vignette_intensity: float;
 @export var serum_to_normal_vignette_speed: float;
+@export var serum_vignette_color: Color;
 
 @export var serum_overdose_level: float;
 @export var serum_overdose_vignette_intensity: float;
 @export var serum_to_normal_overdose_vignette_speed: float;
+@export var serum_overdose_vignette_color: Color;
 
 # @onready var camera: Camera3D = player.get_child(0).get_child(0);
 @onready var camera: Camera3D = $"../PlayerValk/Head/Camera3D";
@@ -62,5 +64,7 @@ func take_serum():
 	environment.fog_density = serum_fog_density;
 	if(serum_level < serum_overdose_level):
 		vignette_texture.material.set_shader_parameter("intensity", serum_vignette_intensity);
+		vignette_texture.material.set_shader_parameter("vignette_color", serum_vignette_color);
 	else:
 		vignette_texture.material.set_shader_parameter("intensity", serum_overdose_vignette_intensity);
+		vignette_texture.material.set_shader_parameter("vignette_color", serum_overdose_vignette_color);

@@ -10,15 +10,20 @@ var serum_level: float;
 @export var serum_fog_density: float;
 
 @export var serum_to_normal_fog_speed: float;
+@export var serum_take_amount: float;
+
+@export var serum_overdose_level: float;
 
 @export var serum_vignette_intensity: float;
 @export var serum_to_normal_vignette_speed: float;
 @export var serum_vignette_color: Color;
+@export var serum_vignette_radius: float;
 
-@export var serum_overdose_level: float;
+
 @export var serum_overdose_vignette_intensity: float;
 @export var serum_to_normal_overdose_vignette_speed: float;
 @export var serum_overdose_vignette_color: Color;
+@export var serum_overdoes_vignette_radius: float;
 
 # @onready var camera: Camera3D = player.get_child(0).get_child(0);
 @onready var camera: Camera3D = $"../PlayerValk/Head/Camera3D";
@@ -48,9 +53,9 @@ func _process(delta: float) -> void:
 	serum_level -= serum_drop_rate * delta;
 	if(serum_level <= 0):
 		print("Player Dead!!!");
-	if(Input.is_action_just_pressed("Interact")):
-		take_serum();
-		print("USED SERUM!!!");
+	# if(Input.is_action_just_pressed("Interact")):
+	# 	take_serum();
+	# 	print("USED SERUM!!!");
 	if(environment.fog_density < normal_fog_density):
 		environment.fog_density += delta * serum_to_normal_fog_speed;
 	var vignette_intensity: float = vignette_texture.material.get_shader_parameter("intensity")
@@ -60,11 +65,13 @@ func _process(delta: float) -> void:
 		
 	
 func take_serum():
-	serum_level += 20;
+	serum_level += serum_take_amount;
 	environment.fog_density = serum_fog_density;
 	if(serum_level < serum_overdose_level):
 		vignette_texture.material.set_shader_parameter("intensity", serum_vignette_intensity);
 		vignette_texture.material.set_shader_parameter("vignette_color", serum_vignette_color);
+		vignette_texture.material.set_shader_parameter("radius", serum_vignette_radius);
 	else:
 		vignette_texture.material.set_shader_parameter("intensity", serum_overdose_vignette_intensity);
 		vignette_texture.material.set_shader_parameter("vignette_color", serum_overdose_vignette_color);
+		vignette_texture.material.set_shader_parameter("radius", serum_overdoes_vignette_radius);

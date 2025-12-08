@@ -11,12 +11,14 @@ config_version=5
 [application]
 
 config/name="Cyberiada - Mini Projekt"
+run/main_scene="uid://b8g6wakvw0py4"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 EventBus="*res://scripts/Event_bus.gd"
+TestManager="*res://test_folder/test_manager.gd"
 
 [input]
 

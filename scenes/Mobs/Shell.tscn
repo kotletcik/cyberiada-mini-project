@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://elmpcqsoarjp"]
+[gd_scene load_steps=14 format=3 uid="uid://elmpcqsoarjp"]
 
 [ext_resource type="Script" uid="uid://bnwduhvsot5bk" path="res://scripts/state_machine/shell.gd" id="1_yvw8q"]
 [ext_resource type="PackedScene" uid="uid://b4512qioi3g1i" path="res://scenes/Gravity.tscn" id="2_6sbjw"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cosu5u4u5tn61" path="res://scripts/state_machine/States/Follow_player.gd" id="5_lj2st"]
 [ext_resource type="Script" uid="uid://b7oh0gjgvjexb" path="res://scripts/state_machine/AI_controller.gd" id="6_ajbgq"]
 [ext_resource type="Script" uid="uid://cc74fqip5mv6y" path="res://scripts/state_machine/States/Attack.gd" id="6_lj2st"]
-[ext_resource type="Script" uid="uid://foywhiftl87x" path="res://scripts/state_machine/State.gd" id="7_lqxc7"]
+[ext_resource type="Script" uid="uid://bm34qfrf1h2m1" path="res://scripts/follow_sound.gd" id="7_lqxc7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lj2st"]
 
@@ -16,6 +16,14 @@ albedo_color = Color(1.2513996e-06, 0.6162296, 0.3239598, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ajbgq"]
 material = SubResource("StandardMaterial3D_nyxyb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lqxc7"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_jt8f1"]
+material = SubResource("StandardMaterial3D_lqxc7")
+radius = 0.1
+height = 0.2
 
 [node name="Shell" type="CharacterBody3D"]
 collision_layer = 8
@@ -60,9 +68,16 @@ nav_agent = NodePath("../../NavigationAgent3D")
 move_speed = 0.0
 metadata/_custom_type_script = "uid://foywhiftl87x"
 
-[node name="Follow_sound" type="Node" parent="State_machine"]
+[node name="Follow_sound" type="Node" parent="State_machine" node_paths=PackedStringArray("nav_agent")]
 script = ExtResource("7_lqxc7")
+nav_agent = NodePath("../../NavigationAgent3D")
 metadata/_custom_type_script = "uid://foywhiftl87x"
+
+[node name="Empty_target" type="Node3D" parent="State_machine/Follow_sound"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="State_machine/Follow_sound/Empty_target"]
+mesh = SubResource("SphereMesh_jt8f1")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_postprocessing = 1

@@ -84,7 +84,8 @@ func _physics_process(delta: float) -> void:
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == Key.KEY_SPACE:
-			EventBus.emit_signal("sound_emitted_by_player")
+			var sound_pos = to_global(Vector3(0, 0, -2))
+			EventBus.sound_emitted_by_player.emit(sound_pos)
 		# ESC zwalnia kursor aby móc wyjść / przełączyć okno 
 		if event.pressed and event.keycode == Key.KEY_ESCAPE:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

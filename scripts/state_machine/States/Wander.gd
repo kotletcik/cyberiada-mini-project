@@ -18,7 +18,7 @@ func _random_pos_in_current_region() -> Vector3:
 	
 func Enter():
 	super.Enter()
-	EventBus.connect("sound_emitted_by_player", change_state_to_follow)
+	EventBus.connect("sound_emitted_by_player", change_state_to_follow_sound)
 	nav_agent.target = empty_target
 	randomize_wander()
 
@@ -30,9 +30,13 @@ func Update (delta: float):
 		timer = wander_time 
 	empty_target.global_position = empty_target.global_position
 
+func change_state_to_follow_sound(sound_pos: Vector3):
+	state_machine.target = sound_pos
+	change_state_to("follow_sound")
+
 func change_state_to_follow():
 	change_state_to("follow_player")
 
 func Exit():
 	super.Exit()
-	EventBus.disconnect("sound_emitted_by_player", change_state_to_follow)
+	EventBus.disconnect("sound_emitted_by_player", change_state_to_follow_sound)

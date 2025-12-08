@@ -7,6 +7,7 @@ class_name State_machine
 @export var initial_state: State
 #mob do którego się odnosi ten skrypt
 @export var mob: CharacterBody3D
+var target: Vector3
 
 var current_state : State
 # key = "nazwa": string, value = state: State
@@ -37,7 +38,6 @@ func _physics_process(delta):
 #funckja dla sygnałów
 func transit_to_initial_state(empty_arg):
 	transit_to_state(current_state, initial_state.name)
-	print(current_state, initial_state.name, "A")
 
 #zmiana state'u czyli wył. current state i wł new state
 func transit_to_state(_state, _new_state_name:String):

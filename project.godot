@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 EventBus="*res://scripts/Event_bus.gd"
 Game_Manager="*res://scripts/game_manager.gd"
 
+[global_group]
+
+Serum=""
+
 [input]
 
 Interact={

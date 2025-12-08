@@ -12,7 +12,10 @@ func _ready() -> void:
 	EventBus.connect("level_changed", set_start_pos)
 
 func set_start_pos(level):
-	position = start_pos[level-1]
+	var _level=level
+	if !_level:
+		_level = Game_Manager.current_level
+	position = start_pos[_level-1]
 	
 func _enter_tree():
 	player  = $"../Player"

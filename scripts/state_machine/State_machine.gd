@@ -22,7 +22,6 @@ func _ready():
 	if initial_state:
 		initial_state.Enter()
 		current_state = initial_state
-	print(states)
 	EventBus.connect("game_restarted", transit_to_initial_state)
 	EventBus.connect("level_changed", transit_to_initial_state)
 
@@ -36,8 +35,9 @@ func _physics_process(delta):
 		current_state.Physics_Update(delta)
 
 #funckja dla sygnałów
-func transit_to_initial_state():
+func transit_to_initial_state(empty_arg):
 	transit_to_state(current_state, initial_state.name)
+	print(current_state, initial_state.name, "A")
 
 #zmiana state'u czyli wył. current state i wł new state
 func transit_to_state(_state, _new_state_name:String):
@@ -51,4 +51,5 @@ func transit_to_state(_state, _new_state_name:String):
 	
 	_new_state.Enter()
 	current_state = _new_state 
+	print("state changed to " + _new_state_name)
 	

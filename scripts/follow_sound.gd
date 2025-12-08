@@ -1,22 +1,19 @@
 extends State
-class_name Follow_player
+class_name Follow_sound
 
-@export var player: CharacterBody3D
 @export var follow_state_duration:= 5.0
+var follow_target: Vector3
 var timer:= follow_state_duration
 var time = timer
 
-func _ready() -> void:
-	player = state_machine.mob.player
-
 func Enter():
 	super.Enter()
-	nav_agent.target = player
+	nav_agent.target = follow_target
 	timer = follow_state_duration
 
 func Update(delta: float):
-	nav_agent.set_target_position(player.position)
-	if ((state_machine.mob.position) - (player.position)).length() < state_machine.mob.attack_range:
+	nav_agent.set_target_position(follow_target)
+	if ((state_machine.mob.position) - (follow_target)).length() < state_machine.mob.attack_range:
 		#var _timer = get_tree().create_timer(0.5)
 		#await _timer.timeout
 		time = timer
@@ -27,6 +24,4 @@ func Update(delta: float):
 	else:
 		change_state_to("wander")
 		time = timer
-	
-
 	

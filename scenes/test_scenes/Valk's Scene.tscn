@@ -1,3 +1,27 @@
-[gd_scene format=3 uid="uid://cq4mdp3xlsb4a"]
+[gd_scene load_steps=4 format=3 uid="uid://cq4mdp3xlsb4a"]
 
-[node name="Valk\'sScene" type="Node3D"]
+[ext_resource type="PackedScene" uid="uid://dagyln7asf5pm" path="res://scenes/PlayerValk.tscn" id="1_cb1vq"]
+[ext_resource type="Script" uid="uid://s47j5s0f3fdy" path="res://scripts/Valk/psyche_manager.gd" id="2_1a1i1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cb1vq"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="PlayerValk" parent="." instance=ExtResource("1_cb1vq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1326146, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(54.3, 0, 0, 0, 1, 0, 0, 0, 20.161789, 0, -1.9399543, 0)
+mesh = SubResource("BoxMesh_cb1vq")
+
+[node name="PsycheManager" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_1a1i1")
+player = NodePath("../PlayerValk")
+normal_fog_density = 1.0
+serum_fog_density = 0.01
+serum_to_normal_fog_speed = 0.005
+serum_vignette_intensity = 1.0
+serum_to_normal_vignette_speed = 0.5
+serum_overdose_level = 60.0
+serum_overdose_vignette_intensity = 2.0
+metadata/_custom_type_script = "uid://s47j5s0f3fdy"

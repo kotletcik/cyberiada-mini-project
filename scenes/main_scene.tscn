@@ -12,11 +12,9 @@
 
 [node name="NavRegionFloor" parent="." instance=ExtResource("1_jpura")]
 
-[node name="NavRegionFloor2" parent="." instance=ExtResource("2_1ioa7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.839546, 0, 0)
+[sub_resource type="BoxShape3D" id="BoxShape3D_gubc5"]
 
-[node name="NavRegionFloor3" parent="." instance=ExtResource("3_1ioa7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.430538, 0, 0)
+[node name="PjMainScene" type="Node3D"]
 
 [node name="NavRegionFloor4" parent="." instance=ExtResource("5_18nlu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.82296, 0, 0)
@@ -24,9 +22,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.82296, 0, 0)
 [node name="NavRegionFloor5" parent="." instance=ExtResource("6_c1pb6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.239426, 0, 0)
 
-[node name="Player" parent="." instance=ExtResource("3_87vgk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.18538, 2.2103415, -6.500846)
-start_pos = [Vector3(23, 2, -7), Vector3(-7, 2, -7), Vector3(-30, 2, -7), Vector3(-53.960663, 2.2103415, -7.272553), Vector3(-82.55828, 2.2103415, -6.500846)]
+[node name="PlayerValk" parent="." instance=ExtResource("4_pu3yx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.024292, 2.8577895, -1.5802696)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.982376, 2.0913453, 0)
+mesh = SubResource("BoxMesh_pu3yx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
 [node name="Shell" parent="." instance=ExtResource("5_1ioa7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.365845, 2.3624077, 2.1320772)

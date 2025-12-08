@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://dagyln7asf5pm"]
+
+[ext_resource type="Script" uid="uid://67dqw2stjnr6" path="res://scripts/custom_player_controller.gd" id="1_v6fml"]
+[ext_resource type="Script" uid="uid://dvgoa1d8j20dg" path="res://scripts/Valk/player_interactions.gd" id="2_3li8b"]
+[ext_resource type="PackedScene" uid="uid://cq7n16gqbc6eo" path="res://test_folder/Vignette.tscn" id="3_abpoc"]
+
+[sub_resource type="Environment" id="Environment_473a2"]
+fog_enabled = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v6fml"]
+
+[node name="PlayerValk" type="CharacterBody3D"]
+script = ExtResource("1_v6fml")
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+environment = SubResource("Environment_473a2")
+current = true
+
+[node name="PlayerInteractions" type="Node3D" parent="Head/Camera3D"]
+script = ExtResource("2_3li8b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_v6fml")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("3_abpoc")]

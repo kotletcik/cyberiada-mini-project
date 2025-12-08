@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq7n16gqbc6eo"]
+
+[ext_resource type="Material" uid="uid://d0d1kdro15sym" path="res://vignette/vignetteMat.tres" id="1_x85kb"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3ef5t"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_repeat = 1
+material = ExtResource("1_x85kb")
+offset_top = -64.0
+offset_right = 1503.0
+offset_bottom = 733.0
+texture = SubResource("CanvasTexture_3ef5t")

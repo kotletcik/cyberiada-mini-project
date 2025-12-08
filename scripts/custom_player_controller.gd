@@ -35,7 +35,10 @@ func _ready() -> void:
 		camera_base_offset = camera.transform.origin
 
 func set_start_pos(level):
-	position = start_pos[level-1]
+	var _level=level
+	if !_level:
+		_level = Game_Manager.current_level
+	position = start_pos[_level-1]
   
 
 
@@ -85,16 +88,6 @@ func _input(event):
 		# ESC zwalnia kursor aby móc wyjść / przełączyć okno 
 		if event.pressed and event.keycode == Key.KEY_ESCAPE:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		if event.pressed and event.keycode == Key.KEY_1:
-			EventBus.level_changed.emit(1)
-		if event.pressed and event.keycode == Key.KEY_2:
-			EventBus.level_changed.emit(2)
-		if event.pressed and event.keycode == Key.KEY_3:
-			EventBus.level_changed.emit(3)
-		if event.pressed and event.keycode == Key.KEY_4:
-			EventBus.level_changed.emit(4)
-		if event.pressed and event.keycode == Key.KEY_5:
-			EventBus.level_changed.emit(5)
 
 	# Kliknięcie lewym przyciskiem ponownie przechwytuje kursor jeśli był zwolniony 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:

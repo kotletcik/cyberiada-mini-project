@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://b8g6wakvw0py4"]
+[gd_scene load_steps=8 format=3 uid="uid://b8g6wakvw0py4"]
 
 [ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://scenes/Locations/nav_region_floor.tscn" id="1_jpura"]
-[ext_resource type="Script" uid="uid://co6mha3tai36x" path="res://scripts/game_manager.gd" id="1_uwrug"]
 [ext_resource type="PackedScene" uid="uid://c6h31nhsej0tn" path="res://scenes/Locations/nav_region_floor_2.tscn" id="2_1ioa7"]
 [ext_resource type="PackedScene" uid="uid://6malwfmg48s6" path="res://scenes/Locations/nav_region_floor_3.tscn" id="3_1ioa7"]
 [ext_resource type="PackedScene" uid="uid://d2itobj36oc5y" path="res://scenes/Mobs/Player.tscn" id="3_87vgk"]
@@ -10,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://b48uiu5u5tfxh" path="res://scenes/Locations/nav_region_floor_5.tscn" id="6_c1pb6"]
 
 [node name="PjMainScene" type="Node3D"]
-script = ExtResource("1_uwrug")
 
 [node name="NavRegionFloor" parent="." instance=ExtResource("1_jpura")]
 
@@ -33,4 +31,4 @@ start_pos = [Vector3(23, 2, -7), Vector3(-7, 2, -7), Vector3(-30, 2, -7), Vector
 [node name="Shell" parent="." instance=ExtResource("5_1ioa7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.365845, 2.3624077, 2.1320772)
 start_pos = [Vector3(24.627106, 2.3624077, 5.529626), Vector3(7.2832966, 2.3624077, -5.5691404), Vector3(-16.779371, 2.3624077, 5.8897448), Vector3(-39.258278, 2.3624077, -5.3277082), Vector3(-65.365845, 2.3624077, 2.1320772)]
-attack_range = 1.5
+attack_range = 2.0

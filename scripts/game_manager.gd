@@ -28,6 +28,7 @@ func _input(event):
 			EventBus.level_changed.emit(4)
 		if event.pressed and event.keycode == Key.KEY_5:
 			EventBus.level_changed.emit(5)
+	pass
 
 #func restart_game(level: int):
 	#player.position = player.start_pos[level]

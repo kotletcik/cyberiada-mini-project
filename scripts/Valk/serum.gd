@@ -7,5 +7,5 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	timer -= delta;
-	if(timer < 0):
-		get_parent().queue_free();
+	# if(timer < 0):
+	# 	get_parent().queue_free();

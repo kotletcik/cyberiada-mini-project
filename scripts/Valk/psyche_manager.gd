@@ -51,8 +51,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	serum_level -= serum_drop_rate * delta;
-	if(serum_level <= 0):
-		print("Player Dead!!!");
+	# if(serum_level <= 0):
+	# 	# print("Player Dead!!!");
 	# if(Input.is_action_just_pressed("Interact")):
 	# 	take_serum();
 	# 	print("USED SERUM!!!");

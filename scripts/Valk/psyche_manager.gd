@@ -5,6 +5,7 @@ static var instance: PsycheManager;
 
 var serum_level: float;
 @export var serum_drop_rate: float;
+@export var serum_start_level: float;
 @export var player: Node3D;
 @export var normal_fog_density: float;
 @export var serum_fog_density: float;
@@ -13,17 +14,22 @@ var serum_level: float;
 @export var serum_take_amount: float;
 
 @export var serum_overdose_level: float;
+@export var serum_critical_level: float;
 
 @export var serum_vignette_intensity: float;
 @export var serum_to_normal_vignette_speed: float;
 @export var serum_vignette_color: Color;
 @export var serum_vignette_radius: float;
 
-
 @export var serum_overdose_vignette_intensity: float;
-@export var serum_to_normal_overdose_vignette_speed: float;
+# @export var serum_to_normal_overdose_vignette_speed: float;
 @export var serum_overdose_vignette_color: Color;
 @export var serum_overdoes_vignette_radius: float;
+
+@export var serum_critical_vignette_intensity: float;
+# @export var serum_to_overdose_critical_vignette_speed: float;
+@export var serum_critical_vignette_color: Color;
+@export var serum_critical_vignette_radius: float;
 
 # @onready var camera: Camera3D = player.get_child(0).get_child(0);
 @onready var camera: Camera3D = $"../PlayerValk/Head/Camera3D";
@@ -44,6 +50,7 @@ func _ready() -> void:
 		environment.fog_density = normal_fog_density;
 		camera  = player.get_child(0).get_child(0);
 		vignette_texture.material.set_shader_parameter("intensity", 0);
+		serum_level = serum_start_level;
 	else:
 		print("More than one PsycheManager exists!!!");
 	pass 
@@ -51,8 +58,12 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	serum_level -= serum_drop_rate * delta;
-	# if(serum_level <= 0):
-	# 	# print("Player Dead!!!");
+	if(serum_level < 0):
+		# print("Player Dead!!!");
+		serum_level = 0;
+	if(serum_level > 100):
+		# print("Player Dead !!!");
+		serum_level = 100;
 	# if(Input.is_action_just_pressed("Interact")):
 	# 	take_serum();
 	# 	print("USED SERUM!!!");
@@ -71,7 +82,11 @@ func take_serum():
 		vignette_texture.material.set_shader_parameter("intensity", serum_vignette_intensity);
 		vignette_texture.material.set_shader_parameter("vignette_color", serum_vignette_color);
 		vignette_texture.material.set_shader_parameter("radius", serum_vignette_radius);
-	else:
+	elif(serum_level < serum_critical_level):
 		vignette_texture.material.set_shader_parameter("intensity", serum_overdose_vignette_intensity);
 		vignette_texture.material.set_shader_parameter("vignette_color", serum_overdose_vignette_color);
 		vignette_texture.material.set_shader_parameter("radius", serum_overdoes_vignette_radius);
+	else:
+		vignette_texture.material.set_shader_parameter("intensity", serum_critical_vignette_intensity);
+		vignette_texture.material.set_shader_parameter("vignette_color", serum_critical_vignette_color);
+		vignette_texture.material.set_shader_parameter("radius", serum_critical_vignette_radius);

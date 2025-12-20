@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cq4mdp3xlsb4a"]
+[gd_scene load_steps=8 format=3 uid="uid://cq4mdp3xlsb4a"]
 
 [ext_resource type="PackedScene" uid="uid://dg433bvfg6cvt" path="res://scenes/PlayerValk.tscn" id="1_cb1vq"]
 [ext_resource type="Script" uid="uid://s47j5s0f3fdy" path="res://scripts/Valk/psyche_manager.gd" id="2_1a1i1"]
 [ext_resource type="PackedScene" uid="uid://ce6h2fmee74sw" path="res://scenes/test_scenes/serum.tscn" id="3_t4e8a"]
 [ext_resource type="Script" uid="uid://coysphqpo5g2l" path="res://scripts/Valk/inventory_manager.gd" id="4_nxxrq"]
+[ext_resource type="PackedScene" uid="uid://bieh4iknld2hn" path="res://scenes/test_scenes/rock.tscn" id="5_0nogy"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cb1vq"]
 
@@ -78,3 +79,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.658159, 0, 5.9095535)
 [node name="InventoryManager" type="Node" parent="."]
 script = ExtResource("4_nxxrq")
 metadata/_custom_type_script = "uid://coysphqpo5g2l"
+
+[node name="Rock" parent="." instance=ExtResource("5_0nogy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1161883, -0.9399543, -5.579383)
+
+[node name="Rock2" parent="." instance=ExtResource("5_0nogy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.116188, -0.9399543, -5.579383)
+
+[node name="Rock3" parent="." instance=ExtResource("5_0nogy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.116188, -0.9399543, -7.579383)
+
+[node name="Rock4" parent="." instance=ExtResource("5_0nogy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.116188, 0.06004572, -7.579383)

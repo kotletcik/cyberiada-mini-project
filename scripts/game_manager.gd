@@ -17,17 +17,18 @@ func _ready() -> void:
 		queue_free();
 
 func _input(event):
-	if event is InputEventKey:
-		if event.pressed and event.keycode == Key.KEY_1:
-			EventBus.level_changed.emit(1)
-		if event.pressed and event.keycode == Key.KEY_2:
-			EventBus.level_changed.emit(2)
-		if event.pressed and event.keycode == Key.KEY_3:
-			EventBus.level_changed.emit(3)
-		if event.pressed and event.keycode == Key.KEY_4:
-			EventBus.level_changed.emit(4)
-		if event.pressed and event.keycode == Key.KEY_5:
-			EventBus.level_changed.emit(5)
+	# if event is InputEventKey:
+	# 	if event.pressed and event.keycode == Key.KEY_1:
+	# 		EventBus.level_changed.emit(1)
+	# 	if event.pressed and event.keycode == Key.KEY_2:
+	# 		EventBus.level_changed.emit(2)
+	# 	if event.pressed and event.keycode == Key.KEY_3:
+	# 		EventBus.level_changed.emit(3)
+	# 	if event.pressed and event.keycode == Key.KEY_4:
+	# 		EventBus.level_changed.emit(4)
+	# 	if event.pressed and event.keycode == Key.KEY_5:
+	# 		EventBus.level_changed.emit(5)
+	pass
 
 #func restart_game(level: int):
 	#player.position = player.start_pos[level]

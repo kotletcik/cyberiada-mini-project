@@ -151,8 +151,8 @@ func _process(delta: float) -> void:
 	if(serum_level > 100):
 		# print("Player Dead !!!");
 		serum_level = 100;
-	if(Input.is_key_pressed(KEY_R)):
-		print(find_closest_serum());
+	#if(Input.is_key_pressed(KEY_R)):
+	#	print(find_closest_serum());
 	if(Input.is_key_pressed(KEY_P)):
 		craving_timer = randf_range(min_craving_timer, max_craving_timer);
 	if(environment.fog_density < normal_fog_density):

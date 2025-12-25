@@ -110,16 +110,31 @@ func find_closest_serum() -> Node3D:
 			min_dist = distance_sqr;
 	return null if min_index == -1 else serums[min_index];
 
+func find_closest_serum_with_fov(fov: float) -> Node3D:
+	var min_index: int = -1;
+	var min_dist: float;
+	var player_pos: Vector3 = camera.global_position;
+	for i in range(0, first_free_index):
+		var subtracted_vector: Vector3 = serum_positions[i] - player_pos;
+		var direction = subtracted_vector.normalized();
+		var dot: float = -player.global_basis.z.dot(direction);
+		if(dot < 1-fov/180): continue;
+		var distance_sqr = subtracted_vector.length_squared();
+		if(min_index == -1 || distance_sqr < min_dist):
+			min_index = i;
+			min_dist = distance_sqr;
+	return null if min_index == -1 else serums[min_index];
+
 func _physics_process(delta: float) -> void:
 	if(craving_timer > 0):
 		craving_timer -= delta;
-		var closest_serum: Node3D = find_closest_serum();
+		var closest_serum: Node3D = find_closest_serum_with_fov(craving_player_fov); # vs find_closest_serum()
 		if(closest_serum == null): return;
 		var closest_serum_pos: Vector3 = closest_serum.global_position;
 		var direction: Vector3 = (closest_serum_pos - player.global_position).normalized();
-		var dot: float = -player.global_basis.z.dot(direction);
-		if(dot < 1-craving_player_fov/180): dot = 0;
-		player.global_translate(direction * dot * craving_player_force * delta);
+		# var dot: float = -player.global_basis.z.dot(direction);
+		# if(dot < 1-craving_player_fov/180): dot = 0;
+		player.global_translate(direction * craving_player_force * delta);
 
 		var distance_sqr = (closest_serum_pos - player.global_position).length_squared();
 		if(distance_sqr < craving_serum_take_radius*craving_serum_take_radius):

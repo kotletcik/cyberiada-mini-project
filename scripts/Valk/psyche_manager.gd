@@ -59,9 +59,9 @@ func register_serum(node: Node3D, pos: Vector3) -> void:
 		serums.resize(first_free_index * 2);
 		serum_positions.resize(first_free_index * 2);
 
-func unregister_serum(pos: Vector3) -> void:
+func unregister_serum(node: Node3D) -> void:
 	for i in range(0, first_free_index):
-		if(serum_positions[i] == pos):
+		if(serums[i] == node):
 			serum_positions.remove_at(i);
 			serums.remove_at(i);
 			break;
@@ -138,8 +138,8 @@ func _physics_process(delta: float) -> void:
 
 		var distance_sqr = (closest_serum_pos - player.global_position).length_squared();
 		if(distance_sqr < craving_serum_take_radius*craving_serum_take_radius):
+			unregister_serum(closest_serum);
 			closest_serum.queue_free();
-			unregister_serum(closest_serum_pos);
 			take_serum();
 
 
@@ -151,9 +151,6 @@ func _process(delta: float) -> void:
 	if(serum_level > 100):
 		# print("Player Dead !!!");
 		serum_level = 100;
-	# if(Input.is_action_just_pressed("Interact")):
-	# 	take_serum();
-	# 	print("USED SERUM!!!");
 	if(Input.is_key_pressed(KEY_R)):
 		print(find_closest_serum());
 	if(Input.is_key_pressed(KEY_P)):

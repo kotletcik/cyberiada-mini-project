@@ -5,4 +5,4 @@ extends StaticBody3D
 func _ready() -> void:
 	add_to_group(group_name);
 	if(group_name == "Serum"):
-		PsycheManager.instance.register_serum_position(global_position);
+		PsycheManager.instance.register_serum(self, global_position);

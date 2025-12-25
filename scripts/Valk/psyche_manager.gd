@@ -19,6 +19,8 @@ var serum_level: float;
 @export var min_craving_timer: float;
 @export var max_craving_timer: float;
 @export var craving_player_force: float;
+@export var craving_serum_take_radius: float;
+@export var craving_player_fov: float;
 
 @export var serum_vignette_intensity: float;
 @export var serum_to_normal_vignette_speed: float;
@@ -43,21 +45,25 @@ var serum_level: float;
 
 
 var serum_positions: Array[Vector3] = [Vector3.ZERO];
+var serums: Array[Node3D] = [null];
 
 var first_free_index: int = 0;
 
 var craving_timer: float;
 
-func register_serum_position(pos: Vector3) -> void:
+func register_serum(node: Node3D, pos: Vector3) -> void:
+	serums[first_free_index] = node;
 	serum_positions[first_free_index] = pos;
 	first_free_index += 1;
-	if(serum_positions.size() == first_free_index):
+	if(serums.size() == first_free_index):
+		serums.resize(first_free_index * 2);
 		serum_positions.resize(first_free_index * 2);
 
-func unregister_serum_position(pos: Vector3) -> void:
+func unregister_serum(pos: Vector3) -> void:
 	for i in range(0, first_free_index):
 		if(serum_positions[i] == pos):
-			serum_positions.erase(pos);
+			serum_positions.remove_at(i);
+			serums.remove_at(i);
 			break;
 	if(first_free_index > 0):
 		first_free_index -= 1;
@@ -80,7 +86,7 @@ func _ready() -> void:
 		print("More than one PsycheManager exists!!!");
 	pass 
 
-func find_closest_serum() -> Vector3:
+func find_closest_serum_pos() -> Vector3:
 	var min_index: int = -1;
 	var min_dist: float;
 	var player_pos: Vector3 = camera.global_position;
@@ -90,14 +96,37 @@ func find_closest_serum() -> Vector3:
 		if(min_index == -1 || distance_sqr < min_dist):
 			min_index = i;
 			min_dist = distance_sqr;
-	return serum_positions[min_index];
+	return Vector3.ZERO if min_index == -1 else serum_positions[min_index];
+
+func find_closest_serum() -> Node3D:
+	var min_index: int = -1;
+	var min_dist: float;
+	var player_pos: Vector3 = camera.global_position;
+	for i in range(0, first_free_index):
+		var subtracted_vector: Vector3 = serum_positions[i] - player_pos;
+		var distance_sqr = subtracted_vector.length_squared();
+		if(min_index == -1 || distance_sqr < min_dist):
+			min_index = i;
+			min_dist = distance_sqr;
+	return null if min_index == -1 else serums[min_index];
 
 func _physics_process(delta: float) -> void:
 	if(craving_timer > 0):
 		craving_timer -= delta;
-		var closest_serum: Vector3 = find_closest_serum();
-		var direction: Vector3 = (closest_serum - player.global_position).normalized();
-		player.global_translate(direction * craving_player_force * delta);
+		var closest_serum: Node3D = find_closest_serum();
+		if(closest_serum == null): return;
+		var closest_serum_pos: Vector3 = closest_serum.global_position;
+		var direction: Vector3 = (closest_serum_pos - player.global_position).normalized();
+		var dot: float = -player.global_basis.z.dot(direction);
+		if(dot < 1-craving_player_fov/180): dot = 0;
+		player.global_translate(direction * dot * craving_player_force * delta);
+
+		var distance_sqr = (closest_serum_pos - player.global_position).length_squared();
+		if(distance_sqr < craving_serum_take_radius*craving_serum_take_radius):
+			closest_serum.queue_free();
+			unregister_serum(closest_serum_pos);
+			take_serum();
+
 
 func _process(delta: float) -> void:
 	serum_level -= serum_drop_rate * delta;

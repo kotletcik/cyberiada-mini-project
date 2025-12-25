@@ -16,6 +16,10 @@ var serum_level: float;
 @export var serum_overdose_level: float;
 @export var serum_critical_level: float;
 
+@export var min_craving_timer: float;
+@export var max_craving_timer: float;
+@export var craving_player_force: float;
+
 @export var serum_vignette_intensity: float;
 @export var serum_to_normal_vignette_speed: float;
 @export var serum_vignette_color: Color;
@@ -38,8 +42,29 @@ var serum_level: float;
 @onready var environment: Environment = camera.environment;
 
 
-func register_camera(registered_camera: Camera3D) -> void:
-	camera = registered_camera;
+var serum_positions: Array[Vector3] = [Vector3.ZERO];
+
+var first_free_index: int = 0;
+
+var craving_timer: float;
+
+func register_serum_position(pos: Vector3) -> void:
+	serum_positions[first_free_index] = pos;
+	first_free_index += 1;
+	if(serum_positions.size() == first_free_index):
+		serum_positions.resize(first_free_index * 2);
+
+func unregister_serum_position(pos: Vector3) -> void:
+	for i in range(0, first_free_index):
+		if(serum_positions[i] == pos):
+			serum_positions.erase(pos);
+			break;
+	if(first_free_index > 0):
+		first_free_index -= 1;
+
+
+# func register_camera(registered_camera: Camera3D) -> void:
+# 	camera = registered_camera;
 
 func _ready() -> void:
 	if(instance == null):
@@ -55,6 +80,24 @@ func _ready() -> void:
 		print("More than one PsycheManager exists!!!");
 	pass 
 
+func find_closest_serum() -> Vector3:
+	var min_index: int = -1;
+	var min_dist: float;
+	var player_pos: Vector3 = camera.global_position;
+	for i in range(0, first_free_index):
+		var subtracted_vector: Vector3 = serum_positions[i] - player_pos;
+		var distance_sqr = subtracted_vector.length_squared();
+		if(min_index == -1 || distance_sqr < min_dist):
+			min_index = i;
+			min_dist = distance_sqr;
+	return serum_positions[min_index];
+
+func _physics_process(delta: float) -> void:
+	if(craving_timer > 0):
+		craving_timer -= delta;
+		var closest_serum: Vector3 = find_closest_serum();
+		var direction: Vector3 = (closest_serum - player.global_position).normalized();
+		player.global_translate(direction * craving_player_force * delta);
 
 func _process(delta: float) -> void:
 	serum_level -= serum_drop_rate * delta;
@@ -67,6 +110,10 @@ func _process(delta: float) -> void:
 	# if(Input.is_action_just_pressed("Interact")):
 	# 	take_serum();
 	# 	print("USED SERUM!!!");
+	if(Input.is_key_pressed(KEY_R)):
+		print(find_closest_serum());
+	if(Input.is_key_pressed(KEY_P)):
+		craving_timer = randf_range(min_craving_timer, max_craving_timer);
 	if(environment.fog_density < normal_fog_density):
 		environment.fog_density += delta * serum_to_normal_fog_speed;
 	var vignette_intensity: float = vignette_texture.material.get_shader_parameter("intensity")
@@ -74,7 +121,6 @@ func _process(delta: float) -> void:
 		vignette_texture.material.set_shader_parameter("intensity", vignette_intensity - (delta*serum_to_normal_vignette_speed)); 
 
 		
-	
 func take_serum():
 	serum_level += serum_take_amount;
 	environment.fog_density = serum_fog_density;
@@ -87,6 +133,7 @@ func take_serum():
 		vignette_texture.material.set_shader_parameter("vignette_color", serum_overdose_vignette_color);
 		vignette_texture.material.set_shader_parameter("radius", serum_overdoes_vignette_radius);
 	else:
+		craving_timer = randf_range(min_craving_timer, max_craving_timer);
 		vignette_texture.material.set_shader_parameter("intensity", serum_critical_vignette_intensity);
 		vignette_texture.material.set_shader_parameter("vignette_color", serum_critical_vignette_color);
 		vignette_texture.material.set_shader_parameter("radius", serum_critical_vignette_radius);

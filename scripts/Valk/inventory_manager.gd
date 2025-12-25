@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 
 func add_item(index: int, count: int) -> void:
 	if(index < 0 || index >= ITEM_TYPE.ENUM_LENGTH): return;
-	itemCount[index] += count
+	itemCount[index] += count;
 
 func remove_item(index: int, count: int) -> void:
 	if(index < 0 || index >= ITEM_TYPE.ENUM_LENGTH): return;

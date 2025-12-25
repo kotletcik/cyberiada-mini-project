@@ -30,7 +30,7 @@ var serum_level: float;
 @export var serum_overdose_vignette_intensity: float;
 # @export var serum_to_normal_overdose_vignette_speed: float;
 @export var serum_overdose_vignette_color: Color;
-@export var serum_overdoes_vignette_radius: float;
+@export var serum_overdose_vignette_radius: float;
 
 @export var serum_critical_vignette_intensity: float;
 # @export var serum_to_overdose_critical_vignette_speed: float;
@@ -166,15 +166,14 @@ func take_serum():
 	serum_level += serum_take_amount;
 	environment.fog_density = serum_fog_density;
 	if(serum_level < serum_overdose_level):
-		vignette_texture.material.set_shader_parameter("intensity", serum_vignette_intensity);
-		vignette_texture.material.set_shader_parameter("vignette_color", serum_vignette_color);
-		vignette_texture.material.set_shader_parameter("radius", serum_vignette_radius);
+		set_vignette_parameters(serum_vignette_intensity, serum_vignette_color, serum_vignette_radius);
 	elif(serum_level < serum_critical_level):
-		vignette_texture.material.set_shader_parameter("intensity", serum_overdose_vignette_intensity);
-		vignette_texture.material.set_shader_parameter("vignette_color", serum_overdose_vignette_color);
-		vignette_texture.material.set_shader_parameter("radius", serum_overdoes_vignette_radius);
+		set_vignette_parameters(serum_overdose_vignette_intensity, serum_overdose_vignette_color, serum_overdose_vignette_radius);
 	else:
 		craving_timer = randf_range(min_craving_timer, max_craving_timer);
-		vignette_texture.material.set_shader_parameter("intensity", serum_critical_vignette_intensity);
-		vignette_texture.material.set_shader_parameter("vignette_color", serum_critical_vignette_color);
-		vignette_texture.material.set_shader_parameter("radius", serum_critical_vignette_radius);
+		set_vignette_parameters(serum_critical_vignette_intensity, serum_critical_vignette_color, serum_critical_vignette_radius);
+
+func set_vignette_parameters(intensity: float, color: Color, radius: float) -> void:
+	vignette_texture.material.set_shader_parameter("intensity", intensity);
+	vignette_texture.material.set_shader_parameter("vignette_color", color);
+	vignette_texture.material.set_shader_parameter("radius", radius);

@@ -12,7 +12,7 @@ func _ready() -> void:
 	else:
 		print("More than one InventoryManager exists!!!");
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if(Input.is_action_just_pressed("use_item_1")):
 		if(has_item(ITEM_TYPE.SERUM)):
 			remove_item(ITEM_TYPE.SERUM, 1);

@@ -38,7 +38,8 @@ func set_start_pos(level):
 	var _level=level
 	if !_level:
 		_level = Game_Manager.current_level
-	position = start_pos[_level-1]
+	if _level-1 < start_pos.size() and _level-1>=0:
+		position = start_pos[_level-1]
   
 
 

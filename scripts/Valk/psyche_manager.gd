@@ -4,34 +4,48 @@ extends Node
 static var instance: PsycheManager;
 
 var serum_level: float;
+var fog_fade_level: float;
+@export var player: Node3D;
 @export var serum_drop_rate: float;
 @export var serum_start_level: float;
-@export var player: Node3D;
+
 @export var normal_fog_density: float;
 @export var serum_fog_density: float;
 
-@export var serum_to_normal_fog_speed: float;
 @export var serum_take_amount: float;
 
 @export var serum_overdose_level: float;
 @export var serum_critical_level: float;
 
+@export var serum_to_normal_fog_speed: float;
+
+@export_group("Fog Fade On Serum")
+@export var fog_fade_drop_rate: float;
+@export var fog_fade_start_level: float;
+@export var fog_fade_addiction_addition: float;
+
+@export_group("Craving")
 @export var min_craving_timer: float;
 @export var max_craving_timer: float;
 @export var craving_player_force: float;
 @export var craving_serum_take_radius: float;
-@export var craving_player_fov: float;
+@export var craving_serum_fov: float;
 
-@export var serum_vignette_intensity: float;
+@export_group("Vignette")
 @export var serum_to_normal_vignette_speed: float;
+
+@export_subgroup("Default Take Vignette")
+@export var serum_vignette_intensity: float;
 @export var serum_vignette_color: Color;
 @export var serum_vignette_radius: float;
 
+@export_subgroup("Overdose Take Vignette")
 @export var serum_overdose_vignette_intensity: float;
 # @export var serum_to_normal_overdose_vignette_speed: float;
 @export var serum_overdose_vignette_color: Color;
 @export var serum_overdose_vignette_radius: float;
 
+@export_subgroup("Critical Take Vignette")
 @export var serum_critical_vignette_intensity: float;
 # @export var serum_to_overdose_critical_vignette_speed: float;
 @export var serum_critical_vignette_color: Color;
@@ -82,6 +96,7 @@ func _ready() -> void:
 		camera  = player.get_child(0).get_child(0);
 		vignette_texture.material.set_shader_parameter("intensity", 0);
 		serum_level = serum_start_level;
+		fog_fade_level = fog_fade_start_level;
 	else:
 		print("More than one PsycheManager exists!!!");
 	pass 
@@ -128,12 +143,12 @@ func find_closest_serum_with_fov(fov: float) -> Node3D:
 func _physics_process(delta: float) -> void:
 	if(craving_timer > 0):
 		craving_timer -= delta;
-		var closest_serum: Node3D = find_closest_serum_with_fov(craving_player_fov); # vs find_closest_serum()
+		var closest_serum: Node3D = find_closest_serum_with_fov(craving_serum_fov); # vs find_closest_serum()
 		if(closest_serum == null): return;
 		var closest_serum_pos: Vector3 = closest_serum.global_position;
 		var direction: Vector3 = (closest_serum_pos - player.global_position).normalized();
 		# var dot: float = -player.global_basis.z.dot(direction);
-		# if(dot < 1-craving_player_fov/180): dot = 0;
+		# if(dot < 1-craving_serum_fov/180): dot = 0;
 		player.global_translate(direction * craving_player_force * delta);
 
 		var distance_sqr = (closest_serum_pos - player.global_position).length_squared();
@@ -146,13 +161,16 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	serum_level -= serum_drop_rate * delta;
 	if(serum_level < 0):
-		# print("Player Dead!!!");
+		# print("Player Dead!!!"); Raczej gracz nie powinnien umierać tutaj
 		serum_level = 0;
 	if(serum_level > 100):
 		# print("Player Dead !!!");
 		serum_level = 100;
 	#if(Input.is_key_pressed(KEY_R)):
 	#	print(find_closest_serum());
+	fog_fade_level -= fog_fade_drop_rate * delta;
+	if(fog_fade_level < 0):
+		fog_fade_level = 0;
 	if(Input.is_key_pressed(KEY_P)):
 		craving_timer = randf_range(min_craving_timer, max_craving_timer);
 	if(environment.fog_density < normal_fog_density):
@@ -164,7 +182,10 @@ func _process(delta: float) -> void:
 		
 func take_serum():
 	serum_level += serum_take_amount;
-	environment.fog_density = serum_fog_density;
+	print("fog fade level: ", fog_fade_level, " / serum level: ", serum_level);
+	if(serum_level >= fog_fade_level):
+		environment.fog_density = serum_fog_density;
+		fog_fade_level += fog_fade_addiction_addition;
 	if(serum_level < serum_overdose_level):
 		set_vignette_parameters(serum_vignette_intensity, serum_vignette_color, serum_vignette_radius);
 	elif(serum_level < serum_critical_level):

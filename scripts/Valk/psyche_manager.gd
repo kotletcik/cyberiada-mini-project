@@ -111,7 +111,7 @@ func find_closest_serum_pos() -> Vector3:
 		if(min_index == -1 || distance_sqr < min_dist):
 			min_index = i;
 			min_dist = distance_sqr;
-	return Vector3.ZERO if min_index == -1 else serum_positions[min_index];
+	return serum_positions[min_index] if min_index != -1 else Vector3.ZERO;
 
 func find_closest_serum() -> Node3D:
 	var min_index: int = -1;
@@ -123,7 +123,7 @@ func find_closest_serum() -> Node3D:
 		if(min_index == -1 || distance_sqr < min_dist):
 			min_index = i;
 			min_dist = distance_sqr;
-	return null if min_index == -1 else serums[min_index];
+	return serums[min_index] if min_index != -1 else null;
 
 func find_closest_serum_with_fov(fov: float) -> Node3D:
 	var min_index: int = -1;
@@ -138,7 +138,7 @@ func find_closest_serum_with_fov(fov: float) -> Node3D:
 		if(min_index == -1 || distance_sqr < min_dist):
 			min_index = i;
 			min_dist = distance_sqr;
-	return null if min_index == -1 else serums[min_index];
+	return serums[min_index] if min_index != -1 else null;
 
 func _physics_process(delta: float) -> void:
 	if(craving_timer > 0):

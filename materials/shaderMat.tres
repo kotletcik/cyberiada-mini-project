@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bh18nrwwf8tde"]
+
+[ext_resource type="Shader" uid="uid://cfdyd6j7c7xfl" path="res://materials/saturationShader.gdshader" id="1_f0gnh"]
+
+[resource]
+shader = ExtResource("1_f0gnh")
+shader_parameter/saturation = 0.1

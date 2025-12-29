@@ -24,12 +24,23 @@ var fog_fade_level: float;
 @export var fog_fade_start_level: float;
 @export var fog_fade_addiction_addition: float;
 
+@export_group("Overtake")
+@export var min_overtake_timer: float;
+@export var max_overtake_timer: float;
+@export var overtake_player_force: float;
+
 @export_group("Craving")
 @export var min_craving_timer: float;
 @export var max_craving_timer: float;
 @export var craving_player_force: float;
 @export var craving_serum_take_radius: float;
 @export var craving_serum_fov: float;
+
+@export_group("Saturation")
+@export var serum_to_normal_saturation_speed: float;
+@export var normal_saturation: float;
+@export var overdose_saturation: float;
+@export var critical_saturation: float;
 
 @export_group("Vignette")
 @export var serum_to_normal_vignette_speed: float;
@@ -54,6 +65,7 @@ var fog_fade_level: float;
 # @onready var camera: Camera3D = player.get_child(0).get_child(0);
 @onready var camera: Camera3D = $"../PlayerValk/Head/Camera3D";
 @onready var vignette_texture: TextureRect = $"../PlayerValk/CanvasLayer/TextureRect";
+@onready var saturation_texture: TextureRect = $"../PlayerValk/CanvasLayer/TextureRect2";
 @onready var base_camera_fov: float = camera.fov;
 @onready var environment: Environment = camera.environment;
 
@@ -64,6 +76,8 @@ var serums: Array[Node3D] = [null];
 var first_free_index: int = 0;
 
 var craving_timer: float;
+var overtake_timer: float;
+var overtake_dir: Vector3;
 
 func register_serum(node: Node3D, pos: Vector3) -> void:
 	serums[first_free_index] = node;
@@ -95,6 +109,7 @@ func _ready() -> void:
 		environment.fog_density = normal_fog_density;
 		camera  = player.get_child(0).get_child(0);
 		vignette_texture.material.set_shader_parameter("intensity", 0);
+		saturation_texture.material.set_shader_parameter("saturation", normal_saturation);
 		serum_level = serum_start_level;
 		fog_fade_level = fog_fade_start_level;
 	else:
@@ -155,7 +170,10 @@ func _physics_process(delta: float) -> void:
 		if(distance_sqr < craving_serum_take_radius*craving_serum_take_radius):
 			unregister_serum(closest_serum);
 			closest_serum.queue_free();
-			take_serum();
+			take_serum();	
+	if(overtake_timer > 0):
+		overtake_timer -= delta;
+		player.global_translate(overtake_dir * overtake_player_force * delta);
 
 
 func _process(delta: float) -> void:
@@ -175,9 +193,12 @@ func _process(delta: float) -> void:
 		craving_timer = randf_range(min_craving_timer, max_craving_timer);
 	if(environment.fog_density < normal_fog_density):
 		environment.fog_density += delta * serum_to_normal_fog_speed;
-	var vignette_intensity: float = vignette_texture.material.get_shader_parameter("intensity")
+	var vignette_intensity: float = vignette_texture.material.get_shader_parameter("intensity");
 	if(vignette_intensity > 0):
 		vignette_texture.material.set_shader_parameter("intensity", vignette_intensity - (delta*serum_to_normal_vignette_speed)); 
+	var saturation: float = saturation_texture.material.get_shader_parameter("saturation");
+	if(saturation < normal_saturation):
+		saturation_texture.material.set_shader_parameter("saturation", saturation + (delta*serum_to_normal_saturation_speed));
 
 		
 func take_serum():
@@ -189,9 +210,14 @@ func take_serum():
 	if(serum_level < serum_overdose_level):
 		set_vignette_parameters(serum_vignette_intensity, serum_vignette_color, serum_vignette_radius);
 	elif(serum_level < serum_critical_level):
+		overtake_timer = randf_range(min_overtake_timer, max_overtake_timer);
+		overtake_dir = Vector3(randf_range(-1, 1), 0 , randf_range(-1, 1)).normalized();
+		saturation_texture.material.set_shader_parameter("saturation", overdose_saturation);
 		set_vignette_parameters(serum_overdose_vignette_intensity, serum_overdose_vignette_color, serum_overdose_vignette_radius);
 	else:
+		overtake_timer = 0;
 		craving_timer = randf_range(min_craving_timer, max_craving_timer);
+		saturation_texture.material.set_shader_parameter("saturation", critical_saturation);
 		set_vignette_parameters(serum_critical_vignette_intensity, serum_critical_vignette_color, serum_critical_vignette_radius);
 
 func set_vignette_parameters(intensity: float, color: Color, radius: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cq4mdp3xlsb4a"]
+[gd_scene load_steps=9 format=3 uid="uid://cq4mdp3xlsb4a"]
 
 [ext_resource type="PackedScene" uid="uid://dg433bvfg6cvt" path="res://scenes/PlayerValk.tscn" id="1_cb1vq"]
 [ext_resource type="Script" uid="uid://s47j5s0f3fdy" path="res://scripts/Valk/psyche_manager.gd" id="2_1a1i1"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bieh4iknld2hn" path="res://scenes/test_scenes/rock.tscn" id="5_0nogy"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cb1vq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0nogy"]
+albedo_color = Color(1, 0.19215687, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1a1i1"]
 
@@ -18,6 +21,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1326146, 0, 0)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(54.3, 0, 0, 0, 1, 0, 0, 0, 20.161789, 0, -1.9399543, 0)
 mesh = SubResource("BoxMesh_cb1vq")
+surface_material_override/0 = SubResource("StandardMaterial3D_0nogy")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
@@ -25,11 +29,33 @@ mesh = SubResource("BoxMesh_cb1vq")
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_1a1i1")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.76784045, 0, 0, 0, 2.2320867, 0, 0, 0, 3.083391, 9, -0.34925795, 0)
+mesh = SubResource("BoxMesh_cb1vq")
+surface_material_override/0 = SubResource("StandardMaterial3D_0nogy")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_1a1i1")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.76784045, 0, 0, 0, 2.2320867, 0, 0, 0, 3.083391, 9, -0.34925795, 5)
+mesh = SubResource("BoxMesh_cb1vq")
+surface_material_override/0 = SubResource("StandardMaterial3D_0nogy")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_1a1i1")
+
 [node name="PsycheManager" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_1a1i1")
 player = NodePath("../PlayerValk")
 serum_drop_rate = 5.0
-normal_fog_density = 0.1
+normal_fog_density = 0.5
 serum_fog_density = 0.01
 serum_take_amount = 10.0
 serum_overdose_level = 60.0
@@ -38,11 +64,18 @@ serum_to_normal_fog_speed = 0.005
 fog_fade_drop_rate = 1.0
 fog_fade_start_level = 10.0
 fog_fade_addiction_addition = 10.0
+min_overtake_timer = 1.0
+max_overtake_timer = 2.0
+overtake_player_force = 2.0
 min_craving_timer = 5.0
 max_craving_timer = 10.0
 craving_player_force = 2.5
 craving_serum_take_radius = 1.5
 craving_serum_fov = 90.0
+serum_to_normal_saturation_speed = 0.05
+normal_saturation = 1.0
+overdose_saturation = 0.5
+critical_saturation = 0.1
 serum_to_normal_vignette_speed = 0.5
 serum_vignette_intensity = 1.0
 serum_vignette_color = Color(0.85490197, 0, 0, 1)
@@ -54,34 +87,34 @@ serum_critical_vignette_radius = 0.1
 metadata/_custom_type_script = "uid://s47j5s0f3fdy"
 
 [node name="Serum" parent="." instance=ExtResource("3_t4e8a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4982677, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4982677, -0.5510998, 0)
 
 [node name="Serum2" parent="." instance=ExtResource("3_t4e8a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4982677, 0, 1.9095535)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4982677, -0.5510998, 1.9095535)
 
 [node name="Serum3" parent="." instance=ExtResource("3_t4e8a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.346453, 0, 1.9095535)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.346453, -0.5510998, 1.9095535)
 
 [node name="Serum4" parent="." instance=ExtResource("3_t4e8a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.346453, 0, 3.9095535)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.346453, -0.5510998, 3.9095535)
 
 [node name="Serum5" parent="." instance=ExtResource("3_t4e8a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3464532, 0, 3.9095535)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3464532, -0.5510998, 3.9095535)
 
 [node name="Serum6" parent="." instance=ExtResource("3_t4e8a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3464532, 0, 5.9095535)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3464532, -0.5510998, 5.9095535)
 
 [node name="Serum7" parent="." instance=ExtResource("3_t4e8a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3464532, 0, 5.9095535)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3464532, -0.5510998, 5.9095535)
 
 [node name="Serum8" parent="." instance=ExtResource("3_t4e8a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6535468, 0, 5.9095535)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6535468, -0.5510998, 5.9095535)
 
 [node name="Serum9" parent="." instance=ExtResource("3_t4e8a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6581588, 0, 5.9095535)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6581588, -0.5510998, 5.9095535)
 
 [node name="Serum10" parent="." instance=ExtResource("3_t4e8a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.658159, 0, 5.9095535)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.658159, -0.5510998, 5.9095535)
 
 [node name="InventoryManager" type="Node" parent="."]
 script = ExtResource("4_nxxrq")
@@ -98,3 +131,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.116188, -0.9399543, -7.579
 
 [node name="Rock4" parent="." instance=ExtResource("5_0nogy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.116188, 0.06004572, -7.579383)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.7314372, 0.68190914, 0, -0.68190914, 0.7314372, 0, 1.30567, 0)
+shadow_enabled = true

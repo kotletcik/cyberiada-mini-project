@@ -21,6 +21,7 @@ var camera_base_offset: Vector3 # zapamiętany oryginalny lokalny offset kamery
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
+@onready var collision_shape = $CollisionShape3D
 
 func _ready() -> void:
 	
@@ -44,6 +45,13 @@ func set_start_pos(level):
 
 
 func _physics_process(delta: float) -> void:
+
+	if(Input.is_action_pressed("Crouch")):
+		collision_shape.scale.y = 0.5;
+	else:
+		collision_shape.scale.y = 1.0;
+
+
 	var input_dir = Vector3.ZERO
 	input_dir.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_dir.z = Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")

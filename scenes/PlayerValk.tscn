@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dg433bvfg6cvt"]
+[gd_scene load_steps=10 format=3 uid="uid://dg433bvfg6cvt"]
 
 [ext_resource type="Script" uid="uid://67dqw2stjnr6" path="res://scripts/custom_player_controller.gd" id="1_v6fml"]
 [ext_resource type="Script" uid="uid://dvgoa1d8j20dg" path="res://scripts/Valk/player_interactions.gd" id="2_3li8b"]
 [ext_resource type="PackedScene" uid="uid://ce6h2fmee74sw" path="res://scenes/test_scenes/serum.tscn" id="3_0dfmc"]
 [ext_resource type="PackedScene" uid="uid://cq7n16gqbc6eo" path="res://vignette/Vignette.tscn" id="3_abpoc"]
 [ext_resource type="PackedScene" uid="uid://b4512qioi3g1i" path="res://scenes/Gravity.tscn" id="5_uxk6a"]
+[ext_resource type="Script" uid="uid://chqddn3tlmas8" path="res://scripts/Valk/throw_rocks.gd" id="6_moip8"]
+[ext_resource type="PackedScene" uid="uid://bl467r2v4j413" path="res://scenes/test_scenes/throwable_rock.tscn" id="7_52ka2"]
 
 [sub_resource type="Environment" id="Environment_473a2"]
 fog_enabled = true
@@ -13,6 +15,7 @@ fog_light_color = Color(0.30184436, 0.32968265, 0.37299633, 1)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v6fml"]
 
 [node name="PlayerValk" type="CharacterBody3D"]
+collision_layer = 16
 script = ExtResource("1_v6fml")
 
 [node name="Head" type="Node3D" parent="."]
@@ -25,6 +28,9 @@ current = true
 script = ExtResource("2_3li8b")
 serum = ExtResource("3_0dfmc")
 
+[node name="Rock Throw Position" type="Node3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0.5736686, 0, 0)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_v6fml")
 
@@ -32,3 +38,9 @@ shape = SubResource("CapsuleShape3D_v6fml")
 
 [node name="Gravity" parent="." node_paths=PackedStringArray("_body") instance=ExtResource("5_uxk6a")]
 _body = NodePath("..")
+
+[node name="Throw Rocks" type="Node" parent="." node_paths=PackedStringArray("throw_position")]
+script = ExtResource("6_moip8")
+throw_position = NodePath("../Head/Camera3D/Rock Throw Position")
+throw_force = 25.0
+rock = ExtResource("7_52ka2")

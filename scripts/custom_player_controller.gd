@@ -90,6 +90,11 @@ func _physics_process(delta: float) -> void:
 	# zastosowanie ruchu
 	move_and_slide()
 
+# func _process(delta: float) -> void:
+# 	t_bob += delta * velocity.length() * float(is_on_floor())
+# 	if camera:
+# 		camera.transform.origin = camera_base_offset + _headbob(t_bob)
+
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == Key.KEY_SPACE:

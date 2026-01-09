@@ -63,9 +63,9 @@ var fog_fade_level: float;
 @export var serum_critical_vignette_radius: float;
 
 # @onready var camera: Camera3D = player.get_child(0).get_child(0);
-@onready var camera: Camera3D = $"../PlayerValk/Head/Camera3D";
-@onready var vignette_texture: TextureRect = $"../PlayerValk/CanvasLayer/TextureRect";
-@onready var saturation_texture: TextureRect = $"../PlayerValk/CanvasLayer/TextureRect2";
+@onready var camera: Camera3D = $"../Player/Head/Camera3D";
+@onready var vignette_texture: TextureRect = $"../Player/CanvasLayer/TextureRect";
+@onready var saturation_texture: TextureRect = $"../Player/CanvasLayer/TextureRect2";
 @onready var base_camera_fov: float = camera.fov;
 @onready var environment: Environment = camera.environment;
 

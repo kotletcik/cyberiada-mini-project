@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bl467r2v4j413"]
+[gd_scene load_steps=5 format=3 uid="uid://bl467r2v4j413"]
+
+[ext_resource type="Script" uid="uid://soiht2of6t23" path="res://scripts/Valk/throwable_rock.gd" id="1_tbn3g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4e8a"]
 
@@ -10,6 +12,7 @@ albedo_color = Color(0.1661382, 0.16298771, 0.050084077, 1)
 [node name="Throwable Rock" type="RigidBody3D"]
 collision_layer = 32
 collision_mask = 47
+script = ExtResource("1_tbn3g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
@@ -19,3 +22,5 @@ shape = SubResource("BoxShape3D_t4e8a")
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 mesh = SubResource("BoxMesh_nxxrq")
 surface_material_override/0 = SubResource("StandardMaterial3D_yy7vx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

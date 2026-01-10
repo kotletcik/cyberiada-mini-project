@@ -23,7 +23,7 @@ albedo_color = Color(1, 0.19215687, 1, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1326146, 2.1234412, -25.405394)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(54.3, 0, 0, 0, 1, 0, 0, 0, 20.161789, 2.0612574, 0.017525196, -22.471724)
+transform = Transform3D(54.3, 0, 0, 0, 1, 0, 0, 0, 20.161789, 2.0612574, 0.009125471, -22.471724)
 mesh = SubResource("BoxMesh_cb1vq")
 surface_material_override/0 = SubResource("StandardMaterial3D_0nogy")
 
@@ -144,6 +144,7 @@ transform = Transform3D(1, 0, 0, 0, 0.7314372, 0.68190914, 0, -0.68190914, 0.731
 shadow_enabled = true
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25.286251)
 navigation_mesh = SubResource("NavigationMesh_b4wx3")
 
 [node name="NavRegionFloor" parent="." instance=ExtResource("7_w4tbm")]

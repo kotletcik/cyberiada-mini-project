@@ -19,6 +19,8 @@ var fog_fade_level: float;
 
 @export var serum_to_normal_fog_speed: float;
 
+@export var serum_invisibility_time: float;
+
 @export_group("Fog Fade On Serum")
 @export var fog_fade_drop_rate: float;
 @export var fog_fade_start_level: float;
@@ -74,6 +76,8 @@ var serum_positions: Array[Vector3] = [Vector3.ZERO];
 var serums: Array[Node3D] = [null];
 
 var first_free_index: int = 0;
+
+var invisibility_timer: float = 0;
 
 var craving_timer: float;
 var overtake_timer: float;
@@ -181,9 +185,14 @@ func _process(delta: float) -> void:
 	if(serum_level < 0):
 		# print("Player Dead!!!"); Raczej gracz nie powinnien umierać tutaj
 		serum_level = 0;
+		EventBus.shells_appear.emit();
 	if(serum_level > 100):
 		# print("Player Dead !!!");
 		serum_level = 100;
+	if(invisibility_timer > 0):
+		invisibility_timer -= delta;
+		if(invisibility_timer <= 0):
+			EventBus.shells_appear.emit();
 	#if(Input.is_key_pressed(KEY_R)):
 	#	print(find_closest_serum());
 	fog_fade_level -= fog_fade_drop_rate * delta;
@@ -203,6 +212,8 @@ func _process(delta: float) -> void:
 		
 func take_serum():
 	serum_level += serum_take_amount;
+	invisibility_timer = serum_invisibility_time;
+	if(invisibility_timer > 0): EventBus.shells_disappear.emit();
 	print("fog fade level: ", fog_fade_level, " / serum level: ", serum_level);
 	if(serum_level >= fog_fade_level):
 		environment.fog_density = serum_fog_density;

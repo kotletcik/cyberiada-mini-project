@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://elmpcqsoarjp"]
+[gd_scene load_steps=16 format=3 uid="uid://elmpcqsoarjp"]
 
 [ext_resource type="Script" uid="uid://bnwduhvsot5bk" path="res://scripts/state_machine/shell.gd" id="1_yvw8q"]
 [ext_resource type="PackedScene" uid="uid://b4512qioi3g1i" path="res://scenes/Gravity.tscn" id="2_6sbjw"]
@@ -8,14 +8,20 @@
 [ext_resource type="Script" uid="uid://b7oh0gjgvjexb" path="res://scripts/state_machine/AI_controller.gd" id="6_ajbgq"]
 [ext_resource type="Script" uid="uid://cc74fqip5mv6y" path="res://scripts/state_machine/States/Attack.gd" id="6_lj2st"]
 [ext_resource type="Script" uid="uid://bm34qfrf1h2m1" path="res://scripts/follow_sound.gd" id="7_lqxc7"]
+[ext_resource type="Script" uid="uid://b7ydidx4polw6" path="res://scripts/Valk/shell_disappearance.gd" id="9_jt8f1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lj2st"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nyxyb"]
-albedo_color = Color(1.2513996e-06, 0.6162296, 0.3239598, 1)
+transparency = 1
+albedo_color = Color(0, 0.6156863, 0.3254902, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ajbgq"]
 material = SubResource("StandardMaterial3D_nyxyb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_re4yq"]
+transparency = 1
+albedo_color = Color(0.27935672, 0.27935672, 0.27935672, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lqxc7"]
 albedo_color = Color(1, 0, 0, 1)
@@ -36,6 +42,7 @@ shape = SubResource("CapsuleShape3D_lj2st")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_ajbgq")
+surface_material_override/0 = SubResource("StandardMaterial3D_re4yq")
 
 [node name="Gravity" parent="." node_paths=PackedStringArray("_body") instance=ExtResource("2_6sbjw")]
 _body = NodePath("..")
@@ -86,3 +93,7 @@ path_postprocessing = 1
 debug_enabled = true
 debug_path_custom_color = Color(0.95686275, 0.13333334, 0.23137255, 1)
 script = ExtResource("6_ajbgq")
+
+[node name="Shell Disappearance" type="Node" parent="." node_paths=PackedStringArray("shell_mesh")]
+script = ExtResource("9_jt8f1")
+shell_mesh = NodePath("../MeshInstance3D")

@@ -25,22 +25,22 @@ var camera_base_offset: Vector3 # zapamiętany oryginalny lokalny offset kamery
 
 func _ready() -> void:
 	
-	if start_pos and start_pos.size() >= 1:
-		set_start_pos(1)
-	EventBus.connect("game_restarted", set_start_pos)
-	EventBus.connect("level_changed", set_start_pos)
+	# if start_pos and start_pos.size() >= 1:
+	# 	set_start_pos(1)
+	# EventBus.connect("game_restarted", set_start_pos)
+	# EventBus.connect("level_changed", set_start_pos)
 	# Przechwycenie kursora myszy dla obrotu kamery
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# Zachowaj oryginalną lokalną pozycję kamery aby bobbing jej nie nadpisywał
 	if camera:
 		camera_base_offset = camera.transform.origin
 
-func set_start_pos(level):
-	var _level=level
-	if !_level:
-		_level = Game_Manager.current_level
-	if _level-1 < start_pos.size() and _level-1>=0:
-		position = start_pos[_level-1]
+# func set_start_pos(level):
+# 	var _level=level
+# 	if !_level:
+# 		_level = Game_Manager.current_level
+# 	if _level-1 < start_pos.size() and _level-1>=0:
+# 		position = start_pos[_level-1]
   
 
 

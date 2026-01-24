@@ -27,6 +27,8 @@ func Update(delta: float):
 	else:
 		change_state_to("wander")
 		time = timer
+	if(PsycheManager.instance.invisibility_timer > 0):
+		change_state_to("wander")
 	
 
 	

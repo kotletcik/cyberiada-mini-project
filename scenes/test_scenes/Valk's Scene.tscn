@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cq4mdp3xlsb4a"]
+[gd_scene load_steps=13 format=3 uid="uid://cq4mdp3xlsb4a"]
 
 [ext_resource type="PackedScene" uid="uid://dg433bvfg6cvt" path="res://scenes/PlayerValk.tscn" id="1_cb1vq"]
 [ext_resource type="Script" uid="uid://s47j5s0f3fdy" path="res://scripts/Valk/psyche_manager.gd" id="2_1a1i1"]
 [ext_resource type="PackedScene" uid="uid://elmpcqsoarjp" path="res://scenes/Mobs/Shell.tscn" id="3_81ya1"]
 [ext_resource type="PackedScene" uid="uid://ce6h2fmee74sw" path="res://scenes/test_scenes/serum.tscn" id="3_t4e8a"]
+[ext_resource type="Script" uid="uid://c681q57ewat6f" path="res://scripts/Valk/game_manager.gd" id="3_w4tbm"]
 [ext_resource type="Script" uid="uid://coysphqpo5g2l" path="res://scripts/Valk/inventory_manager.gd" id="4_nxxrq"]
 [ext_resource type="PackedScene" uid="uid://bieh4iknld2hn" path="res://scenes/test_scenes/rock.tscn" id="5_0nogy"]
 [ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://scenes/Locations/nav_region_floor.tscn" id="7_w4tbm"]
@@ -23,7 +24,7 @@ albedo_color = Color(1, 0.19215687, 1, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0213828, 2.1234412, -25.405394)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(54.3, 0, 0, 0, 1, 0, 0, 0, 20.161789, 2.0612574, 0.009125471, -22.471724)
+transform = Transform3D(54.3, 0, 0, 0, 1, 0, 0, 0, 20.161789, 2.115285, 0.024101973, -22.401081)
 mesh = SubResource("BoxMesh_cb1vq")
 surface_material_override/0 = SubResource("StandardMaterial3D_0nogy")
 
@@ -91,8 +92,13 @@ serum_critical_vignette_intensity = 2.0
 serum_critical_vignette_radius = 0.1
 metadata/_custom_type_script = "uid://s47j5s0f3fdy"
 
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("3_w4tbm")
+metadata/_custom_type_script = "uid://s47j5s0f3fdy"
+
 [node name="Shell" parent="." instance=ExtResource("3_81ya1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1561513, 1.4558756, -18.730312)
+player_sight_range = 5.0
 
 [node name="Serum" parent="." instance=ExtResource("3_t4e8a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9913974, 1.0094061, -15.351182)

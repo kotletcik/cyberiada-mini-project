@@ -4,7 +4,11 @@ class_name Wander
 @export var empty_target: Node3D
 @export var wander_time: float = 10.0
 var timer: float
+var player: CharacterBody3D
 	
+func _ready() -> void:
+	player = state_machine.mob.player
+
 func randomize_wander():
 	empty_target.position = _random_pos_in_current_region()
 	#nav_agent.target_pos = state_machine.mob.position + Vector3(randf_range(-1, 1),0,randf_range(-1, 1))
@@ -23,8 +27,10 @@ func Enter():
 	randomize_wander()
 
 func Update (delta: float):
+	if (state_machine.mob.is_player_in_sight()):
+		if (PsycheManager.instance.invisibility_timer <= 0): change_state_to("follow_player");
 	if timer > 0:
-		timer-=delta
+		timer -= delta
 	else:
 		randomize_wander()
 		timer = wander_time 

@@ -1,0 +1,14 @@
+class_name GameManager
+extends Node
+
+static var instance: GameManager
+
+func _ready() -> void:
+	if(instance == null):
+		instance = self;    
+	else:
+		print("More than one GameManager exists!!!");
+		queue_free();
+
+func restart_scene() -> void:
+	get_tree().reload_current_scene();

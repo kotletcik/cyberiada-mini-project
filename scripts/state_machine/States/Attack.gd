@@ -4,9 +4,11 @@ class_name Attack
 func Enter():
 	super.Enter()
 	
-func Update(delta: float):
+func Update(_delta: float):
 	attack()
 
 func attack():
-	EventBus.level_changed.emit(Game_Manager.current_level)
+	# EventBus.level_changed.emit(Game_Manager.current_level)
+	if (PsycheManager.instance.invisibility_timer > 0): return;
+	GameManager.instance.restart_scene();
 	

@@ -1,18 +1,18 @@
-class_name GameManager
+# class_name GameManager
 extends Node3D
 
-static var instance: GameManager
+# static var instance: GameManager
 var current_level = 1;
 
 @export var player: CharacterBody3D
 @export var shells = []
 
 func _ready() -> void:
-	if (instance == null):
-		instance = self;
-		EventBus.connect("game_restarted", change_level_to);
-		EventBus.connect("level_changed", change_level_to);
-	else:
+	# if (instance == null):
+	# 	instance = self;
+	# 	EventBus.connect("game_restarted", change_level_to);
+	# 	EventBus.connect("level_changed", change_level_to);
+	# else:
 		print("More than one GameManager exists!!!");
 		queue_free();
 

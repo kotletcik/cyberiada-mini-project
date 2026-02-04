@@ -1,0 +1,69 @@
+extends State
+class_name Searching
+
+@export var empty_target: Node3D
+@export var searching_point_change_time: float = 5.0
+@export var searching_time: float = 5.0
+@export var searching_radius: float = 3
+var searching_point_timer: float
+var searching_timer: float
+var player: CharacterBody3D
+var searching_area_center: Vector3
+
+	
+func _ready() -> void:
+	player = state_machine.mob.player
+
+func randomize_searching_point():
+	empty_target.position = random_pos_in_range(searching_radius)
+	#nav_agent.target_pos = state_machine.mob.position + Vector3(randf_range(-1, 1),0,randf_range(-1, 1))
+	nav_agent.move_speed = move_speed
+	
+func random_pos_in_current_region() -> Vector3:
+	return state_machine.mob.global_position + Vector3(\
+	randf_range(-2, 2),\
+	state_machine.mob.global_position.y, \
+	randf_range(-2, 2))
+	
+func random_pos_in_range(range: float) -> Vector3:
+	var angle : float = (2*PI) * randf() 
+	var distance: float = range * randf()
+	return searching_area_center + Vector3(\
+	distance, 0, 0) * cos(angle) + Vector3(\
+	0, 0, distance) * sin(angle)
+	
+func Enter():
+	super.Enter()
+	EventBus.connect("sound_emitted_by_player", change_state_to_follow_sound)
+	nav_agent.target = empty_target
+	searching_area_center = state_machine.mob.global_position
+	searching_timer = searching_time
+	randomize_searching_point()
+
+func Update (delta: float):
+	if searching_timer > 0:
+		if (state_machine.mob.is_player_in_sight()):
+			if (PsycheManager.instance.invisibility_timer <= 0): change_state_to("follow_player");
+		if searching_point_timer > 0:
+			searching_point_timer -= delta
+		else:
+			randomize_searching_point()
+			searching_point_timer = searching_point_change_time
+		empty_target.global_position = empty_target.global_position
+		searching_timer -= delta
+	else:
+		change_state_to_wander()
+
+func change_state_to_follow_sound(sound_pos: Vector3):
+	state_machine.target = sound_pos
+	change_state_to("follow_sound")
+
+func change_state_to_follow():
+	change_state_to("follow_player")
+
+func change_state_to_wander():
+	change_state_to("wander")
+
+func Exit():
+	super.Exit()
+	EventBus.disconnect("sound_emitted_by_player", change_state_to_follow_sound)

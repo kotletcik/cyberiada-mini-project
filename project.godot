@@ -16,8 +16,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-EventBus="*res://scripts/Event_bus.gd"
-Game_Manager="res://scripts/game_manager.gd"
+EventBus="*res://scripts/PJ/Event_bus.gd"
+Game_Manager="res://scripts/PJ/game_manager.gd"
 ITEM_TYPE="*res://scripts/Valk/item_type.gd"
 
 [global_group]

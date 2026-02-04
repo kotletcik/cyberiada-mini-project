@@ -25,7 +25,7 @@ func Update(delta: float):
 	elif time > 0:
 		time-=delta
 	else:
-		change_state_to("wander")
+		change_state_to("searching")
 		time = timer
 	if(PsycheManager.instance.invisibility_timer > 0):
 		change_state_to("wander")

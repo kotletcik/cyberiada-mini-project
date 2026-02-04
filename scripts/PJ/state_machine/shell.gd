@@ -8,6 +8,7 @@ class_name shell
 @onready var nav_agent: NavigationAgent3D = $"NavigationAgent3D"
 var player: PlayerController
 @onready var state_machine: State_machine = $"State_machine"
+@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
 
 # func _ready() -> void:
 # 	set_start_pos(1)

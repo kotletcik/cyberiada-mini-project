@@ -9,6 +9,9 @@ class_name State_machine
 @export var mob: CharacterBody3D
 var target: Vector3
 
+@onready var mesh := $"../MeshInstance3D"
+var mat: StandardMaterial3D
+
 var current_state : State
 # key = "nazwa": string, value = state: State
 var states : Dictionary = {}
@@ -16,6 +19,10 @@ var states : Dictionary = {}
 func _ready():
 	if get_parent() is CharacterBody3D:
 		mob = get_parent()
+		
+	mat = mesh.get_active_material(0).duplicate()
+	mesh.set_surface_override_material(0, mat)
+	
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child 

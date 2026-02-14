@@ -25,7 +25,6 @@ func update_target_pos_every(_update_target_pos_timer: float):
 	if target:
 		set_target_position(target.position)
 	timer = get_tree().create_timer(_update_target_pos_timer)
-	print(target.position)
 	await timer.timeout
 	if is_active:
 		update_target_pos_every(update_target_pos_timer)

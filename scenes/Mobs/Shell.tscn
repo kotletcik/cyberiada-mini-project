@@ -1,14 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://elmpcqsoarjp"]
+[gd_scene load_steps=11 format=3 uid="uid://elmpcqsoarjp"]
 
 [ext_resource type="Script" uid="uid://bnwduhvsot5bk" path="res://scripts/PJ/state_machine/shell.gd" id="1_yvw8q"]
 [ext_resource type="PackedScene" uid="uid://b4512qioi3g1i" path="res://scenes/Gravity.tscn" id="2_6sbjw"]
-[ext_resource type="Script" uid="uid://bt2rps524x0ph" path="res://scripts/PJ/state_machine/State_machine.gd" id="3_yxteo"]
-[ext_resource type="Script" uid="uid://cxanx1emdbq8r" path="res://scripts/PJ/state_machine/States/Wander.gd" id="4_eqm4o"]
-[ext_resource type="Script" uid="uid://cosu5u4u5tn61" path="res://scripts/PJ/state_machine/States/Follow_player.gd" id="5_lj2st"]
+[ext_resource type="PackedScene" uid="uid://bxerqeybhhs0c" path="res://scenes/Mobs/state_machine.tscn" id="5_e6lbg"]
 [ext_resource type="Script" uid="uid://b7oh0gjgvjexb" path="res://scripts/PJ/state_machine/AI_controller.gd" id="6_ajbgq"]
-[ext_resource type="Script" uid="uid://cc74fqip5mv6y" path="res://scripts/PJ/state_machine/States/Attack.gd" id="6_lj2st"]
-[ext_resource type="Script" uid="uid://bm34qfrf1h2m1" path="res://scripts/PJ/state_machine/States/follow_sound.gd" id="7_lqxc7"]
-[ext_resource type="Script" uid="uid://bthija1821lvr" path="res://scripts/PJ/state_machine/States/searching_player.gd" id="8_re4yq"]
+[ext_resource type="Script" uid="uid://dkukaamdo4acb" path="res://scripts/PJ/state_machine/shell_behaviour2.gd" id="6_raqt8"]
 [ext_resource type="Script" uid="uid://b7ydidx4polw6" path="res://scripts/Valk/shell_disappearance.gd" id="9_jt8f1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lj2st"]
@@ -24,21 +20,14 @@ material = SubResource("StandardMaterial3D_nyxyb")
 transparency = 1
 albedo_color = Color(0.27935672, 0.27935672, 0.27935672, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lqxc7"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_jt8f1"]
-material = SubResource("StandardMaterial3D_lqxc7")
-radius = 0.1
-height = 0.2
-
-[node name="Shell" type="CharacterBody3D"]
+[node name="Shell" type="CharacterBody3D" node_paths=PackedStringArray("state_machine")]
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_yvw8q")
 attack_range = 1.0
 player_sight_range = 4.0
 player_sight_fov = 45.0
+state_machine = NodePath("State_machine")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_lj2st")
@@ -50,62 +39,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_re4yq")
 [node name="Gravity" parent="." node_paths=PackedStringArray("_body") instance=ExtResource("2_6sbjw")]
 _body = NodePath("..")
 
-[node name="State_machine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "mob")]
-script = ExtResource("3_yxteo")
-initial_state = NodePath("Wander")
-mob = NodePath("..")
-metadata/_custom_type_script = "uid://bt2rps524x0ph"
-
-[node name="Wander" type="Node" parent="State_machine" node_paths=PackedStringArray("empty_target", "nav_agent")]
-script = ExtResource("4_eqm4o")
-empty_target = NodePath("empty_target")
-nav_agent = NodePath("../../NavigationAgent3D")
-move_speed = 1.0
-metadata/_custom_type_script = "uid://foywhiftl87x"
-
-[node name="empty_target" type="Node3D" parent="State_machine/Wander"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9462496, 0, 0)
-
-[node name="Follow_player" type="Node" parent="State_machine" node_paths=PackedStringArray("nav_agent")]
-script = ExtResource("5_lj2st")
-follow_state_duration = 3.0
-nav_agent = NodePath("../../NavigationAgent3D")
-move_speed = 8.0
-model_color = Color(1, 0.32410014, 0.25894427, 1)
-metadata/_custom_type_script = "uid://foywhiftl87x"
-
-[node name="Attack" type="Node" parent="State_machine" node_paths=PackedStringArray("nav_agent")]
-script = ExtResource("6_lj2st")
-nav_agent = NodePath("../../NavigationAgent3D")
-move_speed = 0.0
-model_color = Color(0.7670247, 2.5268644e-06, 9.62615e-07, 1)
-metadata/_custom_type_script = "uid://foywhiftl87x"
-
-[node name="Follow_sound" type="Node" parent="State_machine" node_paths=PackedStringArray("nav_agent")]
-script = ExtResource("7_lqxc7")
-follow_state_duration = 5.0
-nav_agent = NodePath("../../NavigationAgent3D")
-model_color = Color(0, 0.40392157, 0.11372549, 1)
-metadata/_custom_type_script = "uid://foywhiftl87x"
-
-[node name="Empty_target" type="Node3D" parent="State_machine/Follow_sound"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="State_machine/Follow_sound/Empty_target"]
-mesh = SubResource("SphereMesh_jt8f1")
-
-[node name="Searching" type="Node" parent="State_machine" node_paths=PackedStringArray("empty_target", "nav_agent")]
-script = ExtResource("8_re4yq")
-empty_target = NodePath("empty_target")
-searching_point_change_time = 2.5
-searching_time = 10.0
-nav_agent = NodePath("../../NavigationAgent3D")
-model_color = Color(0.02745098, 0.30980393, 0.7921569, 1)
-metadata/_custom_type_script = "uid://foywhiftl87x"
-
-[node name="empty_target" type="Node3D" parent="State_machine/Searching"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9462496, 0, 0)
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_postprocessing = 1
 debug_enabled = true
@@ -115,3 +48,31 @@ script = ExtResource("6_ajbgq")
 [node name="Shell Disappearance" type="Node" parent="." node_paths=PackedStringArray("shell_mesh")]
 script = ExtResource("9_jt8f1")
 shell_mesh = NodePath("../MeshInstance3D")
+
+[node name="State_machine" parent="." node_paths=PackedStringArray("mob") instance=ExtResource("5_e6lbg")]
+mob = NodePath("..")
+
+[node name="Wander" parent="State_machine" index="0" node_paths=PackedStringArray("nav_agent")]
+nav_agent = NodePath("../../NavigationAgent3D")
+
+[node name="Follow_player" parent="State_machine" index="1" node_paths=PackedStringArray("nav_agent")]
+nav_agent = NodePath("../../NavigationAgent3D")
+
+[node name="Attack" parent="State_machine" index="2" node_paths=PackedStringArray("nav_agent")]
+nav_agent = NodePath("../../NavigationAgent3D")
+move_speed = 10.0
+
+[node name="Follow_sound" parent="State_machine" index="3" node_paths=PackedStringArray("follow_target", "nav_agent")]
+follow_target = NodePath("Empty_target")
+nav_agent = NodePath("../../NavigationAgent3D")
+
+[node name="Behaviour" parent="State_machine" index="5" node_paths=PackedStringArray("state_machine", "sound_target")]
+script = ExtResource("6_raqt8")
+state_machine = NodePath("..")
+follow_state_duration = 5.0
+searching_time = 5.0
+follow_sound_state_duration = 2.0
+sound_target = NodePath("../Follow_sound/Empty_target")
+wander_time = 10.0
+
+[editable path="State_machine"]

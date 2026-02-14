@@ -1,0 +1,92 @@
+[gd_scene load_steps=14 format=3 uid="uid://d02kasr2lce4t"]
+
+[ext_resource type="Script" uid="uid://bnwduhvsot5bk" path="res://scripts/PJ/state_machine/shell.gd" id="1_dsl82"]
+[ext_resource type="PackedScene" uid="uid://b4512qioi3g1i" path="res://scenes/Gravity.tscn" id="2_p815j"]
+[ext_resource type="Script" uid="uid://bt2rps524x0ph" path="res://scripts/PJ/state_machine/State_machine.gd" id="3_xi3xm"]
+[ext_resource type="Script" uid="uid://cxanx1emdbq8r" path="res://scripts/PJ/state_machine/States/Wander.gd" id="4_dsl82"]
+[ext_resource type="Script" uid="uid://bqg2eh1uhbi55" path="res://scripts/PJ/state_machine/Mutation_behaviour.gd" id="4_u10fb"]
+[ext_resource type="Script" uid="uid://cosu5u4u5tn61" path="res://scripts/PJ/state_machine/States/Follow_player.gd" id="5_p815j"]
+[ext_resource type="Script" uid="uid://cc74fqip5mv6y" path="res://scripts/PJ/state_machine/States/Attack.gd" id="6_hd8do"]
+[ext_resource type="Script" uid="uid://b7oh0gjgvjexb" path="res://scripts/PJ/state_machine/AI_controller.gd" id="9_ja7dw"]
+[ext_resource type="Script" uid="uid://b7ydidx4polw6" path="res://scripts/Valk/shell_disappearance.gd" id="10_syqnj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lj2st"]
+radius = 0.3
+height = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nyxyb"]
+transparency = 1
+albedo_color = Color(0, 0.6156863, 0.3254902, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ajbgq"]
+material = SubResource("StandardMaterial3D_nyxyb")
+radius = 0.3
+height = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_re4yq"]
+transparency = 1
+albedo_color = Color(0.27935672, 0.27935672, 0.27935672, 1)
+
+[node name="Mutation" type="CharacterBody3D" node_paths=PackedStringArray("state_machine")]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_dsl82")
+attack_range = 1.0
+player_sight_range = 4.0
+player_sight_fov = 45.0
+state_machine = NodePath("State_machine")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_lj2st")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_ajbgq")
+surface_material_override/0 = SubResource("StandardMaterial3D_re4yq")
+
+[node name="Gravity" parent="." node_paths=PackedStringArray("_body") instance=ExtResource("2_p815j")]
+_body = NodePath("..")
+
+[node name="State_machine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "mob")]
+script = ExtResource("3_xi3xm")
+initial_state = NodePath("Wander")
+mob = NodePath("..")
+metadata/_custom_type_script = "uid://bt2rps524x0ph"
+
+[node name="Wander" type="Node" parent="State_machine" node_paths=PackedStringArray("empty_target", "nav_agent")]
+script = ExtResource("4_dsl82")
+empty_target = NodePath("empty_target")
+nav_agent = NodePath("../../NavigationAgent3D")
+move_speed = 1.0
+metadata/_custom_type_script = "uid://foywhiftl87x"
+
+[node name="empty_target" type="Node3D" parent="State_machine/Wander"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9462496, 0, 0)
+
+[node name="Follow_player" type="Node" parent="State_machine" node_paths=PackedStringArray("nav_agent")]
+script = ExtResource("5_p815j")
+nav_agent = NodePath("../../NavigationAgent3D")
+move_speed = 2.0
+model_color = Color(1, 0.32410014, 0.25894427, 1)
+metadata/_custom_type_script = "uid://foywhiftl87x"
+
+[node name="Attack" type="Node" parent="State_machine" node_paths=PackedStringArray("nav_agent")]
+script = ExtResource("6_hd8do")
+nav_agent = NodePath("../../NavigationAgent3D")
+move_speed = 0.0
+model_color = Color(0.7670247, 2.5268644e-06, 9.62615e-07, 1)
+metadata/_custom_type_script = "uid://foywhiftl87x"
+
+[node name="Behaviour" type="Node" parent="State_machine" node_paths=PackedStringArray("state_machine")]
+script = ExtResource("4_u10fb")
+state_machine = NodePath("..")
+metadata/_custom_type_script = "uid://fn4i2xt1rjiu"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_postprocessing = 1
+debug_enabled = true
+debug_path_custom_color = Color(0.95686275, 0.13333334, 0.23137255, 1)
+script = ExtResource("9_ja7dw")
+
+[node name="Shell Disappearance" type="Node" parent="." node_paths=PackedStringArray("shell_mesh")]
+script = ExtResource("10_syqnj")
+shell_mesh = NodePath("../MeshInstance3D")

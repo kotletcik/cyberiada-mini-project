@@ -1,9 +1,6 @@
 extends State
 class_name Attack
 	
-func Enter():
-	super.Enter()
-	
 func Update(_delta: float):
 	attack()
 

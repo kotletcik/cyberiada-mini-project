@@ -15,6 +15,7 @@ var mat: StandardMaterial3D
 var current_state : State
 # key = "nazwa": string, value = state: State
 var states : Dictionary = {}
+@onready var behaviour: Behaviour = $Behaviour
 
 func _ready():
 	if get_parent() is CharacterBody3D:
@@ -29,6 +30,7 @@ func _ready():
 			child.Transitioned.connect(transit_to_state)
 	if initial_state:
 		initial_state.Enter()
+		behaviour.Enter_state(initial_state.name.to_lower())
 		current_state = initial_state
 	EventBus.connect("game_restarted", transit_to_initial_state)
 	EventBus.connect("level_changed", transit_to_initial_state)
@@ -42,12 +44,9 @@ func _physics_process(delta):
 	if current_state:
 		current_state.Physics_Update(delta)
 
-#funckja dla sygnałów
-func transit_to_initial_state(empty_arg):
-	transit_to_state(current_state, initial_state.name)
 
 #zmiana state'u czyli wył. current state i wł new state
-func transit_to_state(_state, _new_state_name:String):
+func transit_to_state(_state:State, _new_state_name:String):
 	if _state != current_state:
 		return
 	var _new_state = states.get(_new_state_name.to_lower())
@@ -55,8 +54,16 @@ func transit_to_state(_state, _new_state_name:String):
 		return
 	if current_state:
 		current_state.Exit()
+		behaviour.Exit_state(current_state.name)
 	
 	_new_state.Enter()
+	behaviour.Enter_state(_new_state.name)
 	current_state = _new_state 
 	print("state changed to " + _new_state_name)
 	
+#funckja dla sygnałów
+func transit_to_initial_state(empty_arg):
+	transit_to_state(current_state, initial_state.name)
+	
+func transit_to_state_by_name(_state:String, _new_state_name:String):
+	transit_to_state(states.get(_state.to_lower()), _new_state_name)

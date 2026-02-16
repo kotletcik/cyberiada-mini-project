@@ -57,6 +57,8 @@ mesh = SubResource("SphereMesh_jt8f1")
 script = ExtResource("6_ghmv1")
 empty_target = NodePath("empty_target")
 searching_point_change_time = 2.5
+searching_radius = null
+move_speed = null
 model_color = Color(0.02745098, 0.30980393, 0.7921569, 1)
 metadata/_custom_type_script = "uid://foywhiftl87x"
 

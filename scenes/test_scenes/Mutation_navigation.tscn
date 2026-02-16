@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dug2gg4ldjhoc"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_13hkq"]
+vertices = PackedVector3Array(-9.5, 1, -9.5, -9.5, 1, 9.5, 9.5, 1, 9.5, 9.5, 1, -9.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_parsed_geometry_type = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13hkq"]
+albedo_color = Color(0.27450982, 0.27450982, 0.27450982, 1)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D"]
+navigation_mesh = SubResource("NavigationMesh_13hkq")
+
+[node name="floor" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 2
+size = Vector3(20, 1, 20)

@@ -7,15 +7,14 @@ class_name State_machine
 @export var initial_state: State
 #mob do którego się odnosi ten skrypt
 @export var mob: CharacterBody3D
-var target: Vector3
-
+@export var nav_agent: NavigationAgent3D
 @onready var mesh := $"../MeshInstance3D"
+@onready var behaviour: Behaviour = $Behaviour
+var target: Vector3
 var mat: StandardMaterial3D
-
 var current_state : State
 # key = "nazwa": string, value = state: State
 var states : Dictionary = {}
-@onready var behaviour: Behaviour = $Behaviour
 
 func _ready():
 	if get_parent() is CharacterBody3D:
@@ -26,11 +25,11 @@ func _ready():
 	
 	for child in get_children():
 		if child is State:
-			states[child.name.to_lower()] = child 
+			states[child.state_type] = child 
 			child.Transitioned.connect(transit_to_state)
 	if initial_state:
 		initial_state.Enter()
-		behaviour.Enter_state(initial_state.name.to_lower())
+		behaviour.Enter_state(initial_state.state_type)
 		current_state = initial_state
 	EventBus.connect("game_restarted", transit_to_initial_state)
 	EventBus.connect("level_changed", transit_to_initial_state)
@@ -46,24 +45,23 @@ func _physics_process(delta):
 
 
 #zmiana state'u czyli wył. current state i wł new state
-func transit_to_state(_state:State, _new_state_name:String):
+func transit_to_state(_state:State, new_state_type: State.types):
 	if _state != current_state:
 		return
-	var _new_state = states.get(_new_state_name.to_lower())
+	var _new_state = states.get(new_state_type)
 	if !_new_state:
 		return
 	if current_state:
 		current_state.Exit()
-		behaviour.Exit_state(current_state.name)
+		behaviour.Exit_state(current_state.state_type)
 	
 	_new_state.Enter()
-	behaviour.Enter_state(_new_state.name)
-	current_state = _new_state 
-	print("state changed to " + _new_state_name)
+	behaviour.Enter_state(_new_state.state_type)
+	current_state = _new_state
 	
 #funckja dla sygnałów
 func transit_to_initial_state(empty_arg):
-	transit_to_state(current_state, initial_state.name)
+	transit_to_state(current_state, initial_state.state_type)
 	
-func transit_to_state_by_name(_state:String, _new_state_name:String):
-	transit_to_state(states.get(_state.to_lower()), _new_state_name)
+func transit_to_state_by_name(_state: State.types, _new_state:State.types):
+	transit_to_state(states.get(_state), _new_state)

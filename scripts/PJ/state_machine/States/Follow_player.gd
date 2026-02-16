@@ -9,7 +9,7 @@ func _ready() -> void:
 
 func Enter():
 	super.Enter()
-	nav_agent.target = player
+	state_machine.nav_agent.target = player
 
 func Update(delta: float):
-	nav_agent.set_target_position(player.position)
+	state_machine.nav_agent.set_target_position(player.position)

@@ -15,7 +15,7 @@ func _ready() -> void:
 func randomize_searching_point():
 	empty_target.position = random_pos_in_range(searching_radius)
 	#nav_agent.target_pos = state_machine.mob.position + Vector3(randf_range(-1, 1),0,randf_range(-1, 1))
-	nav_agent.move_speed = move_speed
+	state_machine.nav_agent.move_speed = move_speed
 	
 func random_pos_in_current_region() -> Vector3:
 	return state_machine.mob.global_position + Vector3(\
@@ -32,7 +32,7 @@ func random_pos_in_range(range: float) -> Vector3:
 	
 func Enter():
 	super.Enter()
-	nav_agent.target = empty_target
+	state_machine.nav_agent.target = empty_target
 	searching_area_center = state_machine.mob.global_position
 
 	randomize_searching_point()
@@ -45,11 +45,11 @@ func Update (delta: float):
 		searching_point_timer = searching_point_change_time
 	empty_target.global_position = empty_target.global_position
 
-func change_state_to_follow():
-	change_state_to("follow_player")
-
-func change_state_to_wander():
-	change_state_to("wander")
+#func change_state_to_follow():
+	#change_state_to("follow_player")
+#
+#func change_state_to_wander():
+	#change_state_to("wander")
 
 func Exit():
 	super.Exit()

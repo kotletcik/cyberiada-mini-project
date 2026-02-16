@@ -49,30 +49,33 @@ script = ExtResource("6_ajbgq")
 script = ExtResource("9_jt8f1")
 shell_mesh = NodePath("../MeshInstance3D")
 
-[node name="State_machine" parent="." node_paths=PackedStringArray("mob") instance=ExtResource("5_e6lbg")]
+[node name="State_machine" parent="." node_paths=PackedStringArray("mob", "nav_agent") instance=ExtResource("5_e6lbg")]
 mob = NodePath("..")
+nav_agent = NodePath("../NavigationAgent3D")
 
-[node name="Wander" parent="State_machine" index="0" node_paths=PackedStringArray("nav_agent")]
-nav_agent = NodePath("../../NavigationAgent3D")
+[node name="Follow_player" parent="State_machine" index="1"]
+state_type = 1
 
-[node name="Follow_player" parent="State_machine" index="1" node_paths=PackedStringArray("nav_agent")]
-nav_agent = NodePath("../../NavigationAgent3D")
-
-[node name="Attack" parent="State_machine" index="2" node_paths=PackedStringArray("nav_agent")]
-nav_agent = NodePath("../../NavigationAgent3D")
+[node name="Attack" parent="State_machine" index="2"]
 move_speed = 10.0
+state_type = 4
 
-[node name="Follow_sound" parent="State_machine" index="3" node_paths=PackedStringArray("follow_target", "nav_agent")]
+[node name="Follow_sound" parent="State_machine" index="3" node_paths=PackedStringArray("follow_target")]
 follow_target = NodePath("Empty_target")
-nav_agent = NodePath("../../NavigationAgent3D")
+state_type = 2
 
-[node name="Behaviour" parent="State_machine" index="5" node_paths=PackedStringArray("state_machine", "sound_target")]
+[node name="Searching" parent="State_machine" index="4"]
+searching_radius = 3.0
+move_speed = 5.0
+state_type = 3
+
+[node name="Behaviour" parent="State_machine" index="5" node_paths=PackedStringArray("sound_target", "state_machine")]
 script = ExtResource("6_raqt8")
-state_machine = NodePath("..")
 follow_state_duration = 5.0
 searching_time = 5.0
 follow_sound_state_duration = 2.0
 sound_target = NodePath("../Follow_sound/Empty_target")
 wander_time = 10.0
+state_machine = NodePath("..")
 
 [editable path="State_machine"]

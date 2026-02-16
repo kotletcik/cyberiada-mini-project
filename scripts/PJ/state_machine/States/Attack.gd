@@ -1,6 +1,6 @@
 extends State
 class_name Attack
-	
+
 func Update(_delta: float):
 	attack()
 

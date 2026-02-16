@@ -1,11 +1,9 @@
 extends Node
 class_name Behaviour
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+@export var state_machine: State_machine
+var player: PlayerController
+#general
+var timer: float
+var time: float
+var stateIsActive: bool = true

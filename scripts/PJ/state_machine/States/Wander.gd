@@ -11,7 +11,7 @@ func _ready() -> void:
 	
 func Enter():
 	super.Enter()
-	nav_agent.target = empty_target
+	state_machine.nav_agent.target = empty_target
 	randomize_wander()
 
 func Update (delta: float):	
@@ -21,7 +21,7 @@ func Update (delta: float):
 func randomize_wander():
 	empty_target.position = random_pos_in_range(wander_radius)
 	#nav_agent.target_pos = state_machine.mob.position + Vector3(randf_range(-1, 1),0,randf_range(-1, 1))
-	nav_agent.move_speed = move_speed
+	state_machine.nav_agent.move_speed = move_speed
 func random_pos_in_current_region() -> Vector3:
 	return state_machine.mob.global_position + Vector3(\
 	randf_range(-2, 2),\

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl7pr1jrqx1d8"]
+
+[ext_resource type="Script" uid="uid://c3vodqyuptu4f" path="res://scripts/Valk/restart_trigger.gd" id="1_id4pr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_id4pr"]
+
+[node name="Restart Trigger" type="Area3D"]
+collision_mask = 16
+script = ExtResource("1_id4pr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_id4pr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

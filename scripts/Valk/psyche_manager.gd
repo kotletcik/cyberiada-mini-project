@@ -96,9 +96,9 @@ func unregister_serum(node: Node3D) -> void:
 		if(serums[i] == node):
 			serum_positions.remove_at(i);
 			serums.remove_at(i);
+			if(first_free_index > 0):
+				first_free_index -= 1;
 			break;
-	if(first_free_index > 0):
-		first_free_index -= 1;
 
 
 # func register_camera(registered_camera: Camera3D) -> void:

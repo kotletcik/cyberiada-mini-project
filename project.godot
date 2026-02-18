@@ -23,6 +23,7 @@ ITEM_TYPE="*res://scripts/Valk/item_type.gd"
 
 Serum=""
 Rock=""
+Clue=""
 
 [input]
 

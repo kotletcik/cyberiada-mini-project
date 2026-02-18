@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cq4mdp3xlsb4a"]
+[gd_scene load_steps=19 format=3 uid="uid://cq4mdp3xlsb4a"]
 
 [ext_resource type="PackedScene" uid="uid://dg433bvfg6cvt" path="res://scenes/PlayerValk.tscn" id="1_cb1vq"]
 [ext_resource type="Script" uid="uid://s47j5s0f3fdy" path="res://scripts/Valk/psyche_manager.gd" id="2_1a1i1"]
@@ -6,9 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://ce6h2fmee74sw" path="res://scenes/test_scenes/serum.tscn" id="3_t4e8a"]
 [ext_resource type="Script" uid="uid://c681q57ewat6f" path="res://scripts/Valk/game_manager.gd" id="3_w4tbm"]
 [ext_resource type="Script" uid="uid://coysphqpo5g2l" path="res://scripts/Valk/inventory_manager.gd" id="4_nxxrq"]
+[ext_resource type="Script" uid="uid://bj28ubqcmsltd" path="res://scripts/Valk/palace_manager.gd" id="4_tgq00"]
 [ext_resource type="PackedScene" uid="uid://bieh4iknld2hn" path="res://scenes/test_scenes/rock.tscn" id="5_0nogy"]
 [ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://scenes/Locations/nav_region_floor.tscn" id="7_w4tbm"]
 [ext_resource type="PackedScene" uid="uid://bl7pr1jrqx1d8" path="res://scenes/restart_trigger.tscn" id="9_b4wx3"]
+[ext_resource type="PackedScene" uid="uid://bkmfixym7ftg7" path="res://scenes/test_scenes/scene_clue.tscn" id="11_71wxm"]
+[ext_resource type="Script" uid="uid://q760mct2evav" path="res://scripts/Valk/clue.gd" id="12_n2452"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cb1vq"]
 
@@ -21,6 +24,12 @@ albedo_color = Color(1, 0.19215687, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b4wx3"]
 size = Vector3(4.7492676, 1, 1)
+
+[sub_resource type="Resource" id="Resource_51aie"]
+script = ExtResource("12_n2452")
+name = "Second Test"
+description = "This is a second test Clue"
+metadata/_custom_type_script = "uid://q760mct2evav"
 
 [node name="Node3D" type="Node3D"]
 
@@ -100,6 +109,10 @@ metadata/_custom_type_script = "uid://s47j5s0f3fdy"
 script = ExtResource("3_w4tbm")
 metadata/_custom_type_script = "uid://s47j5s0f3fdy"
 
+[node name="PalaceManager" type="Node" parent="."]
+script = ExtResource("4_tgq00")
+metadata/_custom_type_script = "uid://bj28ubqcmsltd"
+
 [node name="Shell" parent="." instance=ExtResource("3_81ya1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1561513, 1.4558756, -18.730312)
 player_sight_range = 5.0
@@ -170,5 +183,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.500076, 1.7260493, -20.738
 [node name="CollisionShape3D" parent="Restart Trigger" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.602661, 0, -9)
 shape = SubResource("BoxShape3D_b4wx3")
+
+[node name="Scene Clue" parent="." instance=ExtResource("11_71wxm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8993082, 1.0323956, -19.488108)
+
+[node name="Scene Clue2" parent="." instance=ExtResource("11_71wxm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8993082, 1.0323956, -19.488108)
+clue_to_gather = SubResource("Resource_51aie")
 
 [editable path="Restart Trigger"]

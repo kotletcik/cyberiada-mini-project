@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkmfixym7ftg7"]
+
+[ext_resource type="Script" uid="uid://dfbwesnlvc4nr" path="res://scripts/Valk/scene_clue.gd" id="1_yk2mo"]
+[ext_resource type="Script" uid="uid://q760mct2evav" path="res://scripts/Valk/clue.gd" id="2_u76qr"]
+
+[sub_resource type="Resource" id="Resource_yk2mo"]
+script = ExtResource("2_u76qr")
+name = "Test"
+description = "This is a test Clue"
+metadata/_custom_type_script = "uid://q760mct2evav"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t4e8a"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nxxrq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4hjr6"]
+
+[node name="Scene Clue" type="StaticBody3D"]
+script = ExtResource("1_yk2mo")
+clue_to_gather = SubResource("Resource_yk2mo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_t4e8a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_nxxrq")
+surface_material_override/0 = SubResource("StandardMaterial3D_4hjr6")

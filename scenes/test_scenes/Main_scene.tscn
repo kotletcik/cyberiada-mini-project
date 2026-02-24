@@ -1,10 +1,30 @@
 [gd_scene format=3 uid="uid://4h1fpllxicik"]
 
 [ext_resource type="PackedScene" uid="uid://dg433bvfg6cvt" path="res://scenes/PlayerValk.tscn" id="1_m5tkx"]
-[ext_resource type="Script" uid="uid://s47j5s0f3fdy" path="res://scripts/Valk/psyche_manager.gd" id="2_1uptq"]
-[ext_resource type="Script" uid="uid://c681q57ewat6f" path="res://scripts/Valk/game_manager.gd" id="3_otuf4"]
-[ext_resource type="Script" uid="uid://coysphqpo5g2l" path="res://scripts/Valk/inventory_manager.gd" id="6_1h7yu"]
+
 [ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://scenes/Locations/Test_level1.tscn" id="8_a7h3k"]
+
+[ext_resource type="Script" uid="uid://s47j5s0f3fdy" path="res://scripts/Valk/Managers/psyche_manager.gd" id="2_1uptq"]
+[ext_resource type="Script" uid="uid://c681q57ewat6f" path="res://scripts/Valk/Managers/game_manager.gd" id="3_otuf4"]
+[ext_resource type="PackedScene" uid="uid://elmpcqsoarjp" path="res://scenes/Mobs/Shell.tscn" id="4_c5ca3"]
+[ext_resource type="PackedScene" uid="uid://d02kasr2lce4t" path="res://scenes/Mobs/Mutation.tscn" id="5_1uptq"]
+[ext_resource type="PackedScene" uid="uid://ce6h2fmee74sw" path="res://scenes/test_scenes/serum.tscn" id="5_wx1nw"]
+[ext_resource type="Script" uid="uid://coysphqpo5g2l" path="res://scripts/Valk/Managers/inventory_manager.gd" id="6_c5ca3"]
+[ext_resource type="PackedScene" uid="uid://bieh4iknld2hn" path="res://scenes/test_scenes/rock.tscn" id="7_wjm7x"]
+[ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://scenes/Locations/nav_region_floor.tscn" id="8_a7h3k"]
+[ext_resource type="PackedScene" uid="uid://dug2gg4ldjhoc" path="res://scenes/test_scenes/Mutation_navigation.tscn" id="10_otuf4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_otuf4"]
+albedo_color = Color(0.5001009, 0.41530854, 0.44614214, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cb1vq"]
+material = SubResource("StandardMaterial3D_otuf4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0nogy"]
+albedo_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1a1i1"]
+
 
 [node name="Main_scene" type="Node3D" unique_id=649139474]
 
@@ -52,7 +72,7 @@ script = ExtResource("3_otuf4")
 metadata/_custom_type_script = "uid://s47j5s0f3fdy"
 
 [node name="InventoryManager" type="Node" parent="." unique_id=940853889]
-script = ExtResource("6_1h7yu")
+script = ExtResource("6_c5ca3")
 metadata/_custom_type_script = "uid://coysphqpo5g2l"
 
 [node name="Test_level_1" parent="." unique_id=914488937 instance=ExtResource("8_a7h3k")]

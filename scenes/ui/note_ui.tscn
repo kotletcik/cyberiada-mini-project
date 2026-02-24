@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://d1i2hyd827vx1"]
+
+[node name="NoteUI" type="Control" unique_id=1193079714]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1916958336]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.52900004
+anchor_top = 0.53400004
+anchor_right = 0.52900004
+anchor_bottom = 0.53400004
+offset_left = -233.40808
+offset_top = -206.03201
+offset_right = 232.59192
+offset_bottom = 184.96799
+text = "Meow Meow Meow"

@@ -13,9 +13,13 @@
 [ext_resource type="PackedScene" uid="uid://d1i2hyd827vx1" path="res://scenes/ui/note_ui.tscn" id="10_32swi"]
 [ext_resource type="Script" uid="uid://k7qr63sybur6" path="res://scripts/Valk/Managers/ui_manager.gd" id="10_j8bvq"]
 [ext_resource type="PackedScene" uid="uid://bkmfixym7ftg7" path="res://scenes/test_scenes/scene_clue.tscn" id="11_71wxm"]
+[ext_resource type="PackedScene" uid="uid://doimrejwy0736" path="res://scenes/test_scenes/Double_door.tscn" id="11_pu81h"]
+[ext_resource type="PackedScene" uid="uid://dfiw1ws6ojtp8" path="res://scenes/test_scenes/PatrolPoint.tscn" id="12_k4afo"]
 [ext_resource type="Script" uid="uid://q760mct2evav" path="res://scripts/Valk/clue.gd" id="12_n2452"]
 [ext_resource type="PackedScene" uid="uid://bicg3xk5h40ss" path="res://scenes/test_scenes/interact_test.tscn" id="13_51aie"]
+[ext_resource type="PackedScene" uid="uid://d02kasr2lce4t" path="res://scenes/Mobs/Mutation.tscn" id="13_axhgm"]
 [ext_resource type="PackedScene" uid="uid://clg0uguj2n21v" path="res://scenes/test_scenes/scene_note.tscn" id="14_1tntn"]
+[ext_resource type="PackedScene" uid="uid://dug2gg4ldjhoc" path="res://scenes/test_scenes/Mutation_navigation.tscn" id="14_suiiq"]
 [ext_resource type="Resource" uid="uid://c251xsijr468j" path="res://resources/mraaaww.tres" id="17_1tcqu"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cb1vq"]
@@ -26,6 +30,28 @@ albedo_color = Color(1, 0.19215687, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_1a1i1"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_b4wx3"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_13hkq"]
+vertices = PackedVector3Array(-8.25, 1, 1, -5, 1, 0.75, -5.5, 1, 0.5, -5.5, 1, -5.5, -4.25, 1, -5.75, -4.25, 1, -8.25, -8.25, 1, -8.25, -3.25, 1, -5.5, -3.25, 1, 0, -0.5, 1, 0.25, -0.25, 1, -0.75, 1.75, 1, -0.5, 1.75, 1, 8.5, 3.75, 1, 8.5, 3.75, 1, -8.25, 6, 1, -4, 5.5, 1, -3.75, 6, 1, -0.25, 8.5, 1, -8.25, 6, 1, -8.25, 6, 1, 8.5, 8.5, 1, 8.5, -3.5, 1, 0.75, -0.5, 1, 8.5, -8.25, 1, 8.5, 0.25, 5, 9.25, 1, 5, 9.5, 0.75, 5, 0.25, 4.5, 5, 9.25, 5.25, 5, 9.5, 5, 5, 0.25)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 6), PackedInt32Array(7, 4, 5), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 7), PackedInt32Array(12, 11, 13), PackedInt32Array(13, 11, 14), PackedInt32Array(10, 7, 11), PackedInt32Array(11, 7, 5), PackedInt32Array(11, 5, 14), PackedInt32Array(17, 16, 15), PackedInt32Array(15, 19, 18), PackedInt32Array(17, 15, 18), PackedInt32Array(20, 17, 21), PackedInt32Array(21, 17, 18), PackedInt32Array(8, 9, 22), PackedInt32Array(22, 9, 23), PackedInt32Array(1, 22, 0), PackedInt32Array(0, 22, 24), PackedInt32Array(24, 22, 23), PackedInt32Array(27, 26, 25), PackedInt32Array(30, 29, 28)]
+geometry_parsed_geometry_type = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13hkq"]
+albedo_color = Color(0.27450982, 0.27450982, 0.27450982, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jik7h"]
+albedo_color = Color(0.27450982, 0.27450982, 0.27450982, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2p2lj"]
+albedo_color = Color(0.5001009, 0.41530854, 0.44614214, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oewj3"]
+material = SubResource("StandardMaterial3D_2p2lj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_15dxg"]
+albedo_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rl6w0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b4wx3"]
 size = Vector3(4.7492676, 1, 1)
@@ -43,6 +69,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0213828, 2.1234412, -25.40
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=578306419]
 transform = Transform3D(54.3, 0, 0, 0, 1, 0, 0, 0, 20.161789, 2.115285, 0.024101973, -22.401081)
+transform = Transform3D(54.3, 0, 0, 0, 1, 0, 0, 0, 20.161789, 2.115285, 0.13235545, -22.401081)
 mesh = SubResource("BoxMesh_cb1vq")
 surface_material_override/0 = SubResource("StandardMaterial3D_0nogy")
 
@@ -183,8 +210,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25.286251)
 navigation_mesh = SubResource("NavigationMesh_b4wx3")
 
 [node name="NavRegionFloor" parent="." unique_id=1692137331 instance=ExtResource("7_w4tbm")]
+[node name="NavRegionFloor" type="Node3D" parent="." unique_id=1692137331]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7255268, 0, -21.429012)
 
+[node name="Shell" parent="NavRegionFloor" unique_id=2079833793 instance=ExtResource("3_81ya1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6056662, 1.4558756, 5.7731247)
+
+[node name="NavigationAgent3D" parent="NavRegionFloor/Shell" index="3" unique_id=5614037]
+simplify_epsilon = 4.074
+
+[node name="State_machine" parent="NavRegionFloor/Shell" index="5" unique_id=593020358 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("Patrol")
 [node name="Shell2" parent="." unique_id=1832136921 instance=ExtResource("3_81ya1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.803829, 1.524102, -18.641739)
 
@@ -213,4 +249,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.749893, 1.0241024, -24.335
 note_to_hold = ExtResource("17_1tcqu")
 
 [editable path="UIManager/NoteUI"]
+[editable path="NavRegionFloor/Shell"]
+[editable path="NavRegionFloor/Shell/State_machine"]
+[editable path="NavRegionFloor/Mutation"]
 [editable path="Restart Trigger"]

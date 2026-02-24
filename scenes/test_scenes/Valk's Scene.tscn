@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://coysphqpo5g2l" path="res://scripts/Valk/inventory_manager.gd" id="4_nxxrq"]
 [ext_resource type="Script" uid="uid://bj28ubqcmsltd" path="res://scripts/Valk/palace_manager.gd" id="4_tgq00"]
 [ext_resource type="PackedScene" uid="uid://bieh4iknld2hn" path="res://scenes/test_scenes/rock.tscn" id="5_0nogy"]
-[ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://scenes/Locations/nav_region_floor.tscn" id="7_w4tbm"]
+[ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://scenes/Locations/Test_level1.tscn" id="7_w4tbm"]
 [ext_resource type="PackedScene" uid="uid://bl7pr1jrqx1d8" path="res://scenes/restart_trigger.tscn" id="9_b4wx3"]
 [ext_resource type="PackedScene" uid="uid://bkmfixym7ftg7" path="res://scenes/test_scenes/scene_clue.tscn" id="11_71wxm"]
 [ext_resource type="Script" uid="uid://q760mct2evav" path="res://scripts/Valk/clue.gd" id="12_n2452"]

@@ -14,10 +14,13 @@ var stateIsActive: bool = true
 
 func is_player_in_sight() -> bool:
 	if (state_machine != null):
-		var subtracted_vector: Vector3 = state_machine.mob.player.position - state_machine.mob.position;
-		var direction = subtracted_vector.normalized();
+		var player_in_local: Vector3 = GameManager.instance.player.global_position - state_machine.mob.global_position;
+		var direction = player_in_local.normalized();
 		var dot: float = -state_machine.mob.global_basis.z.dot(direction);
-		if(dot < 1-(player_sight_fov/180)): return false;
-		var isPlayerInRange: bool = ((state_machine.mob.position) - (state_machine.mob.player.position)).length() < player_sight_range;
+		if (self is Mutation_behaviour):
+			print (player_in_local.length())
+		if(dot < 1-(player_sight_fov/180)): 
+			return false;
+		var isPlayerInRange: bool = (player_in_local).length() < player_sight_range;
 		return isPlayerInRange
 	else: return false

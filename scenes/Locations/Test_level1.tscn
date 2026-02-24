@@ -1,0 +1,247 @@
+[gd_scene format=3 uid="uid://b8wfahed5pckx"]
+
+[ext_resource type="PackedScene" uid="uid://doimrejwy0736" path="res://scenes/test_scenes/Double_door.tscn" id="2_71br7"]
+[ext_resource type="PackedScene" uid="uid://dug2gg4ldjhoc" path="res://scenes/test_scenes/Mutation_navigation.tscn" id="2_oewj3"]
+[ext_resource type="PackedScene" uid="uid://dfiw1ws6ojtp8" path="res://scenes/test_scenes/PatrolPoint.tscn" id="3_fycel"]
+[ext_resource type="PackedScene" uid="uid://elmpcqsoarjp" path="res://scenes/Mobs/Shell.tscn" id="3_rl6w0"]
+[ext_resource type="PackedScene" uid="uid://d02kasr2lce4t" path="res://scenes/Mobs/Mutation.tscn" id="4_fycel"]
+[ext_resource type="PackedScene" uid="uid://ce6h2fmee74sw" path="res://scenes/test_scenes/serum.tscn" id="5_fl3d6"]
+[ext_resource type="PackedScene" uid="uid://bieh4iknld2hn" path="res://scenes/test_scenes/rock.tscn" id="6_gcfar"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_13hkq"]
+vertices = PackedVector3Array(-8.25, 1, 1, -5, 1, 0.75, -5.5, 1, 0.5, -5.5, 1, -5.5, -4.25, 1, -5.75, -4.25, 1, -8.25, -8.25, 1, -8.25, -3.25, 1, -5.5, -3.25, 1, 0, -0.5, 1, 0.25, -0.25, 1, -0.75, 1.75, 1, -0.5, 1.75, 1, 8.5, 3.75, 1, 8.5, 3.75, 1, -8.25, 6, 1, -4, 5.5, 1, -3.75, 6, 1, -0.25, 8.5, 1, -8.25, 6, 1, -8.25, 6, 1, 8.5, 8.5, 1, 8.5, -3.5, 1, 0.75, -0.5, 1, 8.5, -8.25, 1, 8.5, 0.25, 5, 9.25, 1, 5, 9.5, 0.75, 5, 0.25, 4.5, 5, 9.25, 5.25, 5, 9.5, 5, 5, 0.25)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 6), PackedInt32Array(7, 4, 5), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 7), PackedInt32Array(12, 11, 13), PackedInt32Array(13, 11, 14), PackedInt32Array(10, 7, 11), PackedInt32Array(11, 7, 5), PackedInt32Array(11, 5, 14), PackedInt32Array(17, 16, 15), PackedInt32Array(15, 19, 18), PackedInt32Array(17, 15, 18), PackedInt32Array(20, 17, 21), PackedInt32Array(21, 17, 18), PackedInt32Array(8, 9, 22), PackedInt32Array(22, 9, 23), PackedInt32Array(1, 22, 0), PackedInt32Array(0, 22, 24), PackedInt32Array(24, 22, 23), PackedInt32Array(27, 26, 25), PackedInt32Array(30, 29, 28)]
+geometry_parsed_geometry_type = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13hkq"]
+albedo_color = Color(0.27450982, 0.27450982, 0.27450982, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jik7h"]
+albedo_color = Color(0.27450982, 0.27450982, 0.27450982, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2p2lj"]
+albedo_color = Color(0.5001009, 0.41530854, 0.44614214, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oewj3"]
+material = SubResource("StandardMaterial3D_2p2lj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_15dxg"]
+albedo_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rl6w0"]
+
+[node name="Test_Level_1" type="Node3D" unique_id=944735480]
+
+[node name="Shell" parent="." unique_id=2079833793 instance=ExtResource("3_rl6w0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6056662, 1.4558756, 5.7731247)
+
+[node name="NavigationAgent3D" parent="Shell" index="3" unique_id=5614037]
+simplify_epsilon = 4.074
+
+[node name="State_machine" parent="Shell" index="5" unique_id=593020358 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("Patrol")
+
+[node name="Follow_player" parent="Shell/State_machine" index="1"]
+move_speed = 5.0
+
+[node name="Searching" parent="Shell/State_machine" index="4"]
+move_speed = 4.0
+
+[node name="Patrol" parent="Shell/State_machine" index="6" unique_id=1952931126 node_paths=PackedStringArray("patrol_points")]
+patrol_points = [NodePath("../../../ShellPatrolPoints/PatrolPoint1"), NodePath("../../../ShellPatrolPoints/PatrolPoint2")]
+move_speed = 2.0
+model_color = Color(0.7581918, 0.7581918, 0.7581917, 1)
+state_type = 6
+
+[node name="empty_target" parent="Shell/State_machine/Patrol" index="0" unique_id=571049646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0076146, -29.651814)
+
+[node name="MeshInstance3D" parent="Shell/State_machine/Patrol/empty_target" index="0" unique_id=751999632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9188995, 0, 32.13404)
+
+[node name="ShellNavRegion" type="NavigationRegion3D" parent="." unique_id=762941749]
+navigation_mesh = SubResource("NavigationMesh_13hkq")
+
+[node name="floor" type="CSGBox3D" parent="ShellNavRegion" unique_id=1031565982]
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 2
+size = Vector3(20, 1, 20)
+
+[node name="wall1" type="CSGBox3D" parent="ShellNavRegion" unique_id=1991541777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 9.5)
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 4
+size = Vector3(20, 5, 1)
+
+[node name="wall2" type="CSGBox3D" parent="ShellNavRegion" unique_id=2129804679]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9.5, 2, 0)
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 4
+size = Vector3(20, 5, 1)
+
+[node name="wall3" type="CSGBox3D" parent="ShellNavRegion" unique_id=326382465]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -9.5)
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 4
+size = Vector3(20, 5, 1)
+
+[node name="wall4" type="CSGBox3D" parent="ShellNavRegion" unique_id=1856715788]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.5, 2, 0)
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 4
+size = Vector3(20, 5, 1)
+
+[node name="wall5" type="CSGBox3D" parent="ShellNavRegion" unique_id=1888820886]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.4427233, 2, -2.4495988)
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 4
+size = Vector3(5.1220703, 5, 1)
+
+[node name="wall6" type="CSGBox3D" parent="ShellNavRegion" unique_id=171390167]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5979643, 2, 4.8960238)
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 4
+size = Vector3(10, 5, 1)
+
+[node name="wall7" type="CSGBox3D" parent="ShellNavRegion" unique_id=1579439402]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.7797403, 2, 5.0202913)
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 4
+size = Vector3(10, 5, 1)
+
+[node name="wall8" type="CSGBox3D" parent="ShellNavRegion" unique_id=927540715]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.75, 2, -7.199313)
+material_override = SubResource("StandardMaterial3D_jik7h")
+use_collision = true
+collision_layer = 4
+size = Vector3(5.453247, 5, 1)
+
+[node name="DoubleDoor" parent="ShellNavRegion" unique_id=1301287337 instance=ExtResource("2_71br7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.777816, 2.4886618, -0.97806454)
+move_distance = 3.0
+open_duration = 2.0
+
+[node name="ShellPatrolPoints" type="Node3D" parent="." unique_id=1699474365]
+
+[node name="PatrolPoint1" parent="ShellPatrolPoints" unique_id=1444820056 instance=ExtResource("3_fycel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 4)
+
+[node name="PatrolPoint2" parent="ShellPatrolPoints" unique_id=237953053 instance=ExtResource("3_fycel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, 4)
+
+[node name="Mutation" parent="." unique_id=1656460003 instance=ExtResource("4_fycel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8323927, 1.6206341, -4.8773975)
+
+[node name="empty_target" parent="Mutation/State_machine/Wander" parent_id_path=PackedInt32Array(1656460003, 950494872) index="0" unique_id=861664593]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8195176, 1.4382358, -4.916814)
+
+[node name="MutationNavRegion" parent="." unique_id=580662191 instance=ExtResource("2_oewj3")]
+navigation_layers = 2
+
+[node name="SafetyFloor" type="MeshInstance3D" parent="." unique_id=157069396]
+transform = Transform3D(54.3, 0, 0, 0, 1, 0, 0, 0, 48.802, 0, 0.024, -0.14188004)
+mesh = SubResource("BoxMesh_oewj3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_15dxg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SafetyFloor" unique_id=1748199284]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SafetyFloor/StaticBody3D" unique_id=997942754]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_rl6w0")
+
+[node name="Light" type="Node" parent="." unique_id=1691825785]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Light" unique_id=1902236960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.253002, 9.102599, -6.223734)
+light_energy = 2.815
+light_indirect_energy = 2.465
+light_volumetric_fog_energy = 1.33
+light_size = 0.42
+omni_range = 30.271
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Light" unique_id=541388565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7112684, 9.102599, -6.223734)
+light_energy = 2.815
+light_indirect_energy = 2.465
+light_volumetric_fog_energy = 1.33
+light_size = 0.42
+omni_range = 30.271
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Light" unique_id=415113251]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7112684, 9.102599, 5.027376)
+light_energy = 2.815
+light_indirect_energy = 2.465
+light_volumetric_fog_energy = 1.33
+light_size = 0.42
+omni_range = 30.271
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Light" unique_id=398517783]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3108835, 9.102599, 5.782342)
+light_energy = 2.815
+light_indirect_energy = 2.465
+light_volumetric_fog_energy = 1.33
+light_size = 0.42
+omni_range = 30.271
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Light" unique_id=1168952027]
+transform = Transform3D(1, 0, 0, 0, 0.731437, 0.68190897, 0, -0.68190897, 0.731437, 0, 1.30567, -0.14188004)
+shadow_enabled = true
+
+[node name="Serums" type="Node3D" parent="." unique_id=456643085]
+
+[node name="Serum" parent="Serums" unique_id=1385982008 instance=ExtResource("5_fl3d6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.82379, 1.0094061, 6.0257196)
+
+[node name="Serum2" parent="Serums" unique_id=947800289 instance=ExtResource("5_fl3d6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.82379, 1.0094061, 7.167528)
+
+[node name="Serum3" parent="Serums" unique_id=307556620 instance=ExtResource("5_fl3d6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.621917, 1.0094061, 6.300253)
+
+[node name="Serum4" parent="Serums" unique_id=887728039 instance=ExtResource("5_fl3d6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.637157, 1.0094061, 7.3646507)
+
+[node name="Serum5" parent="Serums" unique_id=2013017133 instance=ExtResource("5_fl3d6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7460556, 1.0094061, 6.454834)
+
+[node name="Serum6" parent="Serums" unique_id=2038875975 instance=ExtResource("5_fl3d6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3646522, 1.0094061, 7.7647)
+
+[node name="Serum7" parent="Serums" unique_id=614151622 instance=ExtResource("5_fl3d6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0905585, 1.0094061, 7.794961)
+
+[node name="Serum8" parent="Serums" unique_id=181459142 instance=ExtResource("5_fl3d6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1002526, 1.0094061, 6.364154)
+
+[node name="Serum9" parent="Serums" unique_id=1497144044 instance=ExtResource("5_fl3d6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3326364, 1.0094061, 7.763974)
+
+[node name="Serum10" parent="Serums" unique_id=1228934044 instance=ExtResource("5_fl3d6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.438717, 1.0094061, 7.951394)
+
+[node name="Rocks" type="Node3D" parent="." unique_id=1630836537]
+
+[node name="Rock" parent="Rocks" unique_id=500373798 instance=ExtResource("6_gcfar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9485807, 1.0600457, -5.202482)
+
+[node name="Rock2" parent="Rocks" unique_id=1982498880 instance=ExtResource("6_gcfar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9485807, 1.0600457, -5.202482)
+
+[node name="Rock3" parent="Rocks" unique_id=434979937 instance=ExtResource("6_gcfar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9485807, 1.0600457, -7.202482)
+
+[node name="Rock4" parent="Rocks" unique_id=765185424 instance=ExtResource("6_gcfar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9485807, 2.0600457, -7.202482)
+
+[editable path="Shell"]
+[editable path="Shell/State_machine"]
+[editable path="Mutation"]

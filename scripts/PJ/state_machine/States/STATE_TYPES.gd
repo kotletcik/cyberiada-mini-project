@@ -8,5 +8,6 @@ enum
 	Searching,
 	Attack,
 	Debuff,
-	Patrol
+	Patrol,
+	Scream
 }

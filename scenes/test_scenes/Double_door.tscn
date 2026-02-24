@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://caduj0tup337b" path="res://scripts/PJ/Double_door.gd" id="1_8e36d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8e36d"]
-size = Vector3(0.5, 4, 5)
+size = Vector3(0.5, 4, 2.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_otuf4"]
 albedo_color = Color(0.5001009, 0.41530854, 0.44614214, 1)
@@ -25,11 +25,11 @@ script = ExtResource("1_8e36d")
 second_door = NodePath("SecondDoor")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=649342185]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_8e36d")
 
 [node name="Door" type="MeshInstance3D" parent="CollisionShape3D" unique_id=623114512]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.25)
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_f2rxo")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_poson")

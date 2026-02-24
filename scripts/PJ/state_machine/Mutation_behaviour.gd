@@ -18,8 +18,8 @@ func Check_conditions(delta: float) -> void:
 				#await _timer.timeout
 				change_state_by_name(STATE_TYPES.Follow_player,STATE_TYPES.Debuff)
 				#change_state_to("wander")
-			elif time > 0:
-				time-=delta
+			elif timer > 0:
+				timer-=delta
 			else:
 				change_state_by_name(STATE_TYPES.Follow_player,STATE_TYPES.Wander)
 			if(PsycheManager.instance.invisibility_timer > 0):
@@ -36,7 +36,6 @@ func Enter_state(state: int):
 		STATE_TYPES.Wander:
 			timer=wander_time
 			EventBus.connect("sound_emitted_by_player", change_state_to_follow_sound)
-	time=timer
 
 func Exit_state(state_type: int):
 	match state_type:

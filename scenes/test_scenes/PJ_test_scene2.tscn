@@ -1,18 +1,20 @@
-[gd_scene format=3 uid="uid://4h1fpllxicik"]
+[gd_scene format=3 uid="uid://bogcd3xj4e66"]
 
-[ext_resource type="PackedScene" uid="uid://dg433bvfg6cvt" path="res://scenes/PlayerValk.tscn" id="1_m5tkx"]
-[ext_resource type="Script" uid="uid://s47j5s0f3fdy" path="res://scripts/Valk/Managers/psyche_manager.gd" id="2_1uptq"]
-[ext_resource type="Script" uid="uid://c681q57ewat6f" path="res://scripts/Valk/Managers/game_manager.gd" id="3_otuf4"]
-[ext_resource type="Script" uid="uid://coysphqpo5g2l" path="res://scripts/Valk/Managers/inventory_manager.gd" id="6_c5ca3"]
-[ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://scenes/Locations/Test_level1.tscn" id="8_a7h3k"]
+[ext_resource type="PackedScene" uid="uid://dg433bvfg6cvt" path="res://scenes/PlayerValk.tscn" id="1_x6adb"]
+[ext_resource type="Script" uid="uid://s47j5s0f3fdy" path="res://scripts/Valk/Managers/psyche_manager.gd" id="2_kbpjc"]
+[ext_resource type="Script" uid="uid://c681q57ewat6f" path="res://scripts/Valk/Managers/game_manager.gd" id="3_jmeif"]
+[ext_resource type="Script" uid="uid://coysphqpo5g2l" path="res://scripts/Valk/Managers/inventory_manager.gd" id="4_fa6sy"]
+[ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://scenes/Locations/Test_level1.tscn" id="5_0bhsg"]
+[ext_resource type="Script" uid="uid://k7qr63sybur6" path="res://scripts/Valk/Managers/ui_manager.gd" id="6_jmeif"]
+[ext_resource type="PackedScene" uid="uid://d1i2hyd827vx1" path="res://scenes/ui/note_ui.tscn" id="7_fa6sy"]
 
 [node name="Main_scene" type="Node3D" unique_id=649139474]
 
-[node name="Player" parent="." unique_id=2039338456 instance=ExtResource("1_m5tkx")]
+[node name="Player" parent="." unique_id=2039338456 instance=ExtResource("1_x6adb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6876144, 2.1234412, -1.7883773)
 
 [node name="PsycheManager" type="Node" parent="." unique_id=410702270 node_paths=PackedStringArray("player")]
-script = ExtResource("2_1uptq")
+script = ExtResource("2_kbpjc")
 player = NodePath("../Player")
 serum_drop_rate = 0.1
 normal_fog_density = 0.3
@@ -48,11 +50,18 @@ serum_critical_vignette_radius = 0.1
 metadata/_custom_type_script = "uid://s47j5s0f3fdy"
 
 [node name="GameManager" type="Node" parent="." unique_id=2052087701]
-script = ExtResource("3_otuf4")
+script = ExtResource("3_jmeif")
 metadata/_custom_type_script = "uid://s47j5s0f3fdy"
 
 [node name="InventoryManager" type="Node" parent="." unique_id=940853889]
-script = ExtResource("6_c5ca3")
+script = ExtResource("4_fa6sy")
 metadata/_custom_type_script = "uid://coysphqpo5g2l"
 
-[node name="Test_level_1" parent="." unique_id=914488937 instance=ExtResource("8_a7h3k")]
+[node name="Test_level_1" parent="." unique_id=914488937 instance=ExtResource("5_0bhsg")]
+
+[node name="UIManager" type="Node" parent="." unique_id=558482689 node_paths=PackedStringArray("note_ui")]
+script = ExtResource("6_jmeif")
+note_ui = NodePath("NoteUI")
+metadata/_custom_type_script = "uid://k7qr63sybur6"
+
+[node name="NoteUI" parent="UIManager" unique_id=1193079714 instance=ExtResource("7_fa6sy")]

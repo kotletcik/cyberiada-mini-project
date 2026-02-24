@@ -16,8 +16,12 @@ func _physics_process(delta: float):
 	var destination = get_next_path_position()
 	var local_destination = destination - mob.global_position
 	var direction = local_destination.normalized()
+	var direction_flat = Vector3(direction.x, 0, direction.z).normalized()
+	mob.look_at(mob.global_position + direction_flat, Vector3.UP)
+	#var direction_angle = acos(direction.dot(Vector3.FORWARD))
+	#mob.rotation = Vector3.FORWARD.rotated(Vector3.UP, direction_angle)
 	var _y_vel = mob.velocity.y
-	mob.velocity = direction.normalized() * move_speed
+	mob.velocity = -mob.transform.basis.z * move_speed
 	mob.velocity.y = _y_vel
 	mob.move_and_slide()
 

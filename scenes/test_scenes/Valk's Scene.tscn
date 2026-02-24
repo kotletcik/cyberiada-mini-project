@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bl7pr1jrqx1d8" path="res://scenes/restart_trigger.tscn" id="9_b4wx3"]
 [ext_resource type="PackedScene" uid="uid://bkmfixym7ftg7" path="res://scenes/test_scenes/scene_clue.tscn" id="11_71wxm"]
 [ext_resource type="Script" uid="uid://q760mct2evav" path="res://scripts/Valk/clue.gd" id="12_n2452"]
+[ext_resource type="PackedScene" uid="uid://bicg3xk5h40ss" path="res://scenes/test_scenes/interact_test.tscn" id="13_51aie"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cb1vq"]
 
@@ -189,5 +190,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8993082, 1.0323956, -19.48
 [node name="Scene Clue2" parent="." unique_id=1585188228 instance=ExtResource("11_71wxm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8993082, 1.0323956, -19.488108)
 clue_to_gather = SubResource("Resource_51aie")
+
+[node name="Interact_Test" parent="." unique_id=6908372 instance=ExtResource("13_51aie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0654225, 1.0241024, -21.457884)
 
 [editable path="Restart Trigger"]

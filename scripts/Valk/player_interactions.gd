@@ -21,8 +21,5 @@ func _process(delta: float) -> void:
 			if(object.is_in_group("Rock")):
 				InventoryManager.instance.add_item(ITEM_TYPE.ROCK, 1);
 				object.queue_free();
-			if(object.is_in_group("Clue")):
-				var scene_clue: SceneClue = object as SceneClue;
-				var clue: Clue = scene_clue.clue_to_gather;
-				PalaceManager.instance.add_clue(clue);
-				object.queue_free();
+			if(object.has_method("player_interact")):
+				object.player_interact();

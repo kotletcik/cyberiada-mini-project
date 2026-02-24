@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://coysphqpo5g2l" path="res://scripts/Valk/Managers/inventory_manager.gd" id="7_j8bvq"]
 [ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://scenes/Locations/nav_region_floor.tscn" id="7_w4tbm"]
 [ext_resource type="PackedScene" uid="uid://bl7pr1jrqx1d8" path="res://scenes/restart_trigger.tscn" id="9_b4wx3"]
+[ext_resource type="PackedScene" uid="uid://d1i2hyd827vx1" path="res://scenes/ui/note_ui.tscn" id="10_32swi"]
+[ext_resource type="Script" uid="uid://k7qr63sybur6" path="res://scripts/Valk/Managers/ui_manager.gd" id="10_j8bvq"]
 [ext_resource type="PackedScene" uid="uid://bkmfixym7ftg7" path="res://scenes/test_scenes/scene_clue.tscn" id="11_71wxm"]
 [ext_resource type="Script" uid="uid://q760mct2evav" path="res://scripts/Valk/clue.gd" id="12_n2452"]
 [ext_resource type="PackedScene" uid="uid://bicg3xk5h40ss" path="res://scenes/test_scenes/interact_test.tscn" id="13_51aie"]
@@ -115,6 +117,17 @@ metadata/_custom_type_script = "uid://s47j5s0f3fdy"
 script = ExtResource("4_32swi")
 metadata/_custom_type_script = "uid://bj28ubqcmsltd"
 
+[node name="UIManager" type="Node" parent="." unique_id=793604871 node_paths=PackedStringArray("note_ui")]
+script = ExtResource("10_j8bvq")
+note_ui = NodePath("NoteUI")
+metadata/_custom_type_script = "uid://k7qr63sybur6"
+
+[node name="NoteUI" parent="UIManager" unique_id=1193079714 instance=ExtResource("10_32swi")]
+
+[node name="InventoryManager" type="Node" parent="." unique_id=93593884]
+script = ExtResource("7_j8bvq")
+metadata/_custom_type_script = "uid://coysphqpo5g2l"
+
 [node name="Shell" parent="." unique_id=1427820130 instance=ExtResource("3_81ya1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1561513, 1.4558756, -18.730312)
 
@@ -147,10 +160,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.165029, 1.0094061, -13.6129
 
 [node name="Serum10" parent="." unique_id=1138746912 instance=ExtResource("3_t4e8a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.27111, 1.0094061, -13.425508)
-
-[node name="InventoryManager" type="Node" parent="." unique_id=93593884]
-script = ExtResource("7_j8bvq")
-metadata/_custom_type_script = "uid://coysphqpo5g2l"
 
 [node name="Rock" parent="." unique_id=591474869 instance=ExtResource("5_0nogy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1161883, 1.0600457, -26.579384)

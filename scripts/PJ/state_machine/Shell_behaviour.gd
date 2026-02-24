@@ -13,6 +13,8 @@ extends Behaviour
 @export var hearing_range := 10.0
 @export_group("wander")
 @export var wander_time: float = 10.0
+@export_group("patrol")
+@export var patrol_time: float = 10.0
 
 func _ready() -> void:
 	player = state_machine.mob.player
@@ -31,7 +33,7 @@ func Check_conditions(delta: float) -> void:
 			else:
 				change_state_by_name(STATE_TYPES.Follow_player,STATE_TYPES.Searching)
 			if(PsycheManager.instance.invisibility_timer > 0):
-				change_state_by_name(STATE_TYPES.Follow_player,STATE_TYPES.Wander)
+				change_state_by_name(STATE_TYPES.Follow_player,STATE_TYPES.Patrol)
 		STATE_TYPES.Searching:
 			if timer > 0:
 				timer -= delta
@@ -39,25 +41,26 @@ func Check_conditions(delta: float) -> void:
 					if (PsycheManager.instance.invisibility_timer <= 0): 
 						change_state_by_name(STATE_TYPES.Searching,STATE_TYPES.Follow_player);
 			else:
-				change_state_by_name(STATE_TYPES.Searching,STATE_TYPES.Wander)
+				change_state_by_name(STATE_TYPES.Searching,STATE_TYPES.Patrol)
 		STATE_TYPES.Follow_sound:
 			if (is_player_in_sight()):
 				if (PsycheManager.instance.invisibility_timer <= 0): 
 					change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Follow_player);
 			if ((state_machine.mob.position) - (sound_target.position)).length() < attack_range:
-				change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Wander)
+				change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Patrol)
 			elif time > 0:
 				time-=delta
 			else:
-				change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Wander)
+				change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Patrol)
 		STATE_TYPES.Wander:
 			if (is_player_in_sight()):
 				if (PsycheManager.instance.invisibility_timer <= 0): 
 					change_state_by_name(STATE_TYPES.Wander,STATE_TYPES.Follow_player);
-			if timer > 0:
-				timer -= delta
-			else: 	
-				timer = wander_time 
+		STATE_TYPES.Patrol:
+			if (is_player_in_sight()):
+				if (PsycheManager.instance.invisibility_timer <= 0): 
+					change_state_by_name(STATE_TYPES.Patrol,STATE_TYPES.Follow_player);
+
 		
 func Enter_state(state: int):
 	match state:
@@ -73,6 +76,9 @@ func Enter_state(state: int):
 		STATE_TYPES.Wander:
 			timer=wander_time
 			EventBus.connect("sound_emitted_by_player", _is_heard_a_sound)
+		STATE_TYPES.Patrol:
+			timer = patrol_time
+			EventBus.connect("sound_emitted_by_player", _is_heard_a_sound)
 	time=timer
 
 func Exit_state(state: int):
@@ -83,6 +89,8 @@ func Exit_state(state: int):
 			EventBus.disconnect("sound_emitted_by_player", _is_heard_a_sound)
 		STATE_TYPES.Follow_sound:
 			EventBus.disconnect("sound_emitted_by_player", _is_heard_a_sound)
+		STATE_TYPES.Patrol:
+			EventBus.connect("sound_emitted_by_player", _is_heard_a_sound)
 
 func is_player_in_sight() -> bool:
 	if (state_machine != null):

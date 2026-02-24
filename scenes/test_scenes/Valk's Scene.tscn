@@ -221,6 +221,162 @@ simplify_epsilon = 4.074
 
 [node name="State_machine" parent="NavRegionFloor/Shell" index="5" unique_id=593020358 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("Patrol")
+
+[node name="Follow_player" parent="NavRegionFloor/Shell/State_machine" index="1"]
+move_speed = 5.0
+
+[node name="Searching" parent="NavRegionFloor/Shell/State_machine" index="4"]
+move_speed = 4.0
+
+[node name="Patrol" parent="NavRegionFloor/Shell/State_machine" index="6" unique_id=1952931126 node_paths=PackedStringArray("patrol_points")]
+patrol_points = [NodePath("../../../ShellPatrolPoints/PatrolPoint1"), NodePath("../../../ShellPatrolPoints/PatrolPoint2")]
+move_speed = 2.0
+model_color = Color(0.7581918, 0.7581918, 0.7581917, 1)
+state_type = 6
+
+[node name="empty_target" parent="NavRegionFloor/Shell/State_machine/Patrol" index="0" unique_id=571049646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0076146, -29.651814)
+
+[node name="MeshInstance3D" parent="NavRegionFloor/Shell/State_machine/Patrol/empty_target" index="0" unique_id=751999632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9188995, 0, 32.13404)
+
+[node name="ShellNavRegion" type="NavigationRegion3D" parent="NavRegionFloor" unique_id=762941749]
+navigation_mesh = SubResource("NavigationMesh_13hkq")
+
+[node name="floor" type="CSGBox3D" parent="NavRegionFloor/ShellNavRegion" unique_id=1031565982]
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 2
+size = Vector3(20, 1, 20)
+
+[node name="wall1" type="CSGBox3D" parent="NavRegionFloor/ShellNavRegion" unique_id=1991541777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 9.5)
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 4
+size = Vector3(20, 5, 1)
+
+[node name="wall2" type="CSGBox3D" parent="NavRegionFloor/ShellNavRegion" unique_id=2129804679]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9.5, 2, 0)
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 4
+size = Vector3(20, 5, 1)
+
+[node name="wall3" type="CSGBox3D" parent="NavRegionFloor/ShellNavRegion" unique_id=326382465]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -9.5)
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 4
+size = Vector3(20, 5, 1)
+
+[node name="wall4" type="CSGBox3D" parent="NavRegionFloor/ShellNavRegion" unique_id=1856715788]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.5, 2, 0)
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 4
+size = Vector3(20, 5, 1)
+
+[node name="wall5" type="CSGBox3D" parent="NavRegionFloor/ShellNavRegion" unique_id=1888820886]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.4427233, 2, -2.4495988)
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 4
+size = Vector3(5.1220703, 5, 1)
+
+[node name="wall6" type="CSGBox3D" parent="NavRegionFloor/ShellNavRegion" unique_id=171390167]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5979643, 2, 4.8960238)
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 4
+size = Vector3(10, 5, 1)
+
+[node name="wall7" type="CSGBox3D" parent="NavRegionFloor/ShellNavRegion" unique_id=1579439402]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.7797403, 2, 5.0202913)
+material_override = SubResource("StandardMaterial3D_13hkq")
+use_collision = true
+collision_layer = 4
+size = Vector3(10, 5, 1)
+
+[node name="wall8" type="CSGBox3D" parent="NavRegionFloor/ShellNavRegion" unique_id=927540715]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.75, 2, -7.199313)
+material_override = SubResource("StandardMaterial3D_jik7h")
+use_collision = true
+collision_layer = 4
+size = Vector3(5.453247, 5, 1)
+
+[node name="DoubleDoor" parent="NavRegionFloor/ShellNavRegion" unique_id=1301287337 instance=ExtResource("11_pu81h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.777816, 2.4886618, -0.97806454)
+move_distance = 3.0
+open_duration = 2.0
+
+[node name="ShellPatrolPoints" type="Node3D" parent="NavRegionFloor" unique_id=1699474365]
+
+[node name="PatrolPoint1" parent="NavRegionFloor/ShellPatrolPoints" unique_id=1444820056 instance=ExtResource("12_k4afo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 4)
+
+[node name="PatrolPoint2" parent="NavRegionFloor/ShellPatrolPoints" unique_id=237953053 instance=ExtResource("12_k4afo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, 4)
+
+[node name="Mutation" parent="NavRegionFloor" unique_id=1656460003 instance=ExtResource("13_axhgm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8323927, 1.6206341, -4.8773975)
+
+[node name="empty_target" parent="NavRegionFloor/Mutation/State_machine/Wander" parent_id_path=PackedInt32Array(1656460003, 950494872) index="0" unique_id=861664593]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8195176, 1.4382358, -4.916814)
+
+[node name="MutationNavRegion" parent="NavRegionFloor" unique_id=580662191 instance=ExtResource("14_suiiq")]
+navigation_layers = 2
+
+[node name="SafetyFloor" type="MeshInstance3D" parent="NavRegionFloor" unique_id=157069396]
+transform = Transform3D(54.3, 0, 0, 0, 1, 0, 0, 0, 48.802, 0, 0.024, -0.14188004)
+mesh = SubResource("BoxMesh_oewj3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_15dxg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavRegionFloor/SafetyFloor" unique_id=1748199284]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavRegionFloor/SafetyFloor/StaticBody3D" unique_id=997942754]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_rl6w0")
+
+[node name="Light" type="Node" parent="NavRegionFloor" unique_id=1691825785]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavRegionFloor/Light" unique_id=1902236960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.253002, 9.102599, -6.223734)
+light_energy = 2.815
+light_indirect_energy = 2.465
+light_volumetric_fog_energy = 1.33
+light_size = 0.42
+omni_range = 30.271
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="NavRegionFloor/Light" unique_id=541388565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7112684, 9.102599, -6.223734)
+light_energy = 2.815
+light_indirect_energy = 2.465
+light_volumetric_fog_energy = 1.33
+light_size = 0.42
+omni_range = 30.271
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="NavRegionFloor/Light" unique_id=415113251]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7112684, 9.102599, 5.027376)
+light_energy = 2.815
+light_indirect_energy = 2.465
+light_volumetric_fog_energy = 1.33
+light_size = 0.42
+omni_range = 30.271
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="NavRegionFloor/Light" unique_id=398517783]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3108835, 9.102599, 5.782342)
+light_energy = 2.815
+light_indirect_energy = 2.465
+light_volumetric_fog_energy = 1.33
+light_size = 0.42
+omni_range = 30.271
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="NavRegionFloor/Light" unique_id=1168952027]
+transform = Transform3D(1, 0, 0, 0, 0.731437, 0.68190897, 0, -0.68190897, 0.731437, 0, 1.30567, -0.14188004)
+shadow_enabled = true
+
 [node name="Shell2" parent="." unique_id=1832136921 instance=ExtResource("3_81ya1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.803829, 1.524102, -18.641739)
 

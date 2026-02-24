@@ -47,6 +47,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 
+	if(UIManager.instance.is_in_esc_menu || !UIManager.instance.is_in_game): return;
 	# zmiana szybkości w przyszłości by była tutaj
 	move_speed = SOBER_WALK_SPEED; 
 	if(Input.is_action_pressed("Crouch")):
@@ -103,17 +104,10 @@ func _input(event):
 		if event.pressed and event.keycode == Key.KEY_SPACE:
 			var sound_pos = to_global(Vector3(0, 0, -2))
 			EventBus.sound_emitted_by_player.emit(sound_pos)
-		# ESC zwalnia kursor aby móc wyjść / przełączyć okno 
-		if event.pressed and event.keycode == Key.KEY_ESCAPE:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-	# Kliknięcie lewym przyciskiem ponownie przechwytuje kursor jeśli był zwolniony 
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event):
 	# Ruch myszy steruje obrotem
+	if(UIManager.instance.is_in_esc_menu || !UIManager.instance.is_in_game): return;
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * SENSITIVITY)
 		if camera:

@@ -7,5 +7,6 @@ enum
 	Follow_sound,
 	Searching,
 	Attack,
-	Debuff
+	Debuff,
+	Patrol
 }

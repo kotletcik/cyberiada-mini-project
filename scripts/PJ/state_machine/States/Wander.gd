@@ -3,11 +3,14 @@ class_name Wander
 
 @export var empty_target: Node3D
 @export var wander_radius: float = 5
+@export var wander_target_change_time:= 5.0
+var timer: float
 var player: CharacterBody3D
 
 	
 func _ready() -> void:
 	player = state_machine.mob.player
+	timer = wander_target_change_time
 	
 func Enter():
 	super.Enter()
@@ -15,8 +18,11 @@ func Enter():
 	randomize_wander()
 
 func Update (delta: float):	
-	randomize_wander()
-	empty_target.global_position = empty_target.global_position
+	if (timer < 0):
+		randomize_wander()
+		empty_target.global_position = empty_target.global_position
+		timer = wander_target_change_time
+	else: timer -= delta
 
 func randomize_wander():
 	empty_target.position = random_pos_in_range(wander_radius)

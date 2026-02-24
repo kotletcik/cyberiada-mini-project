@@ -3,6 +3,8 @@ class_name shell
 
 @onready var player: PlayerController = $"../Player" #Link na playera w globalnej scenie
 
+func _process(delta: float) -> void:
+	print(position)
 # func _ready() -> void:
 # 	set_start_pos(1)
 # 	EventBus.connect("game_restarted", set_start_pos)

@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://q760mct2evav" path="res://scripts/Valk/clue.gd" id="12_n2452"]
 [ext_resource type="PackedScene" uid="uid://bicg3xk5h40ss" path="res://scenes/test_scenes/interact_test.tscn" id="13_51aie"]
 [ext_resource type="PackedScene" uid="uid://clg0uguj2n21v" path="res://scenes/test_scenes/scene_note.tscn" id="14_1tntn"]
+[ext_resource type="Resource" uid="uid://c251xsijr468j" path="res://resources/mraaaww.tres" id="17_1tcqu"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cb1vq"]
 
@@ -122,7 +123,7 @@ script = ExtResource("10_j8bvq")
 note_ui = NodePath("NoteUI")
 metadata/_custom_type_script = "uid://k7qr63sybur6"
 
-[node name="NoteUI" parent="UIManager" unique_id=1193079714 instance=ExtResource("10_32swi")]
+[node name="NoteUI" parent="UIManager" unique_id=1191746793 instance=ExtResource("10_32swi")]
 
 [node name="InventoryManager" type="Node" parent="." unique_id=93593884]
 script = ExtResource("7_j8bvq")
@@ -204,7 +205,12 @@ clue_to_gather = SubResource("Resource_51aie")
 [node name="Interact_Test" parent="." unique_id=6908372 instance=ExtResource("13_51aie")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0654225, 1.0241024, -21.457884)
 
-[node name="Scene Clue3" parent="." unique_id=1944761136 instance=ExtResource("14_1tntn")]
+[node name="Scene Note" parent="." unique_id=1944761136 instance=ExtResource("14_1tntn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6826568, 1.0241024, -24.335314)
 
+[node name="Scene Note2" parent="." unique_id=1421735928 instance=ExtResource("14_1tntn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.749893, 1.0241024, -24.335314)
+note_to_hold = ExtResource("17_1tcqu")
+
+[editable path="UIManager/NoteUI"]
 [editable path="Restart Trigger"]

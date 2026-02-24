@@ -1,15 +1,71 @@
 [gd_scene format=3 uid="uid://4h1fpllxicik"]
 
 [ext_resource type="PackedScene" uid="uid://dg433bvfg6cvt" path="res://scenes/PlayerValk.tscn" id="1_m5tkx"]
-[ext_resource type="Script" uid="uid://s47j5s0f3fdy" path="res://scripts/Valk/psyche_manager.gd" id="2_1uptq"]
-[ext_resource type="Script" uid="uid://c681q57ewat6f" path="res://scripts/Valk/game_manager.gd" id="3_otuf4"]
+[ext_resource type="Script" uid="uid://s47j5s0f3fdy" path="res://scripts/Valk/Managers/psyche_manager.gd" id="2_1uptq"]
 [ext_resource type="PackedScene" uid="uid://elmpcqsoarjp" path="res://scenes/Mobs/Shell.tscn" id="4_c5ca3"]
 [ext_resource type="PackedScene" uid="uid://d02kasr2lce4t" path="res://scenes/Mobs/Mutation.tscn" id="5_1uptq"]
 [ext_resource type="PackedScene" uid="uid://ce6h2fmee74sw" path="res://scenes/test_scenes/serum.tscn" id="5_wx1nw"]
-[ext_resource type="Script" uid="uid://coysphqpo5g2l" path="res://scripts/Valk/inventory_manager.gd" id="6_1h7yu"]
 [ext_resource type="PackedScene" uid="uid://bieh4iknld2hn" path="res://scenes/test_scenes/rock.tscn" id="7_wjm7x"]
 [ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://scenes/Locations/nav_region_floor.tscn" id="8_a7h3k"]
 [ext_resource type="PackedScene" uid="uid://dug2gg4ldjhoc" path="res://scenes/test_scenes/Mutation_navigation.tscn" id="10_otuf4"]
+
+[sub_resource type="GDScript" id="GDScript_51aie"]
+script/source = "class_name GameManager
+extends Node
+
+static var instance: GameManager
+@onready var player: PlayerController = $\"../Player\" #Link na playera w globalnej scenie
+
+func _ready() -> void:
+	if(instance == null):
+		instance = self;    
+	else:
+		print(\"More than one GameManager exists!!!\");
+		queue_free();
+
+func restart_scene() -> void:
+	get_tree().reload_current_scene();
+"
+
+[sub_resource type="GDScript" id="GDScript_n2452"]
+script/source = "class_name InventoryManager
+extends Node
+
+static var instance: InventoryManager;
+
+var itemCount: Array[int] = [];
+
+func _ready() -> void:
+	if(instance == null):
+		instance = self;
+		itemCount.resize(ITEM_TYPE.ENUM_LENGTH);
+	else:
+		print(\"More than one InventoryManager exists!!!\");
+
+func _process(_delta: float) -> void:
+	if(Input.is_action_just_pressed(\"use_item_1\")):
+		if(has_item(ITEM_TYPE.SERUM)):
+			remove_item(ITEM_TYPE.SERUM, 1);
+			print(\"serum count:\", itemCount[ITEM_TYPE.SERUM]);
+			PsycheManager.instance.take_serum();
+	# if(Input.is_action_just_pressed(\"use_item_2\")):
+	# 	if(has_item(ITEM_TYPE.ROCK)):
+	# 		remove_item(ITEM_TYPE.ROCK, 1);
+	# 		print(\"rock count:\", itemCount[ITEM_TYPE.ROCK]);
+			
+
+func add_item(index: int, count: int) -> void:
+	if(index < 0 || index >= ITEM_TYPE.ENUM_LENGTH): return;
+	itemCount[index] += count;
+
+func remove_item(index: int, count: int) -> void:
+	if(index < 0 || index >= ITEM_TYPE.ENUM_LENGTH): return;
+	itemCount[index] -= count;
+
+func has_item(index: int) -> bool:
+	if(index < 0 || index >= ITEM_TYPE.ENUM_LENGTH): return false;
+	return itemCount[index] > 0;
+"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_otuf4"]
 albedo_color = Color(0.5001009, 0.41530854, 0.44614214, 1)
@@ -64,7 +120,7 @@ serum_critical_vignette_radius = 0.1
 metadata/_custom_type_script = "uid://s47j5s0f3fdy"
 
 [node name="GameManager" type="Node" parent="." unique_id=2052087701]
-script = ExtResource("3_otuf4")
+script = SubResource("GDScript_51aie")
 metadata/_custom_type_script = "uid://s47j5s0f3fdy"
 
 [node name="Shell" parent="." unique_id=1756028681 instance=ExtResource("4_c5ca3")]
@@ -95,7 +151,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 15)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6206341, -18.515055)
 
 [node name="InventoryManager" type="Node" parent="." unique_id=940853889]
-script = ExtResource("6_1h7yu")
+script = SubResource("GDScript_n2452")
 metadata/_custom_type_script = "uid://coysphqpo5g2l"
 
 [node name="Serums" type="Node" parent="." unique_id=1826636791]

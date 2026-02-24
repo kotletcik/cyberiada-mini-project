@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://cq4mdp3xlsb4a"]
 
 [ext_resource type="PackedScene" uid="uid://dg433bvfg6cvt" path="res://scenes/PlayerValk.tscn" id="1_cb1vq"]
-[ext_resource type="Script" uid="uid://s47j5s0f3fdy" path="res://scripts/Valk/psyche_manager.gd" id="2_1a1i1"]
+[ext_resource type="Script" uid="uid://s47j5s0f3fdy" path="res://scripts/Valk/Managers/psyche_manager.gd" id="2_1a1i1"]
+[ext_resource type="Script" uid="uid://c681q57ewat6f" path="res://scripts/Valk/Managers/game_manager.gd" id="3_1tntn"]
 [ext_resource type="PackedScene" uid="uid://elmpcqsoarjp" path="res://scenes/Mobs/Shell.tscn" id="3_81ya1"]
 [ext_resource type="PackedScene" uid="uid://ce6h2fmee74sw" path="res://scenes/test_scenes/serum.tscn" id="3_t4e8a"]
-[ext_resource type="Script" uid="uid://c681q57ewat6f" path="res://scripts/Valk/game_manager.gd" id="3_w4tbm"]
-[ext_resource type="Script" uid="uid://coysphqpo5g2l" path="res://scripts/Valk/inventory_manager.gd" id="4_nxxrq"]
-[ext_resource type="Script" uid="uid://bj28ubqcmsltd" path="res://scripts/Valk/palace_manager.gd" id="4_tgq00"]
+[ext_resource type="Script" uid="uid://bj28ubqcmsltd" path="res://scripts/Valk/Managers/palace_manager.gd" id="4_32swi"]
 [ext_resource type="PackedScene" uid="uid://bieh4iknld2hn" path="res://scenes/test_scenes/rock.tscn" id="5_0nogy"]
+[ext_resource type="Script" uid="uid://coysphqpo5g2l" path="res://scripts/Valk/Managers/inventory_manager.gd" id="7_j8bvq"]
 [ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://scenes/Locations/nav_region_floor.tscn" id="7_w4tbm"]
 [ext_resource type="PackedScene" uid="uid://bl7pr1jrqx1d8" path="res://scenes/restart_trigger.tscn" id="9_b4wx3"]
 [ext_resource type="PackedScene" uid="uid://bkmfixym7ftg7" path="res://scenes/test_scenes/scene_clue.tscn" id="11_71wxm"]
@@ -108,11 +108,11 @@ serum_critical_vignette_radius = 0.1
 metadata/_custom_type_script = "uid://s47j5s0f3fdy"
 
 [node name="GameManager" type="Node" parent="." unique_id=267506616]
-script = ExtResource("3_w4tbm")
+script = ExtResource("3_1tntn")
 metadata/_custom_type_script = "uid://s47j5s0f3fdy"
 
 [node name="PalaceManager" type="Node" parent="." unique_id=1304485624]
-script = ExtResource("4_tgq00")
+script = ExtResource("4_32swi")
 metadata/_custom_type_script = "uid://bj28ubqcmsltd"
 
 [node name="Shell" parent="." unique_id=1427820130 instance=ExtResource("3_81ya1")]
@@ -149,7 +149,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.165029, 1.0094061, -13.6129
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.27111, 1.0094061, -13.425508)
 
 [node name="InventoryManager" type="Node" parent="." unique_id=93593884]
-script = ExtResource("4_nxxrq")
+script = ExtResource("7_j8bvq")
 metadata/_custom_type_script = "uid://coysphqpo5g2l"
 
 [node name="Rock" parent="." unique_id=591474869 instance=ExtResource("5_0nogy")]

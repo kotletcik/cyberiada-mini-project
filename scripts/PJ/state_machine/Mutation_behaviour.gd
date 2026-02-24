@@ -1,8 +1,8 @@
 extends Behaviour
 
-#follow_player
+@export_group("follow_player")
 @export var follow_state_duration:= 5.0
-#wander
+@export_group("wander")
 @export var wander_time: float = 10.0
 
 func _ready() -> void:

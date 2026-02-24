@@ -1,15 +1,15 @@
 extends Node
 class_name Behaviour
 
+@export_group("general")
 @export var state_machine: State_machine
-var player: PlayerController
-#general
-var timer: float
-var time: float
-var stateIsActive: bool = true
 @export var player_sight_fov: float = 180
 @export var player_sight_range: float = 2
 @export var attack_range: float = 0.5
+var player: PlayerController
+var timer: float
+var time: float
+var stateIsActive: bool = true
 
 
 func is_player_in_sight() -> bool:

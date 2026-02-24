@@ -3,14 +3,14 @@ extends Behaviour
 @export var start_pos: = []
 @onready var nav_agent: NavigationAgent3D = $"../../NavigationAgent3D"
 @onready var mesh_instance: MeshInstance3D = $"../../MeshInstance3D"
-#follow_player
+@export_group("follow_player")
 @export var follow_state_duration:= 5.0
-#searching_player
+@export_group("searching_player")
 @export var searching_time: float = 5.0
-#follow_sound
+@export_group("follow_sound")
 @export var follow_sound_state_duration:= 2.0
 @export var sound_target: Node3D
-#wander
+@export_group("wander")
 @export var wander_time: float = 10.0
 
 func _ready() -> void:

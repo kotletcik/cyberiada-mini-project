@@ -12,4 +12,4 @@ func Enter():
 	state_machine.nav_agent.target = player
 
 func Update(delta: float):
-	state_machine.nav_agent.set_target_position(player.position)
+	state_machine.nav_agent.set_target_position(state_machine.mob.player.position)

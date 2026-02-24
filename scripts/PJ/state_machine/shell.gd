@@ -1,8 +1,7 @@
 extends Node3D
 class_name shell
 
-
-var player: PlayerController
+@onready var player: PlayerController = $"../Player" #Link na playera w globalnej scenie
 
 # func _ready() -> void:
 # 	set_start_pos(1)
@@ -15,6 +14,3 @@ var player: PlayerController
 # 		_level = Game_Manager.current_level
 # 	if _level-1 < start_pos.size() and _level-1>=0:
 # 		position = start_pos[_level-1]
-	
-func _enter_tree():
-	player  = $"../Player"

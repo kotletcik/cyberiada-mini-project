@@ -28,7 +28,9 @@ func Physics_Update(_delta: float):
 	pass
 
 func change_color(_color: Color):
-	state_machine.mat.albedo_color = model_color
+	state_machine.mat.albedo_color.r = model_color.r
+	state_machine.mat.albedo_color.g = model_color.g
+	state_machine.mat.albedo_color.b = model_color.b
 
 func change_state_to(_new_state: int):
 	state_machine.transit_to_state(self, _new_state)

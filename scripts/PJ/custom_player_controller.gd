@@ -6,8 +6,9 @@ class_name PlayerController
 @export var move_speed = SOBER_WALK_SPEED # bazowa prędkość ruchu
 
 #movement
-const SOBER_WALK_SPEED = 5.0
+@export var SOBER_WALK_SPEED = 5.0
 const SUBSTANCE_WALK_SPEED = 8.0
+@export var CROUCH_SPEED_MULTIPLIER = 0.5
 const SENSITIVITY = 0.004
 
 #bobbing
@@ -46,11 +47,13 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 
+	# zmiana szybkości w przyszłości by była tutaj
+	move_speed = SOBER_WALK_SPEED; 
 	if(Input.is_action_pressed("Crouch")):
 		collision_shape.scale.y = 0.5;
+		move_speed *= CROUCH_SPEED_MULTIPLIER;
 	else:
 		collision_shape.scale.y = 1.0;
-
 
 	var input_dir = Vector3.ZERO
 	input_dir.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")

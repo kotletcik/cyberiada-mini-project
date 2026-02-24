@@ -13,7 +13,7 @@ func _ready() -> void:
 	# 	EventBus.connect("game_restarted", change_level_to);
 	# 	EventBus.connect("level_changed", change_level_to);
 	# else:
-		print("More than one GameManager exists!!!");
+		print("Old GameManager exists and it will be deleted");
 		queue_free();
 
 func _input(event):

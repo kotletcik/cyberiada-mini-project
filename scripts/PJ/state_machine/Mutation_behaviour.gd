@@ -1,8 +1,8 @@
 extends Behaviour
 
-#follow_player
+@export_group("follow_player")
 @export var follow_state_duration:= 5.0
-#wander
+@export_group("wander")
 @export var wander_time: float = 10.0
 
 func _ready() -> void:
@@ -15,7 +15,7 @@ func Check_conditions(delta: float) -> void:
 	var current = state_machine.current_state.state_type
 	match current:
 		STATE_TYPES.Follow_player:
-			if ((state_machine.mob.position) - (player.position)).length() < attack_range:
+			if ((state_machine.mob.position) - (state_machine.mob.player.position)).length() < attack_range:
 				#var _timer = get_tree().create_timer(0.5)
 				#await _timer.timeout
 				change_state_by_name(STATE_TYPES.Follow_player,STATE_TYPES.Debuff)

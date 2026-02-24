@@ -14,6 +14,8 @@ extends Behaviour
 @export var wander_time: float = 10.0
 @export_group("patrol")
 @export var patrol_time: float = 10.0
+@export_group("scream")
+@export var scream_time: float = 1.0
 	
 func _process(delta: float) -> void:
 	Check_conditions(delta)
@@ -24,8 +26,8 @@ func Check_conditions(delta: float) -> void:
 		STATE_TYPES.Follow_player:
 			if ((state_machine.mob.position) - (GameManager.instance.player.position)).length() < attack_range:
 				change_state_by_name(STATE_TYPES.Follow_player,STATE_TYPES.Attack)
-			elif time > 0:
-				time-=delta
+			elif timer > 0:
+				timer-=delta
 			else:
 				change_state_by_name(STATE_TYPES.Follow_player,STATE_TYPES.Searching)
 			if(PsycheManager.instance.invisibility_timer > 0):
@@ -35,27 +37,34 @@ func Check_conditions(delta: float) -> void:
 				timer -= delta
 				if (is_player_in_sight()):
 					if (PsycheManager.instance.invisibility_timer <= 0): 
-						change_state_by_name(STATE_TYPES.Searching,STATE_TYPES.Follow_player);
+						change_state_by_name(STATE_TYPES.Searching,STATE_TYPES.Scream);
 			else:
 				change_state_by_name(STATE_TYPES.Searching,STATE_TYPES.Patrol)
 		STATE_TYPES.Follow_sound:
 			if (is_player_in_sight()):
 				if (PsycheManager.instance.invisibility_timer <= 0): 
-					change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Follow_player);
+					change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Scream);
 			if ((state_machine.mob.position) - (sound_target.position)).length() < attack_range:
 				change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Patrol)
-			elif time > 0:
-				time-=delta
+			elif timer > 0:
+				timer-=delta
 			else:
 				change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Patrol)
 		STATE_TYPES.Wander:
 			if (is_player_in_sight()):
 				if (PsycheManager.instance.invisibility_timer <= 0): 
-					change_state_by_name(STATE_TYPES.Wander,STATE_TYPES.Follow_player);
+					change_state_by_name(STATE_TYPES.Wander,STATE_TYPES.Scream);
 		STATE_TYPES.Patrol:
 			if (is_player_in_sight()):
 				if (PsycheManager.instance.invisibility_timer <= 0): 
-					change_state_by_name(STATE_TYPES.Patrol,STATE_TYPES.Follow_player);
+					change_state_by_name(STATE_TYPES.Patrol,STATE_TYPES.Scream);
+		STATE_TYPES.Scream:
+			if timer > 0:
+				timer-=delta
+			else: change_state_by_name(STATE_TYPES.Scream,STATE_TYPES.Follow_player);
+
+			
+			
 
 		
 func Enter_state(state: int):
@@ -75,7 +84,8 @@ func Enter_state(state: int):
 		STATE_TYPES.Patrol:
 			timer = patrol_time
 			EventBus.connect("sound_emitted_by_player", _is_heard_a_sound)
-	time=timer
+		STATE_TYPES.Scream:
+			timer = scream_time
 
 func Exit_state(state: int):
 	match state:

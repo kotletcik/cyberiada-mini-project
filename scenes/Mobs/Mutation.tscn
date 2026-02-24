@@ -26,6 +26,9 @@ height = 1.5
 transparency = 1
 albedo_color = Color(0.27935672, 0.27935672, 0.27935672, 1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_3x212"]
+size = Vector3(0.4, 0.2, 0.2)
+
 [node name="Mutation" type="CharacterBody3D" unique_id=1656460003]
 collision_layer = 8
 collision_mask = 3
@@ -66,6 +69,7 @@ metadata/_custom_type_script = "uid://foywhiftl87x"
 [node name="Behaviour" type="Node" parent="State_machine" unique_id=378908477 node_paths=PackedStringArray("state_machine")]
 script = ExtResource("4_u10fb")
 state_machine = NodePath("..")
+player_sight_range = 5.0
 metadata/_custom_type_script = "uid://fn4i2xt1rjiu"
 
 [node name="Debuff" type="Node" parent="State_machine" unique_id=1617702393]
@@ -83,3 +87,7 @@ script = ExtResource("9_ja7dw")
 [node name="Shell Disappearance" type="Node" parent="." unique_id=1236568906 node_paths=PackedStringArray("shell_mesh")]
 script = ExtResource("10_syqnj")
 shell_mesh = NodePath("../MeshInstance3D")
+
+[node name="Eyes" type="MeshInstance3D" parent="." unique_id=440282314]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4183241, -0.26205605)
+mesh = SubResource("BoxMesh_3x212")

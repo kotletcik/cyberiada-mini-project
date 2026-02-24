@@ -45,7 +45,7 @@ func _physics_process(delta):
 
 
 #zmiana state'u czyli wył. current state i wł new state
-func transit_to_state(_state:State, new_state_type: State.types):
+func transit_to_state(_state:State, new_state_type: int):
 	if _state != current_state:
 		return
 	var _new_state = states.get(new_state_type)
@@ -63,5 +63,5 @@ func transit_to_state(_state:State, new_state_type: State.types):
 func transit_to_initial_state(empty_arg):
 	transit_to_state(current_state, initial_state.state_type)
 	
-func transit_to_state_by_name(_state: State.types, _new_state:State.types):
+func transit_to_state_by_name(_state: int, _new_state: int):
 	transit_to_state(states.get(_state), _new_state)

@@ -8,10 +8,14 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Cyberiada - Mini Projekt"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -19,6 +23,8 @@ config/icon="res://icon.svg"
 EventBus="*res://scripts/PJ/Event_bus.gd"
 Game_Manager="res://scripts/PJ/game_manager.gd"
 ITEM_TYPE="*res://scripts/Valk/item_type.gd"
+STATE_TYPE="*uid://bj322ttdggei0"
+STATE="*uid://bhk5v5kjsyy60"
 
 [global_group]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cq4mdp3xlsb4a"]
+[gd_scene format=3 uid="uid://cq4mdp3xlsb4a"]
 
 [ext_resource type="PackedScene" uid="uid://dg433bvfg6cvt" path="res://scenes/PlayerValk.tscn" id="1_cb1vq"]
 [ext_resource type="Script" uid="uid://s47j5s0f3fdy" path="res://scripts/Valk/psyche_manager.gd" id="2_1a1i1"]
@@ -31,45 +31,45 @@ name = "Second Test"
 description = "This is a second test Clue"
 metadata/_custom_type_script = "uid://q760mct2evav"
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=835645690]
 
-[node name="Player" parent="." instance=ExtResource("1_cb1vq")]
+[node name="Player" parent="." unique_id=511857231 instance=ExtResource("1_cb1vq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0213828, 2.1234412, -25.405394)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=578306419]
 transform = Transform3D(54.3, 0, 0, 0, 1, 0, 0, 0, 20.161789, 2.115285, 0.024101973, -22.401081)
 mesh = SubResource("BoxMesh_cb1vq")
 surface_material_override/0 = SubResource("StandardMaterial3D_0nogy")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=360238032]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=1943587094]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_1a1i1")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=561737123]
 transform = Transform3D(0.76784045, 0, 0, 0, 2.2320867, 0, 0, 0, 3.083391, 9, 1.5987782, -20.747272)
 mesh = SubResource("BoxMesh_cb1vq")
 surface_material_override/0 = SubResource("StandardMaterial3D_0nogy")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2" unique_id=825888132]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D" unique_id=1475824029]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_1a1i1")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=635214464]
 transform = Transform3D(0.76784045, 0, 0, 0, 2.2320867, 0, 0, 0, 3.083391, 9, 1.9579368, -13.839911)
 mesh = SubResource("BoxMesh_cb1vq")
 surface_material_override/0 = SubResource("StandardMaterial3D_0nogy")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3" unique_id=44651738]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D" unique_id=20156237]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_1a1i1")
 
-[node name="PsycheManager" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="PsycheManager" type="Node" parent="." unique_id=535571037 node_paths=PackedStringArray("player")]
 script = ExtResource("2_1a1i1")
 player = NodePath("../Player")
 serum_drop_rate = 0.1
@@ -105,89 +105,88 @@ serum_critical_vignette_intensity = 2.0
 serum_critical_vignette_radius = 0.1
 metadata/_custom_type_script = "uid://s47j5s0f3fdy"
 
-[node name="GameManager" type="Node" parent="."]
+[node name="GameManager" type="Node" parent="." unique_id=267506616]
 script = ExtResource("3_w4tbm")
 metadata/_custom_type_script = "uid://s47j5s0f3fdy"
 
-[node name="PalaceManager" type="Node" parent="."]
+[node name="PalaceManager" type="Node" parent="." unique_id=1304485624]
 script = ExtResource("4_tgq00")
 metadata/_custom_type_script = "uid://bj28ubqcmsltd"
 
-[node name="Shell" parent="." instance=ExtResource("3_81ya1")]
+[node name="Shell" parent="." unique_id=1427820130 instance=ExtResource("3_81ya1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1561513, 1.4558756, -18.730312)
-player_sight_range = 5.0
 
-[node name="Serum" parent="." instance=ExtResource("3_t4e8a")]
+[node name="Serum" parent="." unique_id=361347800 instance=ExtResource("3_t4e8a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9913974, 1.0094061, -15.351182)
 
-[node name="Serum2" parent="." instance=ExtResource("3_t4e8a")]
+[node name="Serum2" parent="." unique_id=1063145824 instance=ExtResource("3_t4e8a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9913974, 1.0094061, -14.209373)
 
-[node name="Serum3" parent="." instance=ExtResource("3_t4e8a")]
+[node name="Serum3" parent="." unique_id=1761979244 instance=ExtResource("3_t4e8a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7895238, 1.0094061, -15.076649)
 
-[node name="Serum4" parent="." instance=ExtResource("3_t4e8a")]
+[node name="Serum4" parent="." unique_id=516590221 instance=ExtResource("3_t4e8a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8047643, 1.0094061, -14.012251)
 
-[node name="Serum5" parent="." instance=ExtResource("3_t4e8a")]
+[node name="Serum5" parent="." unique_id=60495296 instance=ExtResource("3_t4e8a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0863371, 1.0094061, -14.922068)
 
-[node name="Serum6" parent="." instance=ExtResource("3_t4e8a")]
+[node name="Serum6" parent="." unique_id=1759025653 instance=ExtResource("3_t4e8a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4677405, 1.0094061, -13.612202)
 
-[node name="Serum7" parent="." instance=ExtResource("3_t4e8a")]
+[node name="Serum7" parent="." unique_id=1606072488 instance=ExtResource("3_t4e8a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7418342, 1.0094061, -13.581941)
 
-[node name="Serum8" parent="." instance=ExtResource("3_t4e8a")]
+[node name="Serum8" parent="." unique_id=1189524767 instance=ExtResource("3_t4e8a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.73214, 1.0094061, -15.012748)
 
-[node name="Serum9" parent="." instance=ExtResource("3_t4e8a")]
+[node name="Serum9" parent="." unique_id=65226210 instance=ExtResource("3_t4e8a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.165029, 1.0094061, -13.612927)
 
-[node name="Serum10" parent="." instance=ExtResource("3_t4e8a")]
+[node name="Serum10" parent="." unique_id=1138746912 instance=ExtResource("3_t4e8a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.27111, 1.0094061, -13.425508)
 
-[node name="InventoryManager" type="Node" parent="."]
+[node name="InventoryManager" type="Node" parent="." unique_id=93593884]
 script = ExtResource("4_nxxrq")
 metadata/_custom_type_script = "uid://coysphqpo5g2l"
 
-[node name="Rock" parent="." instance=ExtResource("5_0nogy")]
+[node name="Rock" parent="." unique_id=591474869 instance=ExtResource("5_0nogy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1161883, 1.0600457, -26.579384)
 
-[node name="Rock2" parent="." instance=ExtResource("5_0nogy")]
+[node name="Rock2" parent="." unique_id=1817642045 instance=ExtResource("5_0nogy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.116188, 1.0600457, -26.579384)
 
-[node name="Rock3" parent="." instance=ExtResource("5_0nogy")]
+[node name="Rock3" parent="." unique_id=1670189984 instance=ExtResource("5_0nogy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.116188, 1.0600457, -28.579384)
 
-[node name="Rock4" parent="." instance=ExtResource("5_0nogy")]
+[node name="Rock4" parent="." unique_id=49305648 instance=ExtResource("5_0nogy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.116188, 2.0600457, -28.579384)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1769698398]
 transform = Transform3D(1, 0, 0, 0, 0.7314372, 0.68190914, 0, -0.68190914, 0.7314372, 0, 1.30567, 0)
 shadow_enabled = true
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1616585586]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25.286251)
 navigation_mesh = SubResource("NavigationMesh_b4wx3")
 
-[node name="NavRegionFloor" parent="." instance=ExtResource("7_w4tbm")]
+[node name="NavRegionFloor" parent="." unique_id=1692137331 instance=ExtResource("7_w4tbm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7255268, 0, -21.429012)
 
-[node name="Shell2" parent="." instance=ExtResource("3_81ya1")]
+[node name="Shell2" parent="." unique_id=1832136921 instance=ExtResource("3_81ya1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.803829, 1.524102, -18.641739)
 
-[node name="Restart Trigger" parent="." instance=ExtResource("9_b4wx3")]
+[node name="Restart Trigger" parent="." unique_id=1712831958 instance=ExtResource("9_b4wx3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.500076, 1.7260493, -20.738432)
 
 [node name="CollisionShape3D" parent="Restart Trigger" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.602661, 0, -9)
 shape = SubResource("BoxShape3D_b4wx3")
 
-[node name="Scene Clue" parent="." instance=ExtResource("11_71wxm")]
+[node name="Scene Clue" parent="." unique_id=247099435 instance=ExtResource("11_71wxm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8993082, 1.0323956, -19.488108)
 
-[node name="Scene Clue2" parent="." instance=ExtResource("11_71wxm")]
+[node name="Scene Clue2" parent="." unique_id=1585188228 instance=ExtResource("11_71wxm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8993082, 1.0323956, -19.488108)
 clue_to_gather = SubResource("Resource_51aie")
 

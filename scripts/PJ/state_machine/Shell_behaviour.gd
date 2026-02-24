@@ -1,6 +1,5 @@
 extends Behaviour
 
-@export var start_pos: = []
 @onready var nav_agent: NavigationAgent3D = $"../../NavigationAgent3D"
 @onready var mesh_instance: MeshInstance3D = $"../../MeshInstance3D"
 @export_group("follow_player")
@@ -15,9 +14,6 @@ extends Behaviour
 @export var wander_time: float = 10.0
 @export_group("patrol")
 @export var patrol_time: float = 10.0
-
-func _ready() -> void:
-	player = state_machine.mob.player
 	
 func _process(delta: float) -> void:
 	Check_conditions(delta)
@@ -26,7 +22,7 @@ func Check_conditions(delta: float) -> void:
 	var current = state_machine.current_state.state_type
 	match current:
 		STATE_TYPES.Follow_player:
-			if ((state_machine.mob.position) - (state_machine.mob.player.position)).length() < attack_range:
+			if ((state_machine.mob.position) - (GameManager.instance.player.position)).length() < attack_range:
 				change_state_by_name(STATE_TYPES.Follow_player,STATE_TYPES.Attack)
 			elif time > 0:
 				time-=delta
@@ -91,16 +87,6 @@ func Exit_state(state: int):
 			EventBus.disconnect("sound_emitted_by_player", _is_heard_a_sound)
 		STATE_TYPES.Patrol:
 			EventBus.connect("sound_emitted_by_player", _is_heard_a_sound)
-
-func is_player_in_sight() -> bool:
-	if (state_machine != null):
-		var subtracted_vector: Vector3 = state_machine.mob.player.position - state_machine.mob.position;
-		var direction = subtracted_vector.normalized();
-		var dot: float = -state_machine.mob.global_basis.z.dot(direction);
-		if(dot < 1-(player_sight_fov/180)): return false;
-		var isPlayerInRange: bool = ((state_machine.mob.position) - (state_machine.mob.player.position)).length() < player_sight_range;
-		return isPlayerInRange
-	else: return false
 
 func _is_heard_a_sound(sound_pos: Vector3):
 	if ((sound_pos - state_machine.mob.position).length() < hearing_range):

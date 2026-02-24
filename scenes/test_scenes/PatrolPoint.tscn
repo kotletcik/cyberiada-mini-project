@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dfiw1ws6ojtp8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jt34c"]
+albedo_color = Color(0.050980393, 0.5411765, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_dsqxn"]
+material = SubResource("StandardMaterial3D_jt34c")
+radius = 0.2
+height = 0.4
+
+[node name="PatrolPoint" type="Node3D" unique_id=1444820056]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1994238633]
+mesh = SubResource("SphereMesh_dsqxn")

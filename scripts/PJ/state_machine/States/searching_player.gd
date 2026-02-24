@@ -5,12 +5,7 @@ class_name Searching
 @export var searching_point_change_time: float = 5.0
 @export var searching_radius: float = 3
 var searching_point_timer: float
-var player: CharacterBody3D
 var searching_area_center: Vector3
-
-	
-func _ready() -> void:
-	player = state_machine.mob.player
 
 func randomize_searching_point():
 	empty_target.position = random_pos_in_range(searching_radius)

@@ -5,11 +5,9 @@ class_name Wander
 @export var wander_radius: float = 5
 @export var wander_target_change_time:= 5.0
 var timer: float
-var player: CharacterBody3D
 
 	
 func _ready() -> void:
-	player = state_machine.mob.player
 	timer = wander_target_change_time
 	
 func Enter():

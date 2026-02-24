@@ -1,14 +1,8 @@
 extends Node3D
 class_name shell
 
-@export var start_pos: = []
-@export var attack_range: float = 0.5
-@export var player_sight_range: float = 2
-@export var player_sight_fov: float = 180
-@onready var nav_agent: NavigationAgent3D = $"NavigationAgent3D"
+
 var player: PlayerController
-@export var state_machine: State_machine
-@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
 
 # func _ready() -> void:
 # 	set_start_pos(1)
@@ -24,13 +18,3 @@ var player: PlayerController
 	
 func _enter_tree():
 	player  = $"../Player"
-
-func is_player_in_sight() -> bool:
-	if (state_machine != null):
-		var subtracted_vector: Vector3 = player.position - state_machine.mob.position;
-		var direction = subtracted_vector.normalized();
-		var dot: float = -state_machine.mob.global_basis.z.dot(direction);
-		if(dot < 1-(player_sight_fov/180)): return false;
-		var isPlayerInRange: bool = ((state_machine.mob.position) - (player.position)).length() < state_machine.mob.player_sight_range;
-		return isPlayerInRange
-	else: return false

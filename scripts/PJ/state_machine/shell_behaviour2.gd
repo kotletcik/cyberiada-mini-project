@@ -1,5 +1,8 @@
 extends Behaviour
 
+@export var start_pos: = []
+@onready var nav_agent: NavigationAgent3D = $"../../NavigationAgent3D"
+@onready var mesh_instance: MeshInstance3D = $"../../MeshInstance3D"
 #follow_player
 @export var follow_state_duration:= 5.0
 #searching_player
@@ -19,78 +22,87 @@ func _process(delta: float) -> void:
 func Check_conditions(delta: float) -> void:
 	var current = state_machine.current_state.state_type
 	match current:
-		State.types.Follow_player:
-			if ((state_machine.mob.position) - (player.position)).length() < state_machine.mob.attack_range:
+		STATE_TYPES.Follow_player:
+			if ((state_machine.mob.position) - (player.position)).length() < attack_range:
 				#var _timer = get_tree().create_timer(0.5)
 				#await _timer.timeout
-				change_state_by_name(State.types.Follow_player,State.types.Attack)
+				change_state_by_name(STATE_TYPES.Follow_player,STATE_TYPES.Attack)
 				#change_state_to("wander")
 			elif time > 0:
 				time-=delta
 			else:
-				change_state_by_name(State.types.Follow_player,State.types.Searching)
+				change_state_by_name(STATE_TYPES.Follow_player,STATE_TYPES.Searching)
 			if(PsycheManager.instance.invisibility_timer > 0):
-				change_state_by_name(State.types.Follow_player,State.types.Wander)
-		State.types.Searching:
+				change_state_by_name(STATE_TYPES.Follow_player,STATE_TYPES.Wander)
+		STATE_TYPES.Searching:
 			if timer > 0:
 				timer -= delta
-				if (state_machine.mob.is_player_in_sight()):
+				if (is_player_in_sight()):
 					if (PsycheManager.instance.invisibility_timer <= 0): 
-						change_state_by_name(State.types.Searching,State.types.Follow_player);
+						change_state_by_name(STATE_TYPES.Searching,STATE_TYPES.Follow_player);
 			else:
-				change_state_by_name(State.types.Searching,State.types.Wander)
-		State.types.Follow_sound:
-			if (state_machine.mob.is_player_in_sight()):
-				if (PsycheManager.instance.invisibility_timer <= 0): change_state_by_name(State.types.Follow_sound,State.types.Follow_player);
-			if ((state_machine.mob.position) - (sound_target.position)).length() < state_machine.mob.attack_range:
+				change_state_by_name(STATE_TYPES.Searching,STATE_TYPES.Wander)
+		STATE_TYPES.Follow_sound:
+			if (is_player_in_sight()):
+				if (PsycheManager.instance.invisibility_timer <= 0): change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Follow_player);
+			if ((state_machine.mob.position) - (sound_target.position)).length() < attack_range:
 				#var _timer = get_tree().create_timer(0.5)
 				#await _timer.timeout
-				change_state_by_name(State.types.Follow_sound,State.types.Wander)
+				change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Wander)
 			elif time > 0:
 				time-=delta
 			else:
-				change_state_by_name(State.types.Follow_sound,State.types.Wander)
-		State.types.Wander:
-			if (state_machine.mob.is_player_in_sight()):
+				change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Wander)
+		STATE_TYPES.Wander:
+			if (is_player_in_sight()):
 				if (PsycheManager.instance.invisibility_timer <= 0): 
-					change_state_by_name(State.types.Wander,State.types.Follow_player);
+					change_state_by_name(STATE_TYPES.Wander,STATE_TYPES.Follow_player);
 			if timer > 0:
 				timer -= delta
 			else: 	
 				timer = wander_time 
 		
-func Enter_state(state: State.types):
+func Enter_state(state: int):
 	match state:
-		State.types.Follow_player:
+		STATE_TYPES.Follow_player:
 			timer = follow_state_duration
-		State.types.Searching:
+		STATE_TYPES.Searching:
 			EventBus.connect("sound_emitted_by_player", change_state_to_follow_sound)
 			timer = searching_time
-		State.types.Follow_sound:
+		STATE_TYPES.Follow_sound:
 			timer = follow_state_duration
 			# Valk: dodałem aby potwór szedł do najnowszego dzwięku
 			EventBus.connect("sound_emitted_by_player", change_state_to_follow_sound)
-		State.types.Wander:
+		STATE_TYPES.Wander:
 			timer=wander_time
 			EventBus.connect("sound_emitted_by_player", change_state_to_follow_sound)
 	time=timer
 
-func Exit_state(state: State.types):
+func Exit_state(state: int):
 	match state:
-		State.types.Searching:
+		STATE_TYPES.Searching:
 			EventBus.disconnect("sound_emitted_by_player", change_state_to_follow_sound)
-		State.types.Wander:
+		STATE_TYPES.Wander:
 			EventBus.disconnect("sound_emitted_by_player", change_state_to_follow_sound)
-		State.types.Follow_sound:
+		STATE_TYPES.Follow_sound:
 			EventBus.disconnect("sound_emitted_by_player", change_state_to_follow_sound)
 
+func is_player_in_sight() -> bool:
+	if (state_machine != null):
+		var subtracted_vector: Vector3 = player.position - state_machine.mob.position;
+		var direction = subtracted_vector.normalized();
+		var dot: float = -state_machine.mob.global_basis.z.dot(direction);
+		if(dot < 1-(player_sight_fov/180)): return false;
+		var isPlayerInRange: bool = ((state_machine.mob.position) - (player.position)).length() < player_sight_range;
+		return isPlayerInRange
+	else: return false
 
 func change_state_to_follow_sound(sound_pos: Vector3):
 	state_machine.target = sound_pos
-	change_state_to(state_machine.current_state, State.types.Follow_sound)
+	change_state_to(state_machine.current_state, STATE_TYPES.Follow_sound)
 
-func change_state_to(current_state: State, _new_state: State.types):
+func change_state_to(current_state: State, _new_state: int):
 	state_machine.transit_to_state(current_state, _new_state)
 
-func change_state_by_name(current_state: State.types, _new_state: State.types):
+func change_state_by_name(current_state: int, _new_state: int):
 	state_machine.transit_to_state_by_name(current_state, _new_state)

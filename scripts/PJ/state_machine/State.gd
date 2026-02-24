@@ -8,7 +8,7 @@ class_name State
 @onready var state_machine: State_machine = $"../"
 var state_is_active: bool = true
 signal Transitioned
-@export var state_type: State.types
+@export var state_type: int
 
 #Wywoływany zawsze przy przełączeniu na ten state
 func Enter():
@@ -32,14 +32,5 @@ func change_color(_color: Color):
 	state_machine.mat.albedo_color.g = model_color.g
 	state_machine.mat.albedo_color.b = model_color.b
 
-func change_state_to(_new_state: types):
+func change_state_to(_new_state: int):
 	state_machine.transit_to_state(self, _new_state)
-
-enum types {
-	Wander,
-	Follow_player,
-	Follow_sound,
-	Searching,
-	Attack,
-	Debuff
-}

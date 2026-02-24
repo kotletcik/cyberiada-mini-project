@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://elmpcqsoarjp"]
+[gd_scene format=3 uid="uid://elmpcqsoarjp"]
 
 [ext_resource type="Script" uid="uid://bnwduhvsot5bk" path="res://scripts/PJ/state_machine/shell.gd" id="1_yvw8q"]
 [ext_resource type="PackedScene" uid="uid://b4512qioi3g1i" path="res://scenes/Gravity.tscn" id="2_6sbjw"]
@@ -20,36 +20,32 @@ material = SubResource("StandardMaterial3D_nyxyb")
 transparency = 1
 albedo_color = Color(0.27935672, 0.27935672, 0.27935672, 1)
 
-[node name="Shell" type="CharacterBody3D" node_paths=PackedStringArray("state_machine")]
+[node name="Shell" type="CharacterBody3D" unique_id=2079833793]
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_yvw8q")
-attack_range = 1.0
-player_sight_range = 4.0
-player_sight_fov = 45.0
-state_machine = NodePath("State_machine")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=58911616]
 shape = SubResource("CapsuleShape3D_lj2st")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1510776867]
 mesh = SubResource("CapsuleMesh_ajbgq")
 surface_material_override/0 = SubResource("StandardMaterial3D_re4yq")
 
-[node name="Gravity" parent="." node_paths=PackedStringArray("_body") instance=ExtResource("2_6sbjw")]
+[node name="Gravity" parent="." unique_id=1429912289 node_paths=PackedStringArray("_body") instance=ExtResource("2_6sbjw")]
 _body = NodePath("..")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=5614037]
 path_postprocessing = 1
 debug_enabled = true
 debug_path_custom_color = Color(0.95686275, 0.13333334, 0.23137255, 1)
 script = ExtResource("6_ajbgq")
 
-[node name="Shell Disappearance" type="Node" parent="." node_paths=PackedStringArray("shell_mesh")]
+[node name="Shell Disappearance" type="Node" parent="." unique_id=658173647 node_paths=PackedStringArray("shell_mesh")]
 script = ExtResource("9_jt8f1")
 shell_mesh = NodePath("../MeshInstance3D")
 
-[node name="State_machine" parent="." node_paths=PackedStringArray("mob", "nav_agent") instance=ExtResource("5_e6lbg")]
+[node name="State_machine" parent="." unique_id=593020358 node_paths=PackedStringArray("mob", "nav_agent") instance=ExtResource("5_e6lbg")]
 mob = NodePath("..")
 nav_agent = NodePath("../NavigationAgent3D")
 
@@ -71,6 +67,10 @@ state_type = 3
 
 [node name="Behaviour" parent="State_machine" index="5" node_paths=PackedStringArray("sound_target", "state_machine")]
 script = ExtResource("6_raqt8")
+start_pos = []
+attack_range = 0.5
+player_sight_range = 2.0
+player_sight_fov = 180.0
 follow_state_duration = 5.0
 searching_time = 5.0
 follow_sound_state_duration = 2.0

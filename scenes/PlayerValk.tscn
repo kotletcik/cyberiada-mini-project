@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dg433bvfg6cvt"]
+[gd_scene format=3 uid="uid://dg433bvfg6cvt"]
 
 [ext_resource type="Script" uid="uid://67dqw2stjnr6" path="res://scripts/PJ/custom_player_controller.gd" id="1_v6fml"]
 [ext_resource type="Script" uid="uid://dvgoa1d8j20dg" path="res://scripts/Valk/player_interactions.gd" id="2_3li8b"]
@@ -14,32 +14,32 @@ fog_light_color = Color(0.30184436, 0.32968265, 0.37299633, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v6fml"]
 
-[node name="PlayerValk" type="CharacterBody3D"]
+[node name="PlayerValk" type="CharacterBody3D" unique_id=767105809]
 collision_layer = 16
 script = ExtResource("1_v6fml")
 
-[node name="Head" type="Node3D" parent="."]
+[node name="Head" type="Node3D" parent="." unique_id=830310683]
 
-[node name="Camera3D" type="Camera3D" parent="Head"]
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=144873117]
 environment = SubResource("Environment_473a2")
 current = true
 
-[node name="PlayerInteractions" type="Node3D" parent="Head/Camera3D"]
+[node name="PlayerInteractions" type="Node3D" parent="Head/Camera3D" unique_id=1702588162]
 script = ExtResource("2_3li8b")
 serum = ExtResource("3_0dfmc")
 
-[node name="Rock Throw Position" type="Node3D" parent="Head/Camera3D"]
+[node name="Rock Throw Position" type="Node3D" parent="Head/Camera3D" unique_id=1675000720]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0.5736686, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2006764769]
 shape = SubResource("CapsuleShape3D_v6fml")
 
-[node name="CanvasLayer" parent="." instance=ExtResource("3_abpoc")]
+[node name="CanvasLayer" parent="." unique_id=170475301 instance=ExtResource("3_abpoc")]
 
-[node name="Gravity" parent="." node_paths=PackedStringArray("_body") instance=ExtResource("5_uxk6a")]
+[node name="Gravity" parent="." unique_id=266413438 node_paths=PackedStringArray("_body") instance=ExtResource("5_uxk6a")]
 _body = NodePath("..")
 
-[node name="Throw Rocks" type="Node" parent="." node_paths=PackedStringArray("throw_position")]
+[node name="Throw Rocks" type="Node" parent="." unique_id=1178421797 node_paths=PackedStringArray("throw_position")]
 script = ExtResource("6_moip8")
 throw_position = NodePath("../Head/Camera3D/Rock Throw Position")
 throw_force = 25.0

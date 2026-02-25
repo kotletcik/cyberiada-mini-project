@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://b3e6n7nbttp0c" path="res://scripts/Valk/Resource Types/thought_path.gd" id="5_jdfls"]
 [ext_resource type="Resource" uid="uid://cop13c5am162g" path="res://resources/test_clue_path.tres" id="6_oc1qc"]
 [ext_resource type="Script" uid="uid://coysphqpo5g2l" path="res://scripts/Valk/Managers/inventory_manager.gd" id="7_j8bvq"]
+[ext_resource type="PackedScene" uid="uid://drcpcwf6f8sgw" path="res://scenes/ui/thought_ui.tscn" id="8_pu81h"]
 [ext_resource type="PackedScene" uid="uid://bl7pr1jrqx1d8" path="res://scenes/restart_trigger.tscn" id="9_b4wx3"]
 [ext_resource type="PackedScene" uid="uid://d1i2hyd827vx1" path="res://scenes/ui/note_ui.tscn" id="10_32swi"]
 [ext_resource type="Script" uid="uid://k7qr63sybur6" path="res://scripts/Valk/Managers/ui_manager.gd" id="10_j8bvq"]
@@ -115,12 +116,42 @@ script = ExtResource("4_32swi")
 thought_paths = Array[ExtResource("5_jdfls")]([ExtResource("6_oc1qc")])
 metadata/_custom_type_script = "uid://bj28ubqcmsltd"
 
-[node name="UIManager" type="Node" parent="." unique_id=793604871 node_paths=PackedStringArray("note_ui")]
+[node name="UIManager" type="Node" parent="." unique_id=793604871 node_paths=PackedStringArray("note_ui", "added_thought_notif", "mind_palace_ui")]
 script = ExtResource("10_j8bvq")
 note_ui = NodePath("NoteUI")
+added_thought_notif = NodePath("AddedThoughtNotif")
+mind_palace_ui = NodePath("MindPalace")
+thought_ui = ExtResource("8_pu81h")
 metadata/_custom_type_script = "uid://k7qr63sybur6"
 
 [node name="NoteUI" parent="UIManager" unique_id=1191746793 instance=ExtResource("10_32swi")]
+
+[node name="AddedThoughtNotif" type="CanvasLayer" parent="UIManager" unique_id=1394435151]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIManager/AddedThoughtNotif" unique_id=1012787536]
+anchors_preset = -1
+anchor_left = 0.52900004
+anchor_top = 0.53400004
+anchor_right = 0.52900004
+anchor_bottom = 0.53400004
+offset_left = 329.59192
+offset_top = 212.96799
+offset_right = 491.59192
+offset_bottom = 266.968
+text = "Meow Meow Meow"
+
+[node name="MindPalace" type="CanvasLayer" parent="UIManager" unique_id=446110176]
+
+[node name="Panel" type="Panel" parent="UIManager/MindPalace" unique_id=545363948]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 575.0
+offset_bottom = 324.0
 
 [node name="InventoryManager" type="Node" parent="." unique_id=93593884]
 script = ExtResource("7_j8bvq")

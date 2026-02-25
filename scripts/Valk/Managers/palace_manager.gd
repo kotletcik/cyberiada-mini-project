@@ -16,13 +16,13 @@ func _ready() -> void:
 	pass 
 
 func add_gathered_clue(new_clue: Clue):
-	
 	print(new_clue.name);
 	gathered_clues[first_free_index] = new_clue;
 	first_free_index += 1;
 	print(first_free_index);
 	if(gathered_clues.size() == first_free_index):
 		gathered_clues.resize(first_free_index * 2);
+	UIManager.instance.show_added_thought_notif(new_clue, 5.0);
 	if(is_first_thought(new_clue)): create_thought(new_clue);
 
 func remove_gathered_clue(clue_to_remove: Clue):

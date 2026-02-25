@@ -42,7 +42,9 @@ func _process(_delta: float) -> void:
 func show_added_thought_notif(new_clue: Clue, time: float):
 	add_child(added_thought_notif);
 	added_thought_notif.get_node("RichTextLabel").text = new_clue.name;
+	var temp_text = new_clue.name;
 	await get_tree().create_timer(time).timeout;
+	if(temp_text != added_thought_notif.get_node("RichTextLabel").text): return;
 	remove_child(added_thought_notif);
 
 func show_mind_palace_ui():

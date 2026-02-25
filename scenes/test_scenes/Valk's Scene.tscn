@@ -116,9 +116,10 @@ script = ExtResource("4_32swi")
 thought_paths = Array[ExtResource("5_jdfls")]([ExtResource("6_oc1qc")])
 metadata/_custom_type_script = "uid://bj28ubqcmsltd"
 
-[node name="UIManager" type="Node" parent="." unique_id=793604871 node_paths=PackedStringArray("note_ui", "mind_palace_ui")]
+[node name="UIManager" type="Node" parent="." unique_id=793604871 node_paths=PackedStringArray("note_ui", "added_thought_notif", "mind_palace_ui")]
 script = ExtResource("10_j8bvq")
 note_ui = NodePath("NoteUI")
+added_thought_notif = NodePath("AddedThoughtNotif")
 mind_palace_ui = NodePath("MindPalace")
 thought_ui = ExtResource("8_pu81h")
 metadata/_custom_type_script = "uid://k7qr63sybur6"

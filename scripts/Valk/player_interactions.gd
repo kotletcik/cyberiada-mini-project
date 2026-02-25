@@ -5,7 +5,7 @@ extends Node3D
 func _ready() -> void:
 	pass 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if(Input.is_action_just_pressed("Interact")):
 		var forward: Vector3 = -get_global_transform().basis.z;
 		var query = PhysicsRayQueryParameters3D.create(global_position, global_position + forward * 10);

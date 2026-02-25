@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CluePath" format=3 uid="uid://cop13c5am162g"]
+
+[ext_resource type="Script" uid="uid://q760mct2evav" path="res://scripts/Valk/Resource Types/clue.gd" id="1_sv7fu"]
+[ext_resource type="Script" uid="uid://b3e6n7nbttp0c" path="res://scripts/Valk/Resource Types/clue_path.gd" id="2_w77fc"]
+
+[sub_resource type="Resource" id="Resource_sv7fu"]
+script = ExtResource("1_sv7fu")
+name = "meow"
+description = "meow"
+metadata/_custom_type_script = "uid://q760mct2evav"
+
+[resource]
+script = ExtResource("2_w77fc")
+required_clues = Array[ExtResource("1_sv7fu")]([SubResource("Resource_sv7fu")])
+is_clue_realized = Array[bool]([true, false])
+metadata/_custom_type_script = "uid://b3e6n7nbttp0c"

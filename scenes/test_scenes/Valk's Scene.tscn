@@ -7,18 +7,19 @@
 [ext_resource type="PackedScene" uid="uid://ce6h2fmee74sw" path="res://scenes/test_scenes/serum.tscn" id="3_t4e8a"]
 [ext_resource type="Script" uid="uid://bj28ubqcmsltd" path="res://scripts/Valk/Managers/palace_manager.gd" id="4_32swi"]
 [ext_resource type="PackedScene" uid="uid://bieh4iknld2hn" path="res://scenes/test_scenes/rock.tscn" id="5_0nogy"]
+[ext_resource type="Script" uid="uid://b3e6n7nbttp0c" path="res://scripts/Valk/Resource Types/clue_path.gd" id="5_pu81h"]
 [ext_resource type="Script" uid="uid://coysphqpo5g2l" path="res://scripts/Valk/Managers/inventory_manager.gd" id="7_j8bvq"]
 [ext_resource type="PackedScene" uid="uid://b8wfahed5pckx" path="res://scenes/Locations/Test_level1.tscn" id="7_w4tbm"]
 [ext_resource type="PackedScene" uid="uid://bl7pr1jrqx1d8" path="res://scenes/restart_trigger.tscn" id="9_b4wx3"]
 [ext_resource type="PackedScene" uid="uid://d1i2hyd827vx1" path="res://scenes/ui/note_ui.tscn" id="10_32swi"]
 [ext_resource type="Script" uid="uid://k7qr63sybur6" path="res://scripts/Valk/Managers/ui_manager.gd" id="10_j8bvq"]
 [ext_resource type="PackedScene" uid="uid://bkmfixym7ftg7" path="res://scenes/test_scenes/scene_clue.tscn" id="11_71wxm"]
-[ext_resource type="Script" uid="uid://q760mct2evav" path="res://scripts/Valk/clue.gd" id="12_n2452"]
+[ext_resource type="Script" uid="uid://q760mct2evav" path="res://scripts/Valk/Resource Types/clue.gd" id="12_n2452"]
 [ext_resource type="PackedScene" uid="uid://bicg3xk5h40ss" path="res://scenes/test_scenes/interact_test.tscn" id="13_51aie"]
 [ext_resource type="PackedScene" uid="uid://d02kasr2lce4t" path="res://scenes/Mobs/Mutation.tscn" id="13_axhgm"]
 [ext_resource type="PackedScene" uid="uid://clg0uguj2n21v" path="res://scenes/test_scenes/scene_note.tscn" id="14_1tntn"]
 [ext_resource type="PackedScene" uid="uid://dug2gg4ldjhoc" path="res://scenes/test_scenes/Mutation_navigation.tscn" id="14_suiiq"]
-[ext_resource type="Resource" uid="uid://c251xsijr468j" path="res://resources/mraaaww.tres" id="17_1tcqu"]
+[ext_resource type="Resource" uid="uid://c251xsijr468j" path="res://resources/notes/mraaaww.tres" id="17_1tcqu"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cb1vq"]
 
@@ -26,6 +27,10 @@
 albedo_color = Color(1, 0.19215687, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1a1i1"]
+
+[sub_resource type="Resource" id="Resource_k4afo"]
+script = ExtResource("5_pu81h")
+metadata/_custom_type_script = "uid://b3e6n7nbttp0c"
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_b4wx3"]
 
@@ -132,6 +137,7 @@ metadata/_custom_type_script = "uid://s47j5s0f3fdy"
 
 [node name="PalaceManager" type="Node" parent="." unique_id=1304485624]
 script = ExtResource("4_32swi")
+clue_paths = Array[ExtResource("5_pu81h")]([SubResource("Resource_k4afo"), null, null, null, null])
 metadata/_custom_type_script = "uid://bj28ubqcmsltd"
 
 [node name="UIManager" type="Node" parent="." unique_id=793604871 node_paths=PackedStringArray("note_ui")]

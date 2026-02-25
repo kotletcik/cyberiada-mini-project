@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://clg0uguj2n21v"]
 
 [ext_resource type="Script" uid="uid://00ch4th54r1" path="res://scripts/Valk/scene_note.gd" id="1_t0tu7"]
-[ext_resource type="Resource" uid="uid://inlb87ae3v2h" path="res://resources/test_not.tres" id="2_f1mrn"]
+[ext_resource type="Resource" uid="uid://inlb87ae3v2h" path="res://resources/notes/test_not.tres" id="2_f1mrn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4e8a"]
 

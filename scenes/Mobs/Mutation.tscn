@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://d02kasr2lce4t"]
 
-[ext_resource type="Script" uid="uid://bnwduhvsot5bk" path="res://scripts/PJ/state_machine/shell.gd" id="1_dsl82"]
 [ext_resource type="PackedScene" uid="uid://b4512qioi3g1i" path="res://scenes/Gravity.tscn" id="2_p815j"]
 [ext_resource type="Script" uid="uid://bt2rps524x0ph" path="res://scripts/PJ/state_machine/State_machine.gd" id="3_xi3xm"]
 [ext_resource type="Script" uid="uid://cxanx1emdbq8r" path="res://scripts/PJ/state_machine/States/Wander.gd" id="4_dsl82"]
@@ -30,7 +29,6 @@ albedo_color = Color(0.27935672, 0.27935672, 0.27935672, 1)
 [node name="Mutation" type="CharacterBody3D" unique_id=1656460003]
 collision_layer = 8
 collision_mask = 3
-script = ExtResource("1_dsl82")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=347165820]
 shape = SubResource("CapsuleShape3D_lj2st")

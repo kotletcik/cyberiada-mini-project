@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bw8wddlntpkih"]
+
+[ext_resource type="Script" uid="uid://c66vv1yiekulm" path="res://scripts/PJ/door.gd" id="1_poson"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oftrq"]
+size = Vector3(0.5, 4.003418, 2.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_otuf4"]
+albedo_color = Color(0.5001009, 0.41530854, 0.44614214, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f2rxo"]
+material = SubResource("StandardMaterial3D_otuf4")
+size = Vector3(0.5, 4, 2.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_poson"]
+albedo_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
+
+[node name="StaticBody3D" type="StaticBody3D" unique_id=1301287337]
+collision_layer = 4
+collision_mask = 17
+script = ExtResource("1_poson")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=649342185]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_oftrq")
+
+[node name="Door" type="MeshInstance3D" parent="CollisionShape3D" unique_id=623114512]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_f2rxo")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_poson")

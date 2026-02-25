@@ -1,12 +1,10 @@
 extends Behaviour
+class_name Mutation_behaviour
 
-#follow_player
+@export_group("follow_player")
 @export var follow_state_duration:= 5.0
-#wander
+@export_group("wander")
 @export var wander_time: float = 10.0
-
-func _ready() -> void:
-	player = state_machine.mob.player
 	
 func _process(delta: float) -> void:
 	Check_conditions(delta)
@@ -15,7 +13,7 @@ func Check_conditions(delta: float) -> void:
 	var current = state_machine.current_state.state_type
 	match current:
 		STATE_TYPES.Follow_player:
-			if ((state_machine.mob.position) - (player.position)).length() < attack_range:
+			if ((state_machine.mob.position) - (GameManager.instance.player.position)).length() < attack_range:
 				#var _timer = get_tree().create_timer(0.5)
 				#await _timer.timeout
 				change_state_by_name(STATE_TYPES.Follow_player,STATE_TYPES.Debuff)
@@ -30,10 +28,6 @@ func Check_conditions(delta: float) -> void:
 			if (is_player_in_sight()):
 				if (PsycheManager.instance.invisibility_timer <= 0): 
 					change_state_by_name(STATE_TYPES.Wander,STATE_TYPES.Follow_player);
-			if timer > 0:
-				timer -= delta
-			else: 	
-				timer = wander_time 
 		
 func Enter_state(state: int):
 	match state:

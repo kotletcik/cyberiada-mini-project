@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://d1i2hyd827vx1"]
+
+[ext_resource type="Script" uid="uid://dkhh7w4sib3je" path="res://scripts/Valk/test_button.gd" id="1_ugh2x"]
+
+[node name="NoteUI" type="CanvasLayer" unique_id=1191746793]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1012787536]
+anchors_preset = -1
+anchor_left = 0.52900004
+anchor_top = 0.53400004
+anchor_right = 0.52900004
+anchor_bottom = 0.53400004
+offset_left = -233.40808
+offset_top = -206.03201
+offset_right = 232.59192
+offset_bottom = 184.96799
+text = "Meow Meow Meow"
+
+[node name="Button" type="Button" parent="." unique_id=625185133]
+anchors_preset = -1
+anchor_left = 0.30600002
+anchor_top = 0.16900001
+anchor_right = 0.30600002
+anchor_bottom = 0.16900001
+offset_left = -33.512024
+offset_top = -27.512009
+offset_right = 33.487976
+offset_bottom = 27.487991
+script = ExtResource("1_ugh2x")

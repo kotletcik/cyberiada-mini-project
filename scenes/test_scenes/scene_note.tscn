@@ -9,7 +9,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4hjr6"]
 
-[node name="Scene Clue" type="StaticBody3D" unique_id=1944761136]
+[node name="Scene Note" type="StaticBody3D" unique_id=1944761136]
 script = ExtResource("1_t0tu7")
 note_to_hold = ExtResource("2_f1mrn")
 

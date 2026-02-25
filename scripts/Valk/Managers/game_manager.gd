@@ -1,7 +1,8 @@
 class_name GameManager
 extends Node
 
-static var instance: GameManager
+static var instance: GameManager;
+@onready var player: PlayerController = $"../Player" #Link na playera w globalnej scenie
 
 func _ready() -> void:
 	if(instance == null):

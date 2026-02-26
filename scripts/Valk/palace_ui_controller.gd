@@ -8,8 +8,8 @@ var dragged_thought: ThoughtUI = null;
 func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
 	return true;
 
-func _get_drag_data(_at_position: Vector2) -> Variant:
-	dragged_thought = UIManager.instance.get_thought_ui_at(_at_position);
+func _get_drag_data(at_position: Vector2) -> Variant:
+	dragged_thought = UIManager.instance.get_thought_ui_at(at_position);
 	if(dragged_thought == null): return;
 	if(dragged_thought.is_on_thought_path): return;
 	dragged_clue = dragged_thought.thought_clue;
@@ -21,7 +21,8 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 
 	var c: Control = Control.new();
 	c.add_child(preview);
-	preview.position = -0.5 * preview.size;
+	# preview.position = -0.5 * preview.size; # default to center of thought ui
+	preview.position = -(at_position - dragged_thought.position);
 
 	set_drag_preview(c);
 	return dragged_clue;
@@ -33,7 +34,6 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	var checked_clue: Clue = UIManager.instance.get_clue_at(at_position);
 	if(checked_clue == null): return;
 	if(PalaceManager.instance.is_correct_thought(checked_clue, dragged_clue)):
-		print("hell yeah");
 		PalaceManager.instance.create_thought(dragged_clue);
 		UIManager.instance.clear_mind_palace_ui();
 		UIManager.instance.update_mind_palace_ui();

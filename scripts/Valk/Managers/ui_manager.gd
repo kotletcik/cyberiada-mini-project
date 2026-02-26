@@ -8,7 +8,7 @@ static var instance: UIManager;
 @export var mind_palace_ui: CanvasLayer;
 @export var thought_ui: Resource;
 
-var instanciated_thought_uis: Array[Node] = [null];
+var instanciated_thought_uis: Array[ThoughtUI] = [null];
 var thought_uis_count: int = 0;
 
 var cursor_locked_menu: bool = true;
@@ -64,17 +64,35 @@ func show_added_thought_notif(new_clue: Clue, time: float):
 	remove_child(added_thought_notif);
 
 func get_clue_at(pos: Vector2) -> Clue:
+	for i in range(0, thought_uis_count):
+		var thought: Node = instanciated_thought_uis[i];
+		if(pos.x > thought.position.x && pos.x < thought.position.x + thought.size.x):
+			if(pos.y > thought.position.y && pos.y < thought.position.y + thought.size.y):
+				return instanciated_thought_uis[i].thought_clue;
+	return null;
+
+func get_thought_ui_at(pos: Vector2) -> ThoughtUI:
+	for i in range(0, thought_uis_count):
+		var thought: Node = instanciated_thought_uis[i];
+		if(pos.x > thought.position.x && pos.x < thought.position.x + thought.size.x):
+			if(pos.y > thought.position.y && pos.y < thought.position.y + thought.size.y):
+				return instanciated_thought_uis[i];
 	return null;
 
 func show_mind_palace_ui():
 	is_in_game = false;
 	add_child(mind_palace_ui);
+	update_mind_palace_ui();
+	cursor_locked_game = false;
+	update_cursor();
+
+func update_mind_palace_ui():
 	for i in range(0, PalaceManager.instance.first_free_index):
 		# print("spawning thought ui");
 		var thought_ui_instance = thought_ui.instantiate();
 		mind_palace_ui.get_node("Panel").add_child(thought_ui_instance);
 		var current_clue: Clue = PalaceManager.instance.gathered_clues[i];
-		thought_ui_instance.set_thought_ui_instance(thought_ui_instance, current_clue.name, current_clue.description, 240 + i * 240, 540, current_clue);
+		thought_ui_instance.set_thought_ui_instance(current_clue.name, current_clue.description, 240 + i * 240, 540, current_clue, false);
 		instanciated_thought_uis[thought_uis_count] = thought_ui_instance;
 		thought_uis_count += 1;
 		if(instanciated_thought_uis.size() == thought_uis_count):
@@ -84,23 +102,23 @@ func show_mind_palace_ui():
 		var thought_ui_instance = thought_ui.instantiate();
 		mind_palace_ui.get_node("Panel").add_child(thought_ui_instance);
 		var current_clue: Clue = PalaceManager.instance.thought_paths[0].required_clues[i];
-		thought_ui_instance.set_thought_ui_instance(thought_ui_instance, current_clue.name, current_clue.description, 240 + i * 240, 240, current_clue);
+		thought_ui_instance.set_thought_ui_instance(current_clue.name, current_clue.description, 240 + i * 240, 240, current_clue, true);
 		instanciated_thought_uis[thought_uis_count] = thought_ui_instance;
 		thought_uis_count += 1;
 		if(instanciated_thought_uis.size() == thought_uis_count):
 			instanciated_thought_uis.resize(thought_uis_count * 2);
-	mind_palace_ui.get_node("Panel").meow();
-	cursor_locked_game = false;
-	update_cursor();
 
-func hide_mind_palace_ui():
-	is_in_game = true;
-	remove_child(mind_palace_ui);
+func clear_mind_palace_ui():
 	for i in range(thought_uis_count - 1, -1, -1): #-1 bo koniec jest exlusive wiec idzie do 0
 		instanciated_thought_uis[i].queue_free();
 		# print("destroyed thought ui");
 	instanciated_thought_uis = [null];
 	thought_uis_count = 0;
+
+func hide_mind_palace_ui():
+	is_in_game = true;
+	remove_child(mind_palace_ui);
+	clear_mind_palace_ui();
 	cursor_locked_game = true;
 	update_cursor();
 

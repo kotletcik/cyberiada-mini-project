@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_qvvap")
-name = "hello"
+name = "Life"
 description = "I EXIST!!!"
 metadata/_custom_type_script = "uid://q760mct2evav"

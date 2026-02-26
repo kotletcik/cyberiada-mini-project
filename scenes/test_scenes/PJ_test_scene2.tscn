@@ -12,6 +12,8 @@
 
 [node name="Player" parent="." unique_id=2039338456 instance=ExtResource("1_x6adb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6876144, 2.1234412, -1.7883773)
+crouching_noise_volume = 1.5
+walking_noise_volume = 3.0
 
 [node name="PsycheManager" type="Node" parent="." unique_id=410702270 node_paths=PackedStringArray("player")]
 script = ExtResource("2_kbpjc")

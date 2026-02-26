@@ -1,4 +1,5 @@
 extends Behaviour
+class_name Shell_behaviour
 
 @onready var nav_agent: NavigationAgent3D = $"../../NavigationAgent3D"
 @onready var mesh_instance: MeshInstance3D = $"../../MeshInstance3D"
@@ -98,8 +99,8 @@ func Exit_state(state: int):
 		STATE_TYPES.Patrol:
 			EventBus.connect("sound_emitted_by_player", _is_heard_a_sound)
 
-func _is_heard_a_sound(sound_pos: Vector3):
-	if ((sound_pos - state_machine.mob.position).length() < hearing_range):
+func _is_heard_a_sound(sound_pos: Vector3, volume: float):
+	if ((sound_pos - state_machine.mob.position).length() < hearing_range * volume):
 		change_state_to_follow_sound(sound_pos)
 
 func change_state_to_follow_sound(sound_pos: Vector3):

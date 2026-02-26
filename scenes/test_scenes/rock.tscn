@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bieh4iknld2hn"]
+[gd_scene format=3 uid="uid://bieh4iknld2hn"]
 
 [ext_resource type="Script" uid="uid://dj53js5ssnx8d" path="res://scripts/Valk/pickup_item.gd" id="1_yy7vx"]
 
@@ -9,13 +9,14 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yy7vx"]
 albedo_color = Color(0.1661382, 0.16298771, 0.050084077, 1)
 
-[node name="Rock" type="StaticBody3D"]
+[node name="Rock" type="StaticBody3D" unique_id=1988284777]
+collision_layer = 64
 script = ExtResource("1_yy7vx")
 group_name = "Rock"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=11158284]
 shape = SubResource("BoxShape3D_t4e8a")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=473172102]
 mesh = SubResource("BoxMesh_nxxrq")
 surface_material_override/0 = SubResource("StandardMaterial3D_yy7vx")

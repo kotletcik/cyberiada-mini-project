@@ -10,6 +10,10 @@ class_name PlayerController
 const SUBSTANCE_WALK_SPEED = 8.0
 @export var CROUCH_SPEED_MULTIPLIER = 0.5
 const SENSITIVITY = 0.004
+var is_Crouching: bool = false
+@export var crouching_noise_volume:= 2.0
+@export var walking_noise_volume:= 4.0
+var noise:= 4.0
 
 #bobbing
 const BOB_FREQ = 2.4
@@ -53,8 +57,12 @@ func _physics_process(delta: float) -> void:
 	if(Input.is_action_pressed("Crouch")):
 		collision_shape.scale.y = 0.5;
 		move_speed *= CROUCH_SPEED_MULTIPLIER;
+		noise = crouching_noise_volume
+		is_Crouching = true;
 	else:
 		collision_shape.scale.y = 1.0;
+		noise = walking_noise_volume
+		is_Crouching = false;
 
 	var input_dir = Vector3.ZERO
 	input_dir.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -102,8 +110,8 @@ func _physics_process(delta: float) -> void:
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == Key.KEY_SPACE:
-			var sound_pos = to_global(Vector3(0, 0, -2))
-			EventBus.sound_emitted_by_player.emit(sound_pos)
+			var sound_pos = to_global(Vector3(0, 0, -1))
+			EventBus.sound_emitted_by_player.emit(sound_pos, noise)
 
 func _unhandled_input(event):
 	# Ruch myszy steruje obrotem

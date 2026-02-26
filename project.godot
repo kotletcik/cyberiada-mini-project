@@ -79,6 +79,7 @@ Crouch={
 3d_physics/layer_4="Enemy"
 3d_physics/layer_5="Player"
 3d_physics/layer_6="Throwable Rock"
+3d_physics/layer_7="Collectables"
 
 [rendering]
 

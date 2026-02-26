@@ -41,7 +41,7 @@ func is_correct_thought(checked_clue: Clue, chosen_clue: Clue) -> bool:
 				var index: int = j + 1;
 				for k in range(0, index):
 					if(!thought_paths[i].is_clue_realized[k]): return false;
-				if(index >= thought_paths[i].required_clues.size() || thought_paths[i].is_clue_realized[j]): return false;
+				if(index >= thought_paths[i].required_clues.size() || thought_paths[i].is_clue_realized[index]): return false;
 				if(thought_paths[i].required_clues[index] == chosen_clue): return true;
 	return false;
 
@@ -55,6 +55,11 @@ func create_thought(chosen_clue: Clue):
 		for j in range(0, thought_paths[i].required_clues.size()):
 			if(thought_paths[i].required_clues[j] == chosen_clue):
 				thought_paths[i].is_clue_realized[j] = true;
-				remove_gathered_clue(chosen_clue);
+				if(!thought_paths[i].does_automatically_unlock[j]):
+					remove_gathered_clue(chosen_clue);
+				var index: int = j + 1;
+				if(index < thought_paths[i].does_automatically_unlock.size()):
+					if(thought_paths[i].does_automatically_unlock[index]): 
+						create_thought(thought_paths[i].required_clues[index]);
 				return;
 	print("Error while creating a thought, probably the clue was not found in thought paths");

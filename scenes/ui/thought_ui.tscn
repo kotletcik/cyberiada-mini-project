@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://drcpcwf6f8sgw"]
 
+[ext_resource type="Script" uid="uid://n03or6xwphdg" path="res://scripts/Valk/thought_ui.gd" id="1_suoro"]
+
 [node name="ThoughtUI" type="Panel" unique_id=1039864838]
 anchors_preset = -1
 anchor_left = 0.5
@@ -10,6 +12,9 @@ offset_left = -82.0
 offset_top = -58.992004
 offset_right = 98.0
 offset_bottom = 80.007996
+mouse_filter = 2
+mouse_behavior_recursive = 1
+script = ExtResource("1_suoro")
 
 [node name="TitleText" type="RichTextLabel" parent="." unique_id=1259466619]
 layout_mode = 1

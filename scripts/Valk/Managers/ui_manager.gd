@@ -8,7 +8,7 @@ static var instance: UIManager;
 @export var mind_palace_ui: CanvasLayer;
 @export var thought_ui: Resource;
 
-var instanciated_thought_uis: Array[Node] = [null];
+var instanciated_thought_uis: Array[ThoughtUI] = [null];
 var thought_uis_count: int = 0;
 
 var cursor_locked_menu: bool = true;
@@ -34,10 +34,26 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# if(Input.is_action_just_pressed("ui_cancel") && is_note_ui_active):
 	# 	hide_note_ui();
-	if(Input.is_action_just_pressed("Mind Palace") && mind_palace_ui != null):
+	if(Input.is_action_just_pressed("Mind Palace") && mind_palace_ui != null && !is_note_ui_active && !is_in_esc_menu):
 		if(is_mind_palace_ui_active): hide_mind_palace_ui();
 		else: show_mind_palace_ui();
 		is_mind_palace_ui_active = !is_mind_palace_ui_active;
+
+func _input(event):
+	if event is InputEventKey:
+		if event.pressed and event.keycode == Key.KEY_ESCAPE:
+			if(is_note_ui_active): return;
+			cursor_locked_menu = !cursor_locked_menu;
+			is_in_esc_menu = !is_in_esc_menu;
+			update_cursor();
+	if(mind_palace_ui == null): return;
+
+	# if event is InputEventMouseMotion:
+	# 	var thought_ui_control: Control = mind_palace_ui.get_node("Panel/ThoughtUI");
+
+	# 	if(thought_ui_control != null): 
+	# 		var control_pos = Vector2(event.position.x - thought_ui_control.size.x/2, event.position.y - thought_ui_control.size.y/2);
+	# 		thought_ui_control.global_position = control_pos;
 		
 func show_added_thought_notif(new_clue: Clue, time: float):
 	add_child(added_thought_notif);
@@ -47,18 +63,36 @@ func show_added_thought_notif(new_clue: Clue, time: float):
 	if(temp_text != added_thought_notif.get_node("RichTextLabel").text): return;
 	remove_child(added_thought_notif);
 
+func get_clue_at(pos: Vector2) -> Clue:
+	for i in range(0, thought_uis_count):
+		var thought: Node = instanciated_thought_uis[i];
+		if(pos.x > thought.position.x && pos.x < thought.position.x + thought.size.x):
+			if(pos.y > thought.position.y && pos.y < thought.position.y + thought.size.y):
+				return instanciated_thought_uis[i].thought_clue;
+	return null;
+
+func get_thought_ui_at(pos: Vector2) -> ThoughtUI:
+	for i in range(0, thought_uis_count):
+		var thought: Node = instanciated_thought_uis[i];
+		if(pos.x > thought.position.x && pos.x < thought.position.x + thought.size.x):
+			if(pos.y > thought.position.y && pos.y < thought.position.y + thought.size.y):
+				return instanciated_thought_uis[i];
+	return null;
+
 func show_mind_palace_ui():
 	is_in_game = false;
 	add_child(mind_palace_ui);
+	update_mind_palace_ui();
+	cursor_locked_game = false;
+	update_cursor();
+
+func update_mind_palace_ui():
 	for i in range(0, PalaceManager.instance.first_free_index):
 		# print("spawning thought ui");
 		var thought_ui_instance = thought_ui.instantiate();
 		mind_palace_ui.get_node("Panel").add_child(thought_ui_instance);
 		var current_clue: Clue = PalaceManager.instance.gathered_clues[i];
-		thought_ui_instance.get_node("TitleText").text = current_clue.name;
-		thought_ui_instance.get_node("DescText").text = current_clue.description;
-		thought_ui_instance.position.x = 240 + i * 240;
-		thought_ui_instance.position.y = 540;
+		thought_ui_instance.set_thought_ui_instance(current_clue.name, current_clue.description, 240 + i * 240, 540, current_clue, false);
 		instanciated_thought_uis[thought_uis_count] = thought_ui_instance;
 		thought_uis_count += 1;
 		if(instanciated_thought_uis.size() == thought_uis_count):
@@ -68,25 +102,23 @@ func show_mind_palace_ui():
 		var thought_ui_instance = thought_ui.instantiate();
 		mind_palace_ui.get_node("Panel").add_child(thought_ui_instance);
 		var current_clue: Clue = PalaceManager.instance.thought_paths[0].required_clues[i];
-		thought_ui_instance.get_node("TitleText").text = current_clue.name;
-		thought_ui_instance.get_node("DescText").text = current_clue.description;
-		thought_ui_instance.position.x = 240 + i * 240;
-		thought_ui_instance.position.y = 240;
+		thought_ui_instance.set_thought_ui_instance(current_clue.name, current_clue.description, 240 + i * 240, 240, current_clue, true);
 		instanciated_thought_uis[thought_uis_count] = thought_ui_instance;
 		thought_uis_count += 1;
 		if(instanciated_thought_uis.size() == thought_uis_count):
 			instanciated_thought_uis.resize(thought_uis_count * 2);
-	cursor_locked_game = false;
-	update_cursor();
 
-func hide_mind_palace_ui():
-	is_in_game = true;
-	remove_child(mind_palace_ui);
+func clear_mind_palace_ui():
 	for i in range(thought_uis_count - 1, -1, -1): #-1 bo koniec jest exlusive wiec idzie do 0
 		instanciated_thought_uis[i].queue_free();
 		# print("destroyed thought ui");
 	instanciated_thought_uis = [null];
 	thought_uis_count = 0;
+
+func hide_mind_palace_ui():
+	is_in_game = true;
+	remove_child(mind_palace_ui);
+	clear_mind_palace_ui();
 	cursor_locked_game = true;
 	update_cursor();
 
@@ -104,14 +136,6 @@ func hide_note_ui() -> void:
 	remove_child(note_ui);
 	cursor_locked_game = true;
 	update_cursor();
-
-func _input(event):
-	if event is InputEventKey:
-		if event.pressed and event.keycode == Key.KEY_ESCAPE:
-			if(is_note_ui_active): return;
-			cursor_locked_menu = !cursor_locked_menu;
-			is_in_esc_menu = !is_in_esc_menu;
-			update_cursor();
 
 func update_cursor() -> void:
 	if(!cursor_locked_game || !cursor_locked_menu):

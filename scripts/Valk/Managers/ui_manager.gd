@@ -56,7 +56,7 @@ func _input(event):
 	# 		thought_ui_control.global_position = control_pos;
 		
 func show_added_thought_notif(new_clue: Clue, time: float):
-	add_child(added_thought_notif);
+	if(!has_node("AddedThoughtNotif")): add_child(added_thought_notif);
 	added_thought_notif.get_node("RichTextLabel").text = new_clue.name;
 	var temp_text = new_clue.name;
 	await get_tree().create_timer(time).timeout;

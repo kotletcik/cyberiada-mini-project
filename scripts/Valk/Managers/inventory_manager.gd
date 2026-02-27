@@ -17,12 +17,7 @@ func _process(_delta: float) -> void:
 		if(has_item(ITEM_TYPE.SERUM)):
 			remove_item(ITEM_TYPE.SERUM, 1);
 			print("serum count:", itemCount[ITEM_TYPE.SERUM]);
-			PsycheManager.instance.take_serum();
-	# if(Input.is_action_just_pressed("use_item_2")):
-	# 	if(has_item(ITEM_TYPE.ROCK)):
-	# 		remove_item(ITEM_TYPE.ROCK, 1);
-	# 		print("rock count:", itemCount[ITEM_TYPE.ROCK]);
-			
+			PsycheManager.instance.take_serum();		
 
 func add_item(index: int, count: int) -> void:
 	if(index < 0 || index >= ITEM_TYPE.ENUM_LENGTH): return;

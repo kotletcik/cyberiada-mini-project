@@ -11,7 +11,7 @@ func _ready() -> void:
 func _on_body_entered(body: Node) -> void:
 	if(signal_emmited): return;
 	if(body.name == "Shell"):
-		EventBus.sound_emitted_by_player.emit(player_pos);
+		EventBus.sound_emitted_by_player.emit(player_pos, 1.0);
 	else:
-		EventBus.sound_emitted_by_player.emit(global_position);
+		EventBus.sound_emitted_by_player.emit(global_position, 1.0);
 	signal_emmited = true;

@@ -99,7 +99,7 @@ mesh = SubResource("BoxMesh_lqxc7")
 
 [node name="Scream" type="Node" parent="State_machine" unique_id=1485384955]
 script = ExtResource("7_lqxc7")
-move_speed = 0.0
+move_speed = 0.1
 model_color = Color(0.62540996, 0.0008913695, 0.00048867153, 1)
 state_type = 7
 metadata/_custom_type_script = "uid://foywhiftl87x"

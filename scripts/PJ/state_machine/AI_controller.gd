@@ -1,7 +1,9 @@
 extends NavigationAgent3D
+#Odpowiada za nadawanie prędkości ruchu i targeta dla navAgent3D
 
 @onready var mob: CharacterBody3D = $"../"
 @export var general_move_speed: float = 1.0
+@export var acceleration: float=1 # jak szybko agent nabiera i traci prędkość move_speed
 var move_speed : float = 2.0
 var update_target_pos_timer: float = 1.0
 var target: Node3D
@@ -21,8 +23,20 @@ func _physics_process(delta: float):
 		mob.look_at(mob.global_position + direction_flat, Vector3.UP)
 		#var direction_angle = acos(direction.dot(Vector3.FORWARD))
 		#mob.rotation = Vector3.FORWARD.rotated(Vector3.UP, direction_angle)
+	#if (get_parent().name == "Shell"):
+		#print(mob.velocity.length())
+		#print(move_speed)
 	var _y_vel = mob.velocity.y
-	mob.velocity = -mob.transform.basis.z * move_speed
+	var acc_coeff = 1
+	var forward = -mob.transform.basis.z
+	if (abs(mob.velocity.dot(forward) - move_speed) > 0.5):
+		if (mob.velocity.dot(forward) < move_speed):
+			acc_coeff = 1
+			print ("acc")
+		else : 
+			acc_coeff = -1
+		mob.velocity += acc_coeff * acceleration * delta * -mob.transform.basis.z
+	else: mob.velocity = -mob.transform.basis.z * move_speed
 	mob.velocity.y = _y_vel
 	mob.move_and_slide()
 

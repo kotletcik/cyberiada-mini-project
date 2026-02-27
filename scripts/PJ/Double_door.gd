@@ -7,6 +7,7 @@ var isInteracting: bool = false
 @export var open_duration:= 1.0
 @export var first_door: Node3D
 @export var second_door: Node3D
+@onready var nav_region: NavigationRegion3D = $"../"
 
 
 func player_interact():
@@ -34,3 +35,4 @@ func switch_open():
 			await get_tree().process_frame
 		isOpened = !isOpened
 		isInteracting = false
+		nav_region.bake_navigation_mesh(true)

@@ -1,4 +1,5 @@
 extends Node3D
+#Odpowiedzialny za triggerowanie enemies od dźwięku poruszania się gracza
 
 @onready var player: PlayerController = $"../"
 @export var enemy_layer: int = 4
@@ -6,12 +7,12 @@ extends Node3D
 func _process(delta: float) -> void:
 	var enemy = enemy_heard()
 	if enemy != null:
-		#emit_sound_to_enemy(enemy)
+		emit_sound_to_enemy(enemy)
 		pass
 
 func player_is_making_noise() -> bool:
 	if (player != null):
-		return (abs(player.velocity.x) > 0.1 || abs(player.velocity.z) > 0.1)
+		return (abs(player.velocity.x * player.velocity.z) > 0.01)
 	else : return false
 
 func enemy_heard() -> CharacterBody3D:
@@ -22,8 +23,8 @@ func enemy_heard() -> CharacterBody3D:
 
 func emit_sound_to_enemy(enemy: CharacterBody3D):
 	var state_machine: State_machine = enemy.get_node("State_machine") as State_machine
-	if ( state_machine != null && state_machine.behaviour.has_method("change_state_to_follow_sound")):
-		state_machine.behaviour.change_state_to_follow_sound(player.position)
+	if ( state_machine != null && state_machine.behaviour.has_method("_is_heard_a_sound")):
+		state_machine.behaviour._is_heard_a_sound(player.position, player.noise)
 	
 func enemy_around() -> CharacterBody3D:
 	if (player != null):

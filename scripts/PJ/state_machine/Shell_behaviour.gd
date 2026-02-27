@@ -45,10 +45,12 @@ func Check_conditions(delta: float) -> void:
 			if (is_player_in_sight()):
 				if (PsycheManager.instance.invisibility_timer <= 0): 
 					change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Scream);
-			if ((state_machine.mob.position) - (sound_target.position)).length() < attack_range:
-				change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Patrol)
+			elif ((state_machine.mob.position) - (sound_target.position)).length() < attack_range:
+				change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Searching)
 			elif timer > 0:
 				timer-=delta
+			elif timer < 0:
+				change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Searching)
 			else:
 				change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Patrol)
 		STATE_TYPES.Wander:
@@ -75,12 +77,12 @@ func Enter_state(state: int):
 		STATE_TYPES.Searching:
 			EventBus.connect("sound_emitted_by_player", _is_heard_a_sound)
 			timer = searching_time
+		STATE_TYPES.Wander:
+			timer=wander_time
+			EventBus.connect("sound_emitted_by_player", _is_heard_a_sound)
 		STATE_TYPES.Follow_sound:
 			timer = follow_state_duration
 			# Valk: dodałem aby potwór szedł do najnowszego dzwięku
-			EventBus.connect("sound_emitted_by_player", _is_heard_a_sound)
-		STATE_TYPES.Wander:
-			timer=wander_time
 			EventBus.connect("sound_emitted_by_player", _is_heard_a_sound)
 		STATE_TYPES.Patrol:
 			timer = patrol_time
@@ -100,7 +102,8 @@ func Exit_state(state: int):
 			EventBus.connect("sound_emitted_by_player", _is_heard_a_sound)
 
 func _is_heard_a_sound(sound_pos: Vector3, volume: float):
-	if ((sound_pos - state_machine.mob.position).length() < hearing_range * volume):
+	if ((sound_pos - state_machine.mob.position).length() < hearing_range * volume 
+	&& state_machine.current_state.state_type != STATE_TYPES.Follow_player):
 		change_state_to_follow_sound(sound_pos)
 
 func change_state_to_follow_sound(sound_pos: Vector3):

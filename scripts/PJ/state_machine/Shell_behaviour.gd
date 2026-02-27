@@ -25,7 +25,7 @@ func Check_conditions(delta: float) -> void:
 	var current = state_machine.current_state.state_type
 	match current:
 		STATE_TYPES.Follow_player:
-			if ((state_machine.mob.position) - (GameManager.instance.player.position)).length() < attack_range:
+			if ((state_machine.mob.global_position) - (GameManager.instance.player.global_position)).length() < attack_range:
 				change_state_by_name(STATE_TYPES.Follow_player,STATE_TYPES.Attack)
 			elif timer > 0:
 				timer-=delta

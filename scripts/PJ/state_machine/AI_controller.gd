@@ -9,6 +9,7 @@ var update_target_pos_timer: float = 1.0
 var target: Node3D
 var is_active: bool = true
 var timer
+var rotation_speed = 10.0
 
 func _ready() -> void:
 	mob = get_parent()
@@ -20,7 +21,11 @@ func _physics_process(delta: float):
 		var local_destination = destination - mob.global_position
 		var direction = local_destination.normalized()
 		var direction_flat = Vector3(direction.x, 0, direction.z).normalized()
-		mob.look_at(mob.global_position + direction_flat, Vector3.UP)
+
+		if direction_flat.length() > 0.001:
+			var target_yaw = atan2(-direction_flat.x, -direction_flat.z)
+			mob.rotation.y = lerp_angle(mob.rotation.y, target_yaw, rotation_speed * delta)
+		#mob.look_at(mob.global_position + direction_flat, Vector3.UP)
 		#var direction_angle = acos(direction.dot(Vector3.FORWARD))
 		#mob.rotation = Vector3.FORWARD.rotated(Vector3.UP, direction_angle)
 	#if (get_parent().name == "Shell"):
@@ -29,16 +34,22 @@ func _physics_process(delta: float):
 	var _y_vel = mob.velocity.y
 	var acc_coeff = 1
 	var forward = -mob.transform.basis.z
-	if (abs(mob.velocity.dot(forward) - move_speed) > 0.5):
+	if (abs(mob.velocity.dot(forward) - move_speed) > 0.5 && mob.velocity.length() < 6.0):
 		if (mob.velocity.dot(forward) < move_speed):
 			acc_coeff = 1
-			print ("acc")
 		else : 
-			acc_coeff = -1
-		mob.velocity += acc_coeff * acceleration * delta * -mob.transform.basis.z
+			acc_coeff = -10
+		mob.velocity = (mob.velocity.length() + acc_coeff * acceleration * delta) * -mob.transform.basis.z
+		
 	else: mob.velocity = -mob.transform.basis.z * move_speed
 	mob.velocity.y = _y_vel
 	mob.move_and_slide()
+
+func stop_immediately():
+	move_speed = 0
+	var _y_vel = mob.velocity.y
+	mob.velocity = Vector3.ZERO
+	mob.velocity.y = _y_vel
 
 func update_target_pos_every(_update_target_pos_timer: float):
 	if target:

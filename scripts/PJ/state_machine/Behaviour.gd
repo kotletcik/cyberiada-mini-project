@@ -5,7 +5,7 @@ class_name Behaviour
 @export var state_machine: State_machine
 @export var player_sight_fov: float = 180
 @export var player_sight_range: float = 2
-@export var attack_range: float = 0.5
+@export var attack_range: float = 1.0
 var timer: float
 var stateIsActive: bool = true
 @export var walls_layer: int

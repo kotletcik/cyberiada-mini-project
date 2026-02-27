@@ -46,6 +46,5 @@ throw_position = NodePath("../Head/Camera3D/Rock Throw Position")
 throw_force = 25.0
 rock = ExtResource("7_52ka2")
 
-[node name="Noise Range" type="Node3D" parent="." unique_id=1725856524]
+[node name="Noise Maker" type="Node3D" parent="." unique_id=1725856524]
 script = ExtResource("8_pb500")
-enemy_layer = 4

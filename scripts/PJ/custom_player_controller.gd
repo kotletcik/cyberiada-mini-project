@@ -11,7 +11,7 @@ const SUBSTANCE_WALK_SPEED = 8.0
 @export var CROUCH_SPEED_MULTIPLIER = 0.5
 const SENSITIVITY = 0.004
 var is_Crouching: bool = false
-@export var crouching_noise_volume:= 2.0
+@export var crouching_noise_volume:= 2.0 # promień słyszalności
 @export var walking_noise_volume:= 4.0
 var noise:= 4.0
 

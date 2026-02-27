@@ -17,11 +17,15 @@ func Enter():
 func Update (delta: float):
 	if (((state_machine.mob.position - patrol_points[current_target_pos].global_position).length()) <= 1 && !is_Staying):
 		timer = patrol_point_waiting_time
+		#while (state_machine.nav_agent.move_speed > 0):
+			#state_machine.nav_agent.move_speed -= state_machine.mob.acceleration * delta * -state_machine.mob.transform.basis.z
 		state_machine.nav_agent.move_speed = 0
 		change_target_to_next_pos()
 		is_Staying = true
 	elif (is_Staying):
 		if (timer < 0):
+			#while (state_machine.nav_agent.move_speed > 0):
+				#state_machine.nav_agent.move_speed += state_machine.mob.acceleration * delta * -state_machine.mob.transform.basis.z
 			state_machine.nav_agent.move_speed = move_speed
 			is_Staying = false
 		else: timer -= delta

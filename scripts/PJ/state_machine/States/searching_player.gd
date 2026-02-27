@@ -33,11 +33,14 @@ func Enter():
 	randomize_searching_point()
 
 func Update (delta: float):
-	if searching_point_timer > 0:
-		searching_point_timer -= delta
-	else:
+	if searching_point_timer < 0:
 		randomize_searching_point()
 		searching_point_timer = searching_point_change_time
+	else:
+		searching_point_timer -= delta
+	if (state_machine.mob.global_position - empty_target.global_position).length() < 1:
+		state_machine.nav_agent.stop_immediately()
+	else: state_machine.nav_agent.move_speed = move_speed
 	empty_target.global_position = empty_target.global_position
 
 #func change_state_to_follow():

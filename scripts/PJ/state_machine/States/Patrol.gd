@@ -19,7 +19,7 @@ func Update (delta: float):
 		timer = patrol_point_waiting_time
 		#while (state_machine.nav_agent.move_speed > 0):
 			#state_machine.nav_agent.move_speed -= state_machine.mob.acceleration * delta * -state_machine.mob.transform.basis.z
-		state_machine.nav_agent.move_speed = 0
+		state_machine.nav_agent.move_speed = 0.1
 		change_target_to_next_pos()
 		is_Staying = true
 	elif (is_Staying):

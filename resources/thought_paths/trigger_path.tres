@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ThoughtPath" format=3 uid="uid://wncbvvg6xpva"]
+
+[ext_resource type="Script" uid="uid://q760mct2evav" path="res://scripts/Valk/Resource Types/clue.gd" id="1_us72l"]
+[ext_resource type="Resource" uid="uid://c3dxhs7itgyy6" path="res://resources/thoughts/forgor.tres" id="2_77wu0"]
+[ext_resource type="Script" uid="uid://b3e6n7nbttp0c" path="res://scripts/Valk/Resource Types/thought_path.gd" id="2_ub42a"]
+
+[resource]
+script = ExtResource("2_ub42a")
+required_clues = Array[ExtResource("1_us72l")]([ExtResource("2_77wu0")])
+metadata/_custom_type_script = "uid://b3e6n7nbttp0c"

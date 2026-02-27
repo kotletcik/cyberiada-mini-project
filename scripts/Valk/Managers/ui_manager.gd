@@ -47,16 +47,9 @@ func _input(event):
 			is_in_esc_menu = !is_in_esc_menu;
 			update_cursor();
 	if(mind_palace_ui == null): return;
-
-	# if event is InputEventMouseMotion:
-	# 	var thought_ui_control: Control = mind_palace_ui.get_node("Panel/ThoughtUI");
-
-	# 	if(thought_ui_control != null): 
-	# 		var control_pos = Vector2(event.position.x - thought_ui_control.size.x/2, event.position.y - thought_ui_control.size.y/2);
-	# 		thought_ui_control.global_position = control_pos;
 		
 func show_added_thought_notif(new_clue: Clue, time: float):
-	add_child(added_thought_notif);
+	if(!has_node("AddedThoughtNotif")): add_child(added_thought_notif);
 	added_thought_notif.get_node("RichTextLabel").text = new_clue.name;
 	var temp_text = new_clue.name;
 	await get_tree().create_timer(time).timeout;
@@ -97,16 +90,17 @@ func update_mind_palace_ui():
 		thought_uis_count += 1;
 		if(instanciated_thought_uis.size() == thought_uis_count):
 			instanciated_thought_uis.resize(thought_uis_count * 2);
-	for i in range(0, PalaceManager.instance.thought_paths[0].required_clues.size()):
-		if(!PalaceManager.instance.thought_paths[0].is_clue_realized[i]): break;
-		var thought_ui_instance = thought_ui.instantiate();
-		mind_palace_ui.get_node("Panel").add_child(thought_ui_instance);
-		var current_clue: Clue = PalaceManager.instance.thought_paths[0].required_clues[i];
-		thought_ui_instance.set_thought_ui_instance(current_clue.name, current_clue.description, 240 + i * 240, 240, current_clue, true);
-		instanciated_thought_uis[thought_uis_count] = thought_ui_instance;
-		thought_uis_count += 1;
-		if(instanciated_thought_uis.size() == thought_uis_count):
-			instanciated_thought_uis.resize(thought_uis_count * 2);
+	for j in range(0, PalaceManager.instance.thought_paths.size()):
+		for i in range(0, PalaceManager.instance.thought_paths[j].required_clues.size()):
+			if(!PalaceManager.instance.thought_paths[j].is_clue_realized[i]): break;
+			var thought_ui_instance = thought_ui.instantiate();
+			mind_palace_ui.get_node("Panel").add_child(thought_ui_instance);
+			var current_clue: Clue = PalaceManager.instance.thought_paths[j].required_clues[i];
+			thought_ui_instance.set_thought_ui_instance(current_clue.name, current_clue.description, 240 + i * 240, 240 + j * 120, current_clue, true);
+			instanciated_thought_uis[thought_uis_count] = thought_ui_instance;
+			thought_uis_count += 1;
+			if(instanciated_thought_uis.size() == thought_uis_count):
+				instanciated_thought_uis.resize(thought_uis_count * 2);
 
 func clear_mind_palace_ui():
 	for i in range(thought_uis_count - 1, -1, -1): #-1 bo koniec jest exlusive wiec idzie do 0

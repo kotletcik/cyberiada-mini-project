@@ -8,8 +8,10 @@
 [ext_resource type="Script" uid="uid://bj28ubqcmsltd" path="res://scripts/Valk/Managers/palace_manager.gd" id="4_32swi"]
 [ext_resource type="PackedScene" uid="uid://bieh4iknld2hn" path="res://scenes/test_scenes/rock.tscn" id="5_0nogy"]
 [ext_resource type="Script" uid="uid://b3e6n7nbttp0c" path="res://scripts/Valk/Resource Types/thought_path.gd" id="5_jdfls"]
-[ext_resource type="Resource" uid="uid://cop13c5am162g" path="res://resources/test_clue_path.tres" id="6_oc1qc"]
+[ext_resource type="Resource" uid="uid://cop13c5am162g" path="res://resources/thought_paths/test_clue_path.tres" id="6_oc1qc"]
 [ext_resource type="Script" uid="uid://coysphqpo5g2l" path="res://scripts/Valk/Managers/inventory_manager.gd" id="7_j8bvq"]
+[ext_resource type="Resource" uid="uid://cught0y7spfwy" path="res://resources/thought_paths/second_test_path.tres" id="7_n1lhp"]
+[ext_resource type="Resource" uid="uid://wncbvvg6xpva" path="res://resources/thought_paths/trigger_path.tres" id="8_p128x"]
 [ext_resource type="PackedScene" uid="uid://drcpcwf6f8sgw" path="res://scenes/ui/thought_ui.tscn" id="8_pu81h"]
 [ext_resource type="PackedScene" uid="uid://bl7pr1jrqx1d8" path="res://scenes/restart_trigger.tscn" id="9_b4wx3"]
 [ext_resource type="PackedScene" uid="uid://d1i2hyd827vx1" path="res://scenes/ui/note_ui.tscn" id="10_32swi"]
@@ -21,6 +23,10 @@
 [ext_resource type="Resource" uid="uid://dwbrn5l1ernyw" path="res://resources/thoughts/Hello.tres" id="15_oc1qc"]
 [ext_resource type="Resource" uid="uid://beopfd6yqk0so" path="res://resources/thoughts/TimeToDie.tres" id="16_pu81h"]
 [ext_resource type="Resource" uid="uid://c251xsijr468j" path="res://resources/notes/mraaaww.tres" id="17_1tcqu"]
+[ext_resource type="Resource" uid="uid://cpshgebigpcom" path="res://resources/thoughts/meow.tres" id="20_n1lhp"]
+[ext_resource type="Resource" uid="uid://chbvik850k7tu" path="res://resources/thoughts/cat_heaven.tres" id="21_n1lhp"]
+[ext_resource type="PackedScene" uid="uid://5jpcyg1fb8pf" path="res://scenes/clue_trigger.tscn" id="26_ql4bp"]
+[ext_resource type="Resource" uid="uid://c3dxhs7itgyy6" path="res://resources/thoughts/forgor.tres" id="27_ql4bp"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cb1vq"]
 
@@ -117,7 +123,7 @@ metadata/_custom_type_script = "uid://s47j5s0f3fdy"
 
 [node name="PalaceManager" type="Node" parent="." unique_id=1304485624]
 script = ExtResource("4_32swi")
-thought_paths = Array[ExtResource("5_jdfls")]([ExtResource("6_oc1qc")])
+thought_paths = Array[ExtResource("5_jdfls")]([ExtResource("7_n1lhp"), ExtResource("6_oc1qc"), ExtResource("8_p128x")])
 metadata/_custom_type_script = "uid://bj28ubqcmsltd"
 
 [node name="UIManager" type="Node" parent="." unique_id=793604871 node_paths=PackedStringArray("note_ui", "added_thought_notif", "mind_palace_ui")]
@@ -238,12 +244,20 @@ transform = Transform3D(1.0000004, 0, 0, 0, 1.0000004, 0, 0, 0, 1.0000004, 9.780
 shape = SubResource("BoxShape3D_k4afo")
 
 [node name="Scene Clue" parent="." unique_id=247099435 instance=ExtResource("11_71wxm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8993082, 1.0323956, -19.488108)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1886806, 1.0323956, -23.268152)
 clue_to_gather = ExtResource("15_oc1qc")
 
 [node name="Scene Clue2" parent="." unique_id=1585188228 instance=ExtResource("11_71wxm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8993082, 1.0323956, -19.488108)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6872954, 1.0323956, -23.366678)
 clue_to_gather = ExtResource("16_pu81h")
+
+[node name="Scene Clue3" parent="." unique_id=1221183155 instance=ExtResource("11_71wxm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.022002697, 1.0323956, -21.642797)
+clue_to_gather = ExtResource("20_n1lhp")
+
+[node name="Scene Clue4" parent="." unique_id=282848973 instance=ExtResource("11_71wxm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.022002697, 1.0323956, -23.195177)
+clue_to_gather = ExtResource("21_n1lhp")
 
 [node name="Interact_Test" parent="." unique_id=6908372 instance=ExtResource("13_51aie")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0654225, 1.0241024, -21.457884)
@@ -255,6 +269,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6826568, 1.0241024, -24.33
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.749893, 1.0241024, -24.335314)
 note_to_hold = ExtResource("17_1tcqu")
 
+[node name="Clue Trigger" parent="." unique_id=1351867159 instance=ExtResource("26_ql4bp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.560131, 1.0942976, -16.160257)
+trigger_clue = ExtResource("27_ql4bp")
+
+[node name="CollisionShape3D" parent="Clue Trigger" index="0" unique_id=422333525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.0254211)
+
 [editable path="UIManager/NoteUI"]
 [editable path="Restart Trigger"]
 [editable path="Restart Trigger2"]
+[editable path="Clue Trigger"]

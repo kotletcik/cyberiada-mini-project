@@ -222,6 +222,18 @@ surface_material_override/0 = SubResource("StandardMaterial3D_0nogy")
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_bnfbb")
 
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Floors" unique_id=117228806]
+transform = Transform3D(-1.6473003e-08, -3.279887, 0, 0.37685838, -1.4336842e-07, 0, 0, 0, 2.4917662, -6.266205, 1.8963819, -34.85958)
+mesh = SubResource("BoxMesh_cb1vq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_0nogy")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floors/MeshInstance3D17" unique_id=1510827292]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/MeshInstance3D17/StaticBody3D" unique_id=782255670]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_bnfbb")
+
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="Floors" unique_id=1966413629]
 transform = Transform3D(-3.356337e-08, 0, 8.305887, 0, 3.2771673, 0, -0.76784045, 0, -3.6306187e-07, -15.792351, 1.5987782, -37.115273)
 mesh = SubResource("BoxMesh_cb1vq")
@@ -408,11 +420,9 @@ initial_state = NodePath("Patrol")
 patrol_points = [NodePath("../../../Patrols/Patrol1"), NodePath("../../../Patrols/Patrol2")]
 
 [node name="Restart Trigger" parent="." unique_id=1712831958 instance=ExtResource("9_b4wx3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.500076, 1.7260493, -20.738432)
-enable_trigger = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.758549, 1.7260493, -28.211353)
 
 [node name="CollisionShape3D" parent="Restart Trigger" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.602661, 0, -9)
 shape = SubResource("BoxShape3D_b4wx3")
 
 [node name="Fall Trigger" parent="." unique_id=1911326145 instance=ExtResource("9_b4wx3")]

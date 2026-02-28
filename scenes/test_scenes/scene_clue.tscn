@@ -14,6 +14,7 @@ metadata/_custom_type_script = "uid://q760mct2evav"
 [sub_resource type="BoxMesh" id="BoxMesh_nxxrq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4hjr6"]
+albedo_color = Color(0.24313726, 1, 1, 1)
 
 [node name="Scene Clue" type="StaticBody3D" unique_id=1221183155]
 script = ExtResource("1_yk2mo")

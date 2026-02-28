@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://inlb87ae3v2h" path="res://resources/notes/test_not.tres" id="2_f1mrn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4e8a"]
+size = Vector3(1, 0.10070801, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_nxxrq"]
 
@@ -14,8 +15,10 @@ script = ExtResource("1_t0tu7")
 note_to_hold = ExtResource("2_f1mrn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=271200828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.004333496, 0)
 shape = SubResource("BoxShape3D_t4e8a")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=305597987]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_nxxrq")
 surface_material_override/0 = SubResource("StandardMaterial3D_4hjr6")

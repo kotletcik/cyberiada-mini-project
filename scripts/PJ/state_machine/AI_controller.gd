@@ -17,14 +17,14 @@ func _ready() -> void:
 	
 func _physics_process(delta: float):
 	var destination = get_next_path_position()
-	if(destination != mob.global_position): 
-		var local_destination = destination - mob.global_position
-		var direction = local_destination.normalized()
-		var direction_flat = Vector3(direction.x, 0, direction.z).normalized()
+	if(destination == mob.global_position): return; 
+	var local_destination = destination - mob.global_position
+	var direction = local_destination.normalized()
+	var direction_flat = Vector3(direction.x, 0, direction.z).normalized()
 
-		if direction_flat.length() > 0.001:
-			var target_yaw = atan2(-direction_flat.x, -direction_flat.z)
-			mob.rotation.y = lerp_angle(mob.rotation.y, target_yaw, rotation_speed * delta)
+	if direction_flat.length() > 0.001:
+		var target_yaw = atan2(-direction_flat.x, -direction_flat.z)
+		mob.rotation.y = lerp_angle(mob.rotation.y, target_yaw, rotation_speed * delta)
 		#mob.look_at(mob.global_position + direction_flat, Vector3.UP)
 		#var direction_angle = acos(direction.dot(Vector3.FORWARD))
 		#mob.rotation = Vector3.FORWARD.rotated(Vector3.UP, direction_angle)

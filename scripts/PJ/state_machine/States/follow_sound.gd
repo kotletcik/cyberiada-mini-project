@@ -11,7 +11,7 @@ func Enter():
 	follow_target.position = state_machine.target
 	state_machine.nav_agent.target = follow_target
 
-func Set_sound_as_target(sound_pos: Vector3):
+func Set_sound_as_target(sound_pos: Vector3, sound_volume: float):
 	state_machine.target = sound_pos
 
 func Update(delta: float):

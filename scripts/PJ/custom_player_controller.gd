@@ -121,7 +121,7 @@ func _unhandled_input(event):
 		if camera:
 			camera.rotate_x(-event.relative.y * SENSITIVITY)
 			# Ograniczenie pitch aby nie przekręcić głowy
-			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO

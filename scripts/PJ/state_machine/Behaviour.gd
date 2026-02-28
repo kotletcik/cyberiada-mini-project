@@ -17,6 +17,7 @@ func is_player_in_sight() -> bool:
 		#var direction = player_in_local.normalized();
 		#var dot: float = -state_machine.mob.global_basis.z.dot(direction);
 		#if(dot < 1-(player_sight_fov/180)): 
+		if (PsycheManager.instance.invisibility_timer > 0): return false;
 		var col = raycast_xz_fov(
 			state_machine.mob.global_position, 
 			state_machine.mob.transform.basis.z * (-1), 

@@ -33,6 +33,8 @@ func Check_conditions(delta: float) -> void:
 				change_state_by_name(STATE_TYPES.Follow_player,STATE_TYPES.Searching)
 			if(PsycheManager.instance.invisibility_timer > 0):
 				change_state_by_name(STATE_TYPES.Follow_player,STATE_TYPES.Patrol)
+			if (!player_is_on_region()):
+				change_state_by_name(STATE_TYPES.Follow_player,STATE_TYPES.Patrol)
 		STATE_TYPES.Searching:
 			if timer > 0:
 				timer -= delta
@@ -53,6 +55,8 @@ func Check_conditions(delta: float) -> void:
 				change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Searching)
 			else:
 				change_state_by_name(STATE_TYPES.Follow_sound,STATE_TYPES.Patrol)
+			if (!player_is_on_region()):
+				change_state_by_name(STATE_TYPES.Follow_player,STATE_TYPES.Patrol)
 		STATE_TYPES.Wander:
 			if (is_player_in_sight()):
 				if (PsycheManager.instance.invisibility_timer <= 0): 
@@ -100,6 +104,16 @@ func Exit_state(state: int):
 			EventBus.disconnect("sound_emitted_by_player", _is_heard_a_sound)
 		STATE_TYPES.Patrol:
 			EventBus.connect("sound_emitted_by_player", _is_heard_a_sound)
+
+func player_is_on_region() -> bool:
+	var map_rid = nav_agent.get_navigation_map()
+	var closest_point = NavigationServer3D.map_get_closest_point(map_rid, GameManager.instance.player.global_position)
+	var distance = GameManager.instance.player.global_position.distance_to(closest_point)
+	if distance < 1:
+		return true
+	else:
+		print ("player is not on region")
+		return false
 
 func _is_heard_a_sound(sound_pos: Vector3, volume: float):
 	if ((sound_pos - state_machine.mob.global_position).length() < hearing_range * volume 

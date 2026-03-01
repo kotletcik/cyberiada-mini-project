@@ -72,6 +72,9 @@ state_machine = NodePath("..")
 player_sight_range = 5.0
 metadata/_custom_type_script = "uid://fn4i2xt1rjiu"
 
+[node name="DebugLines" type="MeshInstance3D" parent="State_machine/Behaviour" unique_id=607784869]
+skeleton = NodePath("../../..")
+
 [node name="Debuff" type="Node" parent="State_machine" unique_id=1617702393]
 script = ExtResource("8_dsl82")
 state_type = 5

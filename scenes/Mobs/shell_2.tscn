@@ -137,6 +137,9 @@ player_sight_range = 4.0
 walls_layer = 3
 metadata/_custom_type_script = "uid://fn4i2xt1rjiu"
 
+[node name="DebugLines" type="MeshInstance3D" parent="State_machine/Behaviour" unique_id=1753125660]
+skeleton = NodePath("../../..")
+
 [node name="Patrol" type="Node" parent="State_machine" unique_id=749532481 node_paths=PackedStringArray("empty_target", "patrol_points")]
 script = ExtResource("11_j677n")
 empty_target = NodePath("empty_target")

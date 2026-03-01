@@ -56,11 +56,13 @@ func _physics_process(delta: float) -> void:
 	move_speed = SOBER_WALK_SPEED; 
 	if(Input.is_action_pressed("Crouch")):
 		collision_shape.scale.y = 0.5;
+		#position.y -= 0.1
 		move_speed *= CROUCH_SPEED_MULTIPLIER;
 		noise = crouching_noise_volume
 		is_Crouching = true;
-	else:
+	elif Input.is_action_just_released("Crouch"):
 		collision_shape.scale.y = 1.0;
+		#position.y += 0.6
 		noise = walking_noise_volume
 		is_Crouching = false;
 

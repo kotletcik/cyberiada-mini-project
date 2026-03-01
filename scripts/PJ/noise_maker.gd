@@ -7,8 +7,8 @@ extends Node3D
 func _process(delta: float) -> void:
 	var enemy = enemy_heard()
 	if enemy != null:
-		emit_sound_to_enemy(enemy)
-		pass
+		if(PsycheManager.instance.invisibility_timer <= 0):
+			emit_sound_to_enemy(enemy)
 
 func player_is_making_noise() -> bool:
 	if (player != null):

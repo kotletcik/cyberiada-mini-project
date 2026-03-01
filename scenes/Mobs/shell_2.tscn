@@ -140,7 +140,7 @@ metadata/_custom_type_script = "uid://fn4i2xt1rjiu"
 [node name="Patrol" type="Node" parent="State_machine" unique_id=749532481 node_paths=PackedStringArray("empty_target", "patrol_points")]
 script = ExtResource("11_j677n")
 empty_target = NodePath("empty_target")
-patrol_points = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+patrol_points = [null, null, null, null]
 patrol_point_waiting_time = 1.0
 move_speed = 2.0
 model_color = Color(0.7581918, 0.7581918, 0.7581917, 1)

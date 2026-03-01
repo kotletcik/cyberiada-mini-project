@@ -65,7 +65,7 @@ func Check_conditions(delta: float) -> void:
 			if timer > 0:
 				timer-=delta
 			else: change_state_by_name(STATE_TYPES.Scream,STATE_TYPES.Follow_player);
-
+		
 			
 			
 
@@ -102,9 +102,11 @@ func Exit_state(state: int):
 			EventBus.connect("sound_emitted_by_player", _is_heard_a_sound)
 
 func _is_heard_a_sound(sound_pos: Vector3, volume: float):
-	if ((sound_pos - state_machine.mob.position).length() < hearing_range * volume 
-	&& state_machine.current_state.state_type != STATE_TYPES.Follow_player):
+	if ((sound_pos - state_machine.mob.global_position).length() < hearing_range * volume 
+	&& state_machine.current_state.state_type != STATE_TYPES.Follow_player
+	&& state_machine.current_state.state_type != STATE_TYPES.Scream):
 		change_state_to_follow_sound(sound_pos)
+		print("3")
 
 func change_state_to_follow_sound(sound_pos: Vector3):
 	state_machine.target = sound_pos

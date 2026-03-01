@@ -5,7 +5,7 @@ var isInteracting: bool = false
 @export var switch_open_direction = false 
 @export var move_distance:= 2.0
 @export var open_duration:= 1.0
-@onready var nav_region: NavigationRegion3D = $"../"
+@onready var nav_region: NavigationRegion3D = get_parent() as NavigationRegion3D
 
 
 
@@ -31,4 +31,5 @@ func switch_open():
 			await get_tree().process_frame
 		isOpened = !isOpened
 		isInteracting = false
-		nav_region.bake_navigation_mesh(true)
+		if (nav_region != null):
+			nav_region.bake_navigation_mesh(true)

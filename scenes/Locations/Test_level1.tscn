@@ -20,17 +20,6 @@ albedo_color = Color(0.27450982, 0.27450982, 0.27450982, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jik7h"]
 albedo_color = Color(0.27450982, 0.27450982, 0.27450982, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2p2lj"]
-albedo_color = Color(0.5001009, 0.41530854, 0.44614214, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_oewj3"]
-material = SubResource("StandardMaterial3D_2p2lj")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_15dxg"]
-albedo_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_rl6w0"]
-
 [node name="Test_Level_1" type="Node3D" unique_id=944735480]
 
 [node name="Shell" parent="." unique_id=559753415 instance=ExtResource("1_71br7")]
@@ -148,22 +137,10 @@ walls_layer = 3
 [node name="MutationNavRegion" parent="." unique_id=580662191 instance=ExtResource("2_oewj3")]
 navigation_layers = 2
 
-[node name="SafetyFloor" type="MeshInstance3D" parent="." unique_id=157069396]
-transform = Transform3D(54.3, 0, 0, 0, 1, 0, 0, 0, 48.802, 0, 0.024, -0.14188004)
-mesh = SubResource("BoxMesh_oewj3")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_15dxg")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="SafetyFloor" unique_id=1748199284]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SafetyFloor/StaticBody3D" unique_id=997942754]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("BoxShape3D_rl6w0")
-
-[node name="Light" type="Node" parent="." unique_id=1691825785]
+[node name="Light" type="Node3D" parent="." unique_id=1977421544]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Light" unique_id=1902236960]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.253002, 9.102599, -6.223734)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.150147, 3.6143637, -8.359689)
 light_energy = 2.815
 light_indirect_energy = 2.465
 light_volumetric_fog_energy = 1.33
@@ -171,7 +148,7 @@ light_size = 0.42
 omni_range = 30.271
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Light" unique_id=541388565]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7112684, 9.102599, -6.223734)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6075077, 3.6143637, -8.103746)
 light_energy = 2.815
 light_indirect_energy = 2.465
 light_volumetric_fog_energy = 1.33
@@ -179,7 +156,7 @@ light_size = 0.42
 omni_range = 30.271
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="Light" unique_id=415113251]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7112684, 9.102599, 5.027376)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.006521, 3.6143637, 7.927864)
 light_energy = 2.815
 light_indirect_energy = 2.465
 light_volumetric_fog_energy = 1.33
@@ -187,16 +164,12 @@ light_size = 0.42
 omni_range = 30.271
 
 [node name="OmniLight3D4" type="OmniLight3D" parent="Light" unique_id=398517783]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3108835, 9.102599, 5.782342)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.585476, 3.6143627, 8.500321)
 light_energy = 2.815
 light_indirect_energy = 2.465
 light_volumetric_fog_energy = 1.33
 light_size = 0.42
 omni_range = 30.271
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Light" unique_id=1168952027]
-transform = Transform3D(1, 0, 0, 0, 0.731437, 0.68190897, 0, -0.68190897, 0.731437, 0, 1.30567, -0.14188004)
-shadow_enabled = true
 
 [node name="Serums" type="Node3D" parent="." unique_id=456643085]
 

@@ -22,15 +22,11 @@ func _physics_process(delta: float):
 	var direction = local_destination.normalized()
 	var direction_flat = Vector3(direction.x, 0, direction.z).normalized()
 
-	if direction_flat.length() > 0.001:
+	var next_position = get_next_path_position()
+	var offset = next_position - mob.global_position
+	if direction_flat.length() > 0.001 && offset.length() > 0.9:
 		var target_yaw = atan2(-direction_flat.x, -direction_flat.z)
 		mob.rotation.y = lerp_angle(mob.rotation.y, target_yaw, rotation_speed * delta)
-		#mob.look_at(mob.global_position + direction_flat, Vector3.UP)
-		#var direction_angle = acos(direction.dot(Vector3.FORWARD))
-		#mob.rotation = Vector3.FORWARD.rotated(Vector3.UP, direction_angle)
-	#if (get_parent().name == "Shell"):
-		#print(mob.velocity.length())
-		#print(move_speed)
 	var _y_vel = mob.velocity.y
 	var acc_coeff = 1
 	var forward = -mob.transform.basis.z
@@ -43,6 +39,9 @@ func _physics_process(delta: float):
 		
 	else: mob.velocity = -mob.transform.basis.z * move_speed
 	mob.velocity.y = _y_vel
+	if is_navigation_finished():
+		velocity.x = 0
+		velocity.z = 0
 	mob.move_and_slide()
 
 func stop_immediately():

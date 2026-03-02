@@ -86,6 +86,9 @@ scream_time = 1.0
 state_machine = NodePath("..")
 player_sight_range = 6.0
 
+[node name="DebugLines" type="MeshInstance3D" parent="State_machine/Behaviour" index="0" unique_id=533354744]
+skeleton = NodePath("../../..")
+
 [node name="Patrol" type="Node" parent="State_machine" unique_id=1952931126 node_paths=PackedStringArray("empty_target")]
 script = ExtResource("7_ayt5m")
 empty_target = NodePath("empty_target")

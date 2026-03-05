@@ -6,4 +6,5 @@
 script = ExtResource("1_cwu2e")
 name = "Meow"
 description = "MEOW MEOW!!!"
+ui_pos = Vector2(32, 36)
 metadata/_custom_type_script = "uid://q760mct2evav"

@@ -19,10 +19,10 @@ func _ready() -> void:
 	pass 
 
 func add_gathered_clue(new_clue: Clue):
-	print(new_clue.name);
+	# print(new_clue.name);
 	gathered_clues[first_free_index] = new_clue;
 	first_free_index += 1;
-	print(first_free_index);
+	# print(first_free_index);
 	if(gathered_clues.size() == first_free_index):
 		gathered_clues.resize(first_free_index * 2);
 	UIManager.instance.show_added_thought_notif(new_clue, 5.0);
@@ -67,6 +67,18 @@ func create_thought(chosen_clue: Clue):
 		for j in range(0, thought_paths[i].required_clues.size()):
 			if(thought_paths[i].required_clues[j] == chosen_clue):
 				thought_paths[i].is_clue_realized[j] = true;
+				match chosen_clue.clue_trigger:
+					Clue.triggers.None:
+						print("no trigger function");
+					Clue.triggers.SomethingUnlocks:
+						trigger_test();
+
+				# if(has_method(chosen_clue.trigger_method_name)):
+				# 	call(chosen_clue.trigger_method_name);
+				# elif(chosen_clue.trigger_method_name == ""):
+				# 	print("trigger method empty for " + chosen_clue.name);
+				# else:
+				# 	print("haven't found a trigger method for " + chosen_clue.name);
 				# if(!thought_paths[i].does_automatically_unlock[j]):
 				remove_gathered_clue(chosen_clue);
 				# var index: int = j + 1;
@@ -78,3 +90,6 @@ func create_thought(chosen_clue: Clue):
 					if(chosen_clue.does_automatically_unlock[k]): create_thought(chosen_clue.clues_to_gather[k]);
 				return;
 	print("Error while creating a thought, probably the clue was not found in thought paths");
+
+func trigger_test() -> void:
+	print("test");

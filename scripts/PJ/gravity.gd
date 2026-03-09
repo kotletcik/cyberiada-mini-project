@@ -6,7 +6,7 @@ func _ready() -> void:
 	if _parent and _parent is CharacterBody3D:
 		_body = _parent
 		
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if _body:
 		# _body.velocity.y -= _gravity_acc*delta
 		_body.move_and_collide(Vector3(0, -_gravity_acc*delta, 0));

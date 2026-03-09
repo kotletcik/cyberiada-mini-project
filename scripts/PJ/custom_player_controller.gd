@@ -101,6 +101,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = lerp(velocity.x, 0.0, delta * 7.0)
 		velocity.z = lerp(velocity.z, 0.0, delta * 7.0)
+
+	
 	
 	# Bobbing (dodawany do bazowego offsetu zamiast nadpisywać)
 	t_bob += delta * velocity.length() * float(is_on_floor())

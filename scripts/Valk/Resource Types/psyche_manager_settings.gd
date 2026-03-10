@@ -26,6 +26,12 @@ extends Resource
 @export var max_overtake_timer: float;
 @export var overtake_player_force: float;
 
+@export_group("Mutation Spawning")
+@export var min_mutation_spawn_timer: float;
+@export var max_mutation_spawn_timer: float;
+@export var max_mutation_spawn_range: float;
+@export var min_mutation_spawn_range: float;
+
 @export_group("Craving")
 @export var min_craving_timer: float;
 @export var max_craving_timer: float;

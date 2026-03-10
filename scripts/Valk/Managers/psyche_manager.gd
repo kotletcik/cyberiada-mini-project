@@ -7,7 +7,8 @@ var serum_level: float;
 var fog_fade_level: float;
 @export var player: Node3D;
 
-@export var settings : PsycheManagerSettings = null;
+@export var settings: PsycheManagerSettings = null;
+@export var mutation: Resource;
 
 @onready var camera: Camera3D = $"../Player/Head/Camera3D";
 @onready var vignette_texture: TextureRect = $"../Player/CanvasLayer/TextureRect";

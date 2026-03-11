@@ -117,9 +117,7 @@ func load_last_checkpoint() -> void:
 
 	var all_shells = get_tree().get_nodes_in_group("Shell");
 	for i in range(0, last_checkpoint.last_shell_positions.size()):
-		print(last_checkpoint.last_shell_positions[i]);
 		all_shells[i].global_position = last_checkpoint.last_shell_positions[i];
-		print(all_shells[i].global_position);
 
 	if(last_checkpoint.is_player_crouching):
 		player.crouch();

@@ -73,6 +73,7 @@ func resume_game() -> void:
 
 func reload_last_checkpoint() -> void:
 	SaveManager.instance.load_last_checkpoint();
+	resume_game();
 
 func show_added_thought_notif(new_clue: Clue, time: float):
 	if(!has_node("AddedThoughtNotif")): add_child(added_thought_notif);

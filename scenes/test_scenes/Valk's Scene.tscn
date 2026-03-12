@@ -42,6 +42,12 @@ albedo_color = Color(1, 0.19215687, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1a1i1"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_yi4xk"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_bnfbb"]
+font_size = 24
+
 [sub_resource type="NavigationMesh" id="NavigationMesh_b4wx3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b4wx3"]
@@ -432,6 +438,196 @@ offset_top = 579.0
 offset_right = 1157.0
 offset_bottom = 657.0
 text = "Reload Last Checkpoint"
+
+[node name="ControlsPanel" type="Panel" parent="UIManager/EscMenu" unique_id=366260645]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -752.0
+offset_top = -428.0
+offset_right = 778.0
+offset_bottom = 447.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Close" type="Button" parent="UIManager/EscMenu/ControlsPanel" unique_id=1944793696]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 21.0
+offset_right = 92.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 32
+text = "X
+"
+
+[node name="WSAD" type="Panel" parent="UIManager/EscMenu/ControlsPanel" unique_id=304519504]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 249.0
+offset_right = 579.0
+offset_bottom = 305.0
+
+[node name="Label" type="Label" parent="UIManager/EscMenu/ControlsPanel/WSAD" unique_id=462709908]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -14.0
+offset_right = 193.0
+offset_bottom = 77.0
+text = "WSAD"
+label_settings = SubResource("LabelSettings_yi4xk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UIManager/EscMenu/ControlsPanel/WSAD" unique_id=2039726939]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 20.0
+offset_right = 326.0
+offset_bottom = 91.0
+text = "Movement
+"
+label_settings = SubResource("LabelSettings_bnfbb")
+
+[node name="WSAD6" type="Panel" parent="UIManager/EscMenu/ControlsPanel" unique_id=674385831]
+layout_mode = 0
+offset_left = 353.0
+offset_top = 181.0
+offset_right = 588.0
+offset_bottom = 237.0
+
+[node name="Label" type="Label" parent="UIManager/EscMenu/ControlsPanel/WSAD6" unique_id=1300403240]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -14.0
+offset_right = 193.0
+offset_bottom = 77.0
+text = "Ctrl"
+label_settings = SubResource("LabelSettings_yi4xk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UIManager/EscMenu/ControlsPanel/WSAD6" unique_id=242656716]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 20.0
+offset_right = 326.0
+offset_bottom = 91.0
+text = "Crouch
+"
+label_settings = SubResource("LabelSettings_bnfbb")
+
+[node name="WSAD2" type="Panel" parent="UIManager/EscMenu/ControlsPanel" unique_id=576720016]
+layout_mode = 0
+offset_left = 341.0
+offset_top = 335.0
+offset_right = 576.0
+offset_bottom = 391.0
+
+[node name="Label" type="Label" parent="UIManager/EscMenu/ControlsPanel/WSAD2" unique_id=1348002478]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -15.0
+offset_right = 194.0
+offset_bottom = 76.0
+text = "Q"
+label_settings = SubResource("LabelSettings_yi4xk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UIManager/EscMenu/ControlsPanel/WSAD2" unique_id=417019190]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 20.0
+offset_right = 326.0
+offset_bottom = 91.0
+text = "Use Serum (if in inventory)
+"
+label_settings = SubResource("LabelSettings_bnfbb")
+
+[node name="WSAD3" type="Panel" parent="UIManager/EscMenu/ControlsPanel" unique_id=930456013]
+layout_mode = 0
+offset_left = 343.0
+offset_top = 423.0
+offset_right = 578.0
+offset_bottom = 479.0
+
+[node name="Label" type="Label" parent="UIManager/EscMenu/ControlsPanel/WSAD3" unique_id=1664306912]
+layout_mode = 0
+offset_left = -7.0
+offset_top = -23.0
+offset_right = 185.0
+offset_bottom = 68.0
+text = "E"
+label_settings = SubResource("LabelSettings_yi4xk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UIManager/EscMenu/ControlsPanel/WSAD3" unique_id=783313329]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 20.0
+offset_right = 326.0
+offset_bottom = 91.0
+text = "Throw Rocks (if in inventory)
+"
+label_settings = SubResource("LabelSettings_bnfbb")
+
+[node name="WSAD4" type="Panel" parent="UIManager/EscMenu/ControlsPanel" unique_id=1498227009]
+layout_mode = 0
+offset_left = 342.0
+offset_top = 500.0
+offset_right = 577.0
+offset_bottom = 556.0
+
+[node name="Label" type="Label" parent="UIManager/EscMenu/ControlsPanel/WSAD4" unique_id=1193217496]
+layout_mode = 0
+offset_left = -7.0
+offset_top = -23.0
+offset_right = 185.0
+offset_bottom = 68.0
+text = "F"
+label_settings = SubResource("LabelSettings_yi4xk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UIManager/EscMenu/ControlsPanel/WSAD4" unique_id=746214777]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 20.0
+offset_right = 326.0
+offset_bottom = 91.0
+text = "Interact/Pick up items
+"
+label_settings = SubResource("LabelSettings_bnfbb")
+
+[node name="WSAD5" type="Panel" parent="UIManager/EscMenu/ControlsPanel" unique_id=847000056]
+layout_mode = 0
+offset_left = 343.0
+offset_top = 566.0
+offset_right = 578.0
+offset_bottom = 622.0
+
+[node name="Label" type="Label" parent="UIManager/EscMenu/ControlsPanel/WSAD5" unique_id=261841125]
+layout_mode = 0
+offset_left = -7.0
+offset_top = -23.0
+offset_right = 185.0
+offset_bottom = 68.0
+text = "Tab"
+label_settings = SubResource("LabelSettings_yi4xk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UIManager/EscMenu/ControlsPanel/WSAD5" unique_id=1615525859]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 20.0
+offset_right = 326.0
+offset_bottom = 91.0
+text = "Mind Palace"
+label_settings = SubResource("LabelSettings_bnfbb")
 
 [node name="InventoryManager" type="Node" parent="." unique_id=93593884]
 script = ExtResource("7_j8bvq")

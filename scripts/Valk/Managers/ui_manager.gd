@@ -9,6 +9,7 @@ static var instance: UIManager;
 @export var thought_ui: Resource;
 @export var thought_path_ui: Resource;
 @export var esc_menu: CanvasLayer;
+var controls_menu: Control;
 
 var instanciated_thought_uis: Array[ThoughtUI] = [null];
 var thought_uis_count: int = 0;
@@ -44,6 +45,12 @@ func _ready() -> void:
 			button.pressed.connect(resume_game);
 			var button2: Button = esc_menu.get_node("Panel/Checkpoint");
 			button2.pressed.connect(reload_last_checkpoint);
+			var button3: Button = esc_menu.get_node("Panel/Controls");
+			button3.pressed.connect(show_controls);
+			controls_menu = esc_menu.get_node("ControlsPanel");
+			var button4: Button = controls_menu.get_node("Close");
+			button4.pressed.connect(hide_controls);
+			esc_menu.remove_child(controls_menu);
 			remove_child(esc_menu);
 		# Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED); 
 		# Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN); 
@@ -64,6 +71,7 @@ func _input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == Key.KEY_ESCAPE:
 			if(is_note_ui_active): return;
+			hide_controls();
 			cursor_locked_menu = !cursor_locked_menu;
 			is_in_esc_menu = !is_in_esc_menu;
 			if(is_in_esc_menu): add_child(esc_menu);
@@ -72,6 +80,7 @@ func _input(event):
 	if(mind_palace_ui == null): return;
 
 func resume_game() -> void:
+	hide_controls();
 	cursor_locked_menu = true;
 	is_in_esc_menu = false;
 	remove_child(esc_menu);
@@ -80,6 +89,11 @@ func resume_game() -> void:
 func reload_last_checkpoint() -> void:
 	SaveManager.instance.load_last_checkpoint();
 	resume_game();
+
+func show_controls() -> void:
+	esc_menu.add_child(controls_menu);
+func hide_controls() -> void:
+	esc_menu.remove_child(controls_menu);
 
 func show_added_thought_notif(new_clue: Clue, time: float):
 	if(!has_node("AddedThoughtNotif")): add_child(added_thought_notif);

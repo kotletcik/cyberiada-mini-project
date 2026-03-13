@@ -31,12 +31,15 @@ size = Vector3(0.2, 0.2, 0.2)
 [sub_resource type="BoxMesh" id="BoxMesh_raqt8"]
 size = Vector3(0.4, 0.2, 0.2)
 
-[node name="Shell" type="CharacterBody3D" unique_id=2079833793 node_paths=PackedStringArray("sound_target", "state_machine")]
+[node name="Shell" type="CharacterBody3D" unique_id=2079833793 groups=["Shell"]]
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("6_raqt8")
 sound_target = NodePath("State_machine/Follow_sound/Empty_target")
 state_machine = NodePath("State_machine")
+
+[node name="State_machine_Behaviour#DebugLines" type="MeshInstance3D" parent="." unique_id=533354744]
+skeleton = NodePath("../../..")
 
 [node name="State_machine_Behaviour#DebugLines" type="MeshInstance3D" parent="." unique_id=533354744]
 skeleton = NodePath("../../..")
@@ -99,6 +102,6 @@ metadata/_custom_type_script = "uid://foywhiftl87x"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4183241, -0.47043222)
 mesh = SubResource("BoxMesh_raqt8")
 
-[node name="DebugLines" type="MeshInstance3D" parent="." unique_id=1872776124]
+[node name="DebugLines" type="MeshInstance3D" parent="." unique_id=2138520060]
 
 [editable path="State_machine"]

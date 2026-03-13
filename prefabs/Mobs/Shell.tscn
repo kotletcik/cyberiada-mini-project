@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://elmpcqsoarjp"]
+[gd_scene format=3 uid="uid://dqoenfwxbkoli"]
 
 [ext_resource type="PackedScene" uid="uid://b4512qioi3g1i" path="res://prefabs/Gravity.tscn" id="2_6sbjw"]
 [ext_resource type="PackedScene" uid="uid://bxerqeybhhs0c" path="res://prefabs/Mobs/state_machine.tscn" id="5_e6lbg"]
@@ -35,6 +35,11 @@ size = Vector3(0.4, 0.2, 0.2)
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("6_raqt8")
+sound_target = NodePath("State_machine/Follow_sound/Empty_target")
+state_machine = NodePath("State_machine")
+
+[node name="State_machine_Behaviour#DebugLines" type="MeshInstance3D" parent="." unique_id=533354744]
+skeleton = NodePath("../../..")
 
 [node name="State_machine_Behaviour#DebugLines" type="MeshInstance3D" parent="." unique_id=533354744]
 skeleton = NodePath("../../..")
@@ -73,7 +78,6 @@ follow_target = NodePath("Empty_target")
 state_type = 2
 
 [node name="Searching" parent="State_machine" index="4" unique_id=1226388208]
-searching_radius = 3.0
 move_speed = 5.0
 state_type = 3
 

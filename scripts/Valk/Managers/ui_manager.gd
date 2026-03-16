@@ -128,7 +128,7 @@ func show_mind_palace_ui():
 
 func update_mind_palace_ui():
 
-	rocks_label.text = str(InventoryManager.instance.itemCount[ITEM_TYPE.ROCK]) + "x Rocks";
+	rocks_label.text = str(InventoryManager.instance.itemCount[ITEM_TYPE.ROCK]) + "x Kamieni";
 	serum_label.text = str(InventoryManager.instance.itemCount[ITEM_TYPE.SERUM]) + "x Serum";
 
 	for i in range(0, PalaceManager.instance.thought_paths.size()):
@@ -148,6 +148,7 @@ func update_mind_palace_ui():
 		var thought_ui_instance = thought_ui.instantiate();
 		mind_palace_ui.get_node("Panel").add_child(thought_ui_instance);
 		var current_clue: Clue = PalaceManager.instance.gathered_clues[i];
+		print(current_clue.description);
 		thought_ui_instance.set_thought_ui_instance(current_clue.name, current_clue.description, 240 + i * 240, 540, current_clue, false);
 		instanciated_thought_uis[thought_uis_count] = thought_ui_instance;
 		thought_uis_count += 1;

@@ -60,7 +60,7 @@ func _ready() -> void:
 		remove_child(esc_menu);
 
 		var button5: Button = game_over_screen.get_node("Panel/Checkpoint");
-		button5.pressed.connect(reload_last_checkpoint);
+		button5.pressed.connect(game_over_load_checkpoint);
 		button5.process_mode = Node.PROCESS_MODE_ALWAYS;
 		var button6: Button = game_over_screen.get_node("Panel/Controls");
 		button6.pressed.connect(show_game_over_controls);
@@ -111,12 +111,12 @@ func resume_game() -> void:
 	update_cursor();
 
 func reload_last_checkpoint() -> void:
-	if(GameManager.instance.is_game_over): 
-		hide_game_over();
-		GameManager.instance.restart_scene();
-		return;
 	SaveManager.instance.load_last_checkpoint();
 	resume_game();
+
+func game_over_load_checkpoint():
+	hide_game_over();
+	GameManager.instance.restart_scene();
 
 func show_game_over() -> void:
 	add_child(game_over_screen);

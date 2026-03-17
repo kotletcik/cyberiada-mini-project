@@ -199,9 +199,13 @@ func update_mind_palace_ui():
 		thought_uis_count += 1;
 		if(instanciated_thought_uis.size() == thought_uis_count):
 			instanciated_thought_uis.resize(thought_uis_count * 2);
-	print(chosen_thought_path == null);
-	if(chosen_thought_path == null): return
-	# for j in range(0, PalaceManager.instance.thought_paths.size()):
+
+	if(chosen_thought_path == null): 
+		if(thought_path_uis_count > 0):
+			chosen_thought_path = PalaceManager.instance.thought_paths[0];
+		else:
+			return;
+
 	for i in range(0, chosen_thought_path.required_clues.size()):
 		if(!chosen_thought_path.is_clue_realized[i]): break;
 		var thought_ui_instance = thought_ui.instantiate();

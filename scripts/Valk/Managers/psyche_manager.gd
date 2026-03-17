@@ -23,6 +23,9 @@ var serums: Array[Node3D] = [null];
 var first_free_index: int = 0;
 
 var invisibility_timer: float = 0;
+var invisibility_diming_timer: float = 0;
+var invisibility_diming_max_timer: float = 0;
+var invisibility_jumpscare_timer: float = 0;
 
 var craving_timer: float;
 var overtake_timer: float;
@@ -139,8 +142,23 @@ func _process(delta: float) -> void:
 	if(serum_level < 0): serum_level = 0;
 	if(invisibility_timer > 0):
 		invisibility_timer -= delta;
+		if(invisibility_diming_timer > 0):
+			invisibility_diming_timer -= delta;
+			if(invisibility_diming_timer < 0):
+				invisibility_jumpscare_timer = settings.invisibility_jumpscare_time;
+				EventBus.shells_appear.emit();
+				print("jumpscare started");
+		else:
+			invisibility_jumpscare_timer -= delta;
+			if(invisibility_jumpscare_timer < 0):
+				EventBus.shells_disappear.emit();
+				var invisibility_time = 1 - (invisibility_timer/settings.serum_invisibility_time);
+				invisibility_diming_timer = invisibility_diming_max_timer * settings.invisibility_diming_time_curve.sample(invisibility_time);
+				print("jumpscare ended");
 		if(invisibility_timer <= 0):
 			EventBus.shells_appear.emit();
+			invisibility_jumpscare_timer = 0;
+			invisibility_diming_timer = 0;
 	
 	if(serum_level > settings.serum_overdose_level && serum_level < settings.serum_critical_level):
 		mutation_spawn_timer -= delta;
@@ -169,6 +187,8 @@ func take_serum():
 	serum_level += settings.serum_take_amount;
 	invisibility_timer = settings.serum_invisibility_time;
 	if(invisibility_timer > 0): EventBus.shells_disappear.emit();
+	invisibility_diming_max_timer = settings.invisibility_diming_time;
+	invisibility_jumpscare_timer = settings.invisibility_jumpscare_time;
 
 	print("fog fade level: ", fog_fade_level, " / serum level: ", serum_level);
 	

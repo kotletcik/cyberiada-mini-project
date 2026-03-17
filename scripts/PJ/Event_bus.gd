@@ -6,6 +6,15 @@ signal level_changed(level: int)
 signal shells_disappear
 signal shells_appear
 signal clue_gathered(clue: Clue)
+signal close_final_door()
+signal bad_ending()
+
+enum triggers
+{
+	None,
+	CloseFinalDoor,
+	BadEnding
+}
 
 func _ready():
 	get_tree().scene_changed.connect(_on_scene_changed)
@@ -20,10 +29,21 @@ func reset_signal_subscribers():
 	_disconnect_all("shells_disappear")
 	_disconnect_all("shells_appear")
 	_disconnect_all("clue_gathered")
+	_disconnect_all("close_final_door")
+	_disconnect_all("bad_ending")
 
 func _disconnect_all(signal_name: String):
 	var connections = get_signal_connection_list(signal_name)
 	for c in connections:
 		disconnect(signal_name, c.callable)
+
+func call_event(trigger: triggers):
+	match trigger:
+		triggers.CloseFinalDoor:
+			close_final_door.emit();
+		triggers.BadEnding:
+			bad_ending.emit();
+		triggers.None:
+			return;
 	
 	

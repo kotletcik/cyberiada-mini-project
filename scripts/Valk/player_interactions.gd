@@ -18,9 +18,13 @@ func _process(_delta: float) -> void:
 			# print(object.name);
 			if(object.is_in_group("Serum")):
 				InventoryManager.instance.add_item(ITEM_TYPE.SERUM, 1);
+				var pickup_item = object as PickupItem;
+				EventBus.call_event(pickup_item.event_on_pickup);
 				object.disable();
 			if(object.is_in_group("Rock")):
 				InventoryManager.instance.add_item(ITEM_TYPE.ROCK, 1);
+				var pickup_item = object as PickupItem;
+				EventBus.call_event(pickup_item.event_on_pickup);
 				object.disable();
 			if(object.has_method("player_interact")):
 				object.player_interact();

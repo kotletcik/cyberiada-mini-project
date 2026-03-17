@@ -1988,6 +1988,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7888974, -0.30792236)
 
 [node name="Serum5" parent="." unique_id=459071587 instance=ExtResource("9_3rc8y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.453983, 0.9689617, -21.681183)
+event_on_pickup = 2
 
 [editable path="Location5/Geometry/StaticBody3D2"]
 [editable path="Location5/Geometry/StaticBody3D3"]

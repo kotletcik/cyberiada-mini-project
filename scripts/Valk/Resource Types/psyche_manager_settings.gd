@@ -15,6 +15,9 @@ extends Resource
 @export var serum_to_normal_fog_speed: float;
 
 @export var serum_invisibility_time: float;
+@export var invisibility_jumpscare_time: float;
+@export var invisibility_diming_time: float;
+@export var invisibility_diming_time_curve: Curve
 
 @export_group("Fog Fade On Serum")
 @export var fog_fade_drop_rate: float;

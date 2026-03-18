@@ -77,11 +77,8 @@ func _ready() -> void:
 		remove_child(bad_ending_screen);
 		remove_child(good_ending_screen);
 
-
 		EventBus.bad_ending.connect(show_bad_ending_screen);
 		EventBus.good_ending.connect(show_good_ending_screen);
-		# Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED); 
-		# Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN); 
 		process_mode = Node.PROCESS_MODE_ALWAYS;
 		update_cursor();
 	else:
@@ -216,7 +213,6 @@ func update_mind_palace_ui():
 		var thought_ui_instance = thought_ui.instantiate();
 		mind_palace_ui.get_node("Panel").add_child(thought_ui_instance);
 		var current_clue: Clue = PalaceManager.instance.gathered_clues[i];
-		print(current_clue.description);
 		thought_ui_instance.set_thought_ui_instance(current_clue.name, current_clue.description, 240 + i * 240, 540, current_clue, false);
 		instanciated_thought_uis[thought_uis_count] = thought_ui_instance;
 		thought_uis_count += 1;
@@ -254,7 +250,6 @@ func clear_mind_palace_ui():
 	thought_path_uis_count = 0;
 
 func choose_thought_path(path: ThoughtPath):
-	print("Chosen: " + path.name);
 	chosen_thought_path = path;
 	clear_mind_palace_ui();
 	update_mind_palace_ui();
@@ -284,10 +279,7 @@ func hide_note_ui() -> void:
 func update_cursor() -> void:
 	if(!cursor_locked_game || !cursor_locked_menu):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE);
-		print("Cursor unlocked");
+		# print("Cursor unlocked");
 	else:
-		# bawie sie z tym na razie
-		# mi na linuxie i z wayland to działa jedynie, później na windowsa może się zmieni na Input.MOUSE_MODE_CAPTURED
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED); 
-		# Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN); 
-		print("Cursor locked");
+		# print("Cursor locked");

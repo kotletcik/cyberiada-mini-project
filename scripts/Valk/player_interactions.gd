@@ -15,7 +15,7 @@ func _process(_delta: float) -> void:
 		# print(collision.is_empty());
 		if(!collision.is_empty()):
 			var object: Node3D = collision["collider"];
-			# print(object.name);
+			print(object.name);
 			if(object.is_in_group("Serum")):
 				InventoryManager.instance.add_item(ITEM_TYPE.SERUM, 1);
 				var pickup_item = object as PickupItem;

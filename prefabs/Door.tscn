@@ -1,31 +1,29 @@
 [gd_scene format=3 uid="uid://bw8wddlntpkih"]
 
 [ext_resource type="Script" uid="uid://c66vv1yiekulm" path="res://scripts/PJ/door.gd" id="1_poson"]
+[ext_resource type="Script" uid="uid://bt68h58dlhhgv" path="res://scripts/Valk/Tools/door_visuals.gd" id="2_82ivq"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_oftrq"]
-size = Vector3(0.5, 2.7920272, 1.3734131)
+[sub_resource type="BoxShape3D" id="BoxShape3D_82ivq"]
+size = Vector3(0.5, 2, 1.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oftrq"]
-albedo_color = Color(0.5831522, 0.3126706, 0.33575776, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_pik7m"]
-material = SubResource("StandardMaterial3D_oftrq")
-size = Vector3(0.5, 4, 3)
+[sub_resource type="BoxMesh" id="BoxMesh_r2mki"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_poson"]
 albedo_color = Color(0.7417984, 0.7867048, 0.97661155, 1)
 
-[node name="Door" type="StaticBody3D" unique_id=1301287337]
+[node name="Door" type="StaticBody3D" unique_id=217114237]
 collision_layer = 4
 collision_mask = 17
 script = ExtResource("1_poson")
+move_distance = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=649342185]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("BoxShape3D_oftrq")
+shape = SubResource("BoxShape3D_82ivq")
+script = ExtResource("2_82ivq")
 
-[node name="Door" type="MeshInstance3D" parent="CollisionShape3D" unique_id=623114512]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_pik7m")
+[node name="DoorVisuals" type="MeshInstance3D" parent="CollisionShape3D" unique_id=623114512]
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 1.5, 0, 0, 0)
+mesh = SubResource("BoxMesh_r2mki")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_poson")

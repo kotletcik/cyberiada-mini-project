@@ -4,6 +4,12 @@
 
 [node name="NoteUI" type="CanvasLayer" unique_id=1191746793]
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1803338481]
+offset_left = 759.0
+offset_top = 362.0
+offset_right = 1288.0
+offset_bottom = 815.0
+
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1012787536]
 anchors_preset = -1
 anchor_left = 0.52900004
@@ -14,6 +20,7 @@ offset_left = -233.40808
 offset_top = -206.03201
 offset_right = 232.59192
 offset_bottom = 184.96799
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "Meow Meow Meow"
 
 [node name="Button" type="Button" parent="." unique_id=625185133]

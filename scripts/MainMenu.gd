@@ -11,7 +11,7 @@ extends Control
 @onready var controls_close_button: Button = $ControlsPanel/Close
 @onready var black_transition: ColorRect = $BlackTransition
 
-@export var game_scene: Resource;
+@export var game_scene: PackedScene;
 
 var _credits_tween = null
 
@@ -20,7 +20,7 @@ var transition_started: bool = false;
 @export var transition_speed: float = 1.0;
 
 func _ready():
-	start_button.connect("pressed", Callable(self, "_on_start_pressed"))
+	start_button.pressed.connect(_on_start_pressed);
 	credits_button.connect("pressed", Callable(self, "_on_credits_pressed"))
 	controls_button.connect("pressed", Callable(self, "_on_controls_pressed"))
 	exit_button.connect("pressed", Callable(self, "_on_exit_pressed"))
@@ -39,7 +39,8 @@ func _process(delta: float) -> void:
 	if(transition_started):
 		black_transition.color.a += (1/transition_speed) * delta;
 		if(black_transition.color.a > 1):
-			get_tree().change_scene_to_file(game_scene.resource_path)
+			request_ready();
+			print(get_tree().change_scene_to_file(game_scene.resource_path));
 		
 
 func _on_controls_pressed():

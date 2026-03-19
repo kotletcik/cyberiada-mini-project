@@ -39,6 +39,11 @@ var serum_label: Label
 var transitioned: bool = false;
 @export var transition_speed: float = 1.0;
 
+var transition_to_main_menu_started: bool = false;
+@export var main_menu_transition_speed: float = 1.0;
+
+@export var main_scene: PackedScene;
+
 func _ready() -> void:
 	if(instance == null):
 		instance = self;    
@@ -62,6 +67,9 @@ func _ready() -> void:
 		var button4: Button = controls_menu.get_node("Close");
 		button4.pressed.connect(hide_controls);
 		button4.process_mode = Node.PROCESS_MODE_ALWAYS;
+		var button9: Button = esc_menu.get_node("Panel/MainMenu");
+		button9.pressed.connect(go_to_main_menu);
+		button9.process_mode = Node.PROCESS_MODE_ALWAYS;
 		esc_menu.remove_child(controls_menu);
 		remove_child(esc_menu);
 
@@ -85,9 +93,15 @@ func _ready() -> void:
 		EventBus.good_ending.connect(show_good_ending_screen);
 		process_mode = Node.PROCESS_MODE_ALWAYS;
 		update_cursor();
+		transition_to_main_menu_started = false;
 	else:
 		print("More than one UIManager exists!!!");
 		queue_free();
+
+func go_to_main_menu():
+	add_child(black_transition)
+	black_transition.get_node("ColorRect").color.a = 0;
+	transition_to_main_menu_started = true;
 
 func show_bad_ending_screen():
 	GameManager.instance.is_game_over = true;
@@ -105,6 +119,10 @@ func show_good_ending_screen():
 	add_child(good_ending_screen);
 
 func _process(delta: float) -> void:
+	if(transition_to_main_menu_started):
+		black_transition.get_node("ColorRect").color.a += (1/main_menu_transition_speed) * delta;
+		if(black_transition.get_node("ColorRect").color.a >= 1.0):
+			print(get_tree().change_scene_to_file(main_scene.resource_path));
 	if(!transitioned):
 		black_transition.get_node("ColorRect").color.a -= (1/transition_speed) * delta;
 		if(black_transition.get_node("ColorRect").color.a < 0):
@@ -171,10 +189,10 @@ func hide_game_over_controls() -> void:
 
 func show_added_thought_notif(new_clue: Clue, time: float):
 	if(!has_node("AddedThoughtNotif")): add_child(added_thought_notif);
-	added_thought_notif.get_node("RichTextLabel").text = new_clue.name;
+	added_thought_notif.get_node("ColorRect/RichTextLabel").text = new_clue.name;
 	var temp_text = new_clue.name;
 	await get_tree().create_timer(time).timeout;
-	if(temp_text != added_thought_notif.get_node("RichTextLabel").text): return;
+	if(temp_text != added_thought_notif.get_node("ColorRect/RichTextLabel").text): return;
 	remove_child(added_thought_notif);
 
 func get_clue_at(pos: Vector2) -> Clue:

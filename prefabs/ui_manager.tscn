@@ -13,7 +13,7 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_usnsq"]
 font_size = 24
 
-[node name="UIManager" type="Node" unique_id=798929640 node_paths=PackedStringArray("note_ui", "added_thought_notif", "mind_palace_ui", "esc_menu", "game_over_screen", "bad_ending_screen", "good_ending_screen")]
+[node name="UIManager" type="Node" unique_id=798929640 node_paths=PackedStringArray("note_ui", "added_thought_notif", "mind_palace_ui", "esc_menu", "game_over_screen", "bad_ending_screen", "good_ending_screen", "black_transition")]
 script = ExtResource("1_4asm2")
 note_ui = NodePath("NoteUI")
 added_thought_notif = NodePath("AddedThoughtNotif")
@@ -24,6 +24,8 @@ esc_menu = NodePath("EscMenu")
 game_over_screen = NodePath("Game Over")
 bad_ending_screen = NodePath("Bad Ending")
 good_ending_screen = NodePath("Good Ending")
+black_transition = NodePath("Black Transition")
+transition_speed = 5.0
 metadata/_custom_type_script = "uid://k7qr63sybur6"
 
 [node name="NoteUI" parent="." unique_id=1191746793 instance=ExtResource("4_1dmpx")]
@@ -437,3 +439,10 @@ theme_override_font_sizes/normal_font_size = 128
 text = "Brawooo!!!!!!!
 Nie jestes zbrainrotowany/a lol"
 horizontal_alignment = 1
+
+[node name="Black Transition" type="CanvasLayer" parent="." unique_id=348055792]
+
+[node name="ColorRect" type="ColorRect" parent="Black Transition" unique_id=460921685]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)

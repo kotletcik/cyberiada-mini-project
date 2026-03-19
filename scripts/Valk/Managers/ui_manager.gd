@@ -12,6 +12,7 @@ static var instance: UIManager;
 @export var game_over_screen: CanvasLayer;
 @export var bad_ending_screen: CanvasLayer;
 @export var good_ending_screen: CanvasLayer;
+@export var black_transition: CanvasLayer;
 var game_over_controls: Control;
 var controls_menu: Control;
 
@@ -34,6 +35,9 @@ var chosen_thought_path: ThoughtPath = null;
 
 var rocks_label: Label
 var serum_label: Label
+
+var transitioned: bool = false;
+@export var transition_speed: float = 1.0;
 
 func _ready() -> void:
 	if(instance == null):
@@ -100,7 +104,12 @@ func show_good_ending_screen():
 	update_cursor();
 	add_child(good_ending_screen);
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	if(!transitioned):
+		black_transition.get_node("ColorRect").color.a -= (1/transition_speed) * delta;
+		if(black_transition.get_node("ColorRect").color.a < 0):
+			remove_child(black_transition);
+			transitioned = true;
 	# if(Input.is_action_just_pressed("ui_cancel") && is_note_ui_active):
 	# 	hide_note_ui();
 	if(Input.is_action_just_pressed("Mind Palace") && mind_palace_ui != null && !is_note_ui_active && !is_in_esc_menu):

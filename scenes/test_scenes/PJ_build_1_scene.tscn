@@ -116,6 +116,7 @@ thought_paths = Array[ExtResource("6_8isj6")]([ExtResource("7_sbrwg"), ExtResour
 metadata/_custom_type_script = "uid://bj28ubqcmsltd"
 
 [node name="UIManager" parent="." unique_id=798929640 instance=ExtResource("13_rf5c3")]
+transition_speed = 1.0
 
 [node name="SaveManager" type="Node" parent="." unique_id=1313784305]
 script = ExtResource("17_njve1")
@@ -862,7 +863,7 @@ transform = Transform3D(0.99999994, 0, 3.3407482e-22, 0, 1, 0, 0, 0, 1, 0, -0.21
 shape = SubResource("BoxShape3D_njve1")
 
 [node name="DoorVisuals" parent="Location5/Geometry/StaticBody3D2/CollisionShape3D" index="0" unique_id=623114512]
-transform = Transform3D(1, 0, 1.4682885e-22, 0, 0.663566, -1.7763568e-15, 0, 0, 0.43950886, 0, 0, -0.040600777)
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 1.5, 0, 0, -0.040600777)
 
 [node name="StaticBody3D3" parent="Location5/Geometry" unique_id=1349698055 instance=ExtResource("10_vcjj7")]
 transform = Transform3D(1, -1.7484555e-07, -1.7484555e-07, 1.7484555e-07, -4.371139e-08, 1, -1.7484555e-07, -1, -4.3711356e-08, -4.2012405, 1.9127877, -7.727113)
@@ -873,7 +874,7 @@ transform = Transform3D(0.99999994, 0, 3.3407482e-22, 0, 1, 0, 0, 0, 1, 0, -0.21
 shape = SubResource("BoxShape3D_xanii")
 
 [node name="DoorVisuals" parent="Location5/Geometry/StaticBody3D3/CollisionShape3D" index="0" unique_id=623114512]
-transform = Transform3D(1, 0, 1.4682885e-22, 0, 0.663566, -1.7763568e-15, 0, 0, 0.43950886, 0, 0, -0.040600777)
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 1.5, 0, 0, -0.040600777)
 
 [node name="StaticBody3D4" parent="Location5/Geometry" unique_id=2059737925 instance=ExtResource("10_vcjj7")]
 transform = Transform3D(1, -1.7484555e-07, -1.7484555e-07, 1.7484555e-07, -4.371139e-08, 1, -1.7484555e-07, -1, -4.3711356e-08, 58.79876, 1.9127877, -19.727123)
@@ -884,7 +885,7 @@ transform = Transform3D(0.99999994, 0, 3.3407482e-22, 0, 1, 0, 0, 0, 1, 0, -0.21
 shape = SubResource("BoxShape3D_cnf01")
 
 [node name="DoorVisuals" parent="Location5/Geometry/StaticBody3D4/CollisionShape3D" index="0" unique_id=623114512]
-transform = Transform3D(1, 0, 1.4682885e-22, 0, 0.663566, -1.7763568e-15, 0, 0, 0.43950886, 0, 0, -0.040600777)
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 1.5, 0, 0, -0.040600777)
 
 [node name="wall15" type="CSGBox3D" parent="Location5/Geometry" unique_id=57716231]
 transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, 1.3798141, 2, -36.552673)

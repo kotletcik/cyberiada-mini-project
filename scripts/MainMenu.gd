@@ -9,10 +9,15 @@ extends Control
 @onready var credits_scroll: ScrollContainer = $CreditsPanel/VBox/ScrollContainer
 @onready var controls_panel: Panel = $ControlsPanel
 @onready var controls_close_button: Button = $ControlsPanel/Close
+@onready var black_transition: ColorRect = $BlackTransition
 
 @export var game_scene: Resource;
 
 var _credits_tween = null
+
+# var transitioned: bool = false;
+var transition_started: bool = false;
+@export var transition_speed: float = 1.0;
 
 func _ready():
 	start_button.connect("pressed", Callable(self, "_on_start_pressed"))
@@ -21,9 +26,21 @@ func _ready():
 	exit_button.connect("pressed", Callable(self, "_on_exit_pressed"))
 	close_button.connect("pressed", Callable(self, "_on_close_credits"))
 	controls_close_button.connect("pressed", Callable(self, "_on_close_controls"))
+	# transitioned = false;
+	transition_started = false;
+	remove_child(black_transition);
 
 func _on_start_pressed():
-	get_tree().change_scene_to_file(game_scene.resource_path)
+	add_child(black_transition);
+	black_transition.color.a = 0;
+	transition_started = true;
+
+func _process(delta: float) -> void:
+	if(transition_started):
+		black_transition.color.a += (1/transition_speed) * delta;
+		if(black_transition.color.a > 1):
+			get_tree().change_scene_to_file(game_scene.resource_path)
+		
 
 func _on_controls_pressed():
 	controls_panel.visible = true;

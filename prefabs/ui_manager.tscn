@@ -4,8 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://drcpcwf6f8sgw" path="res://prefabs/ui/thought_ui.tscn" id="2_5x7yg"]
 [ext_resource type="PackedScene" uid="uid://bya7074yvflm6" path="res://prefabs/ui/thought_path_button.tscn" id="3_bpt2d"]
 [ext_resource type="PackedScene" uid="uid://d1i2hyd827vx1" path="res://prefabs/ui/note_ui.tscn" id="4_1dmpx"]
+[ext_resource type="PackedScene" uid="uid://bs1a32ei6y25u" path="res://scenes/MainMenu.tscn" id="4_wtjxn"]
 [ext_resource type="Script" uid="uid://bw0o64kaou276" path="res://scripts/Valk/palace_ui_controller.gd" id="5_6hyqm"]
 [ext_resource type="PackedScene" uid="uid://gld2pf7nmd7u" path="res://prefabs/ui/controls_panel.tscn" id="6_msfjg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wtjxn"]
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cnf01"]
 font_size = 32
@@ -13,7 +17,7 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_usnsq"]
 font_size = 24
 
-[node name="UIManager" type="Node" unique_id=798929640 node_paths=PackedStringArray("note_ui", "added_thought_notif", "mind_palace_ui", "esc_menu", "game_over_screen", "bad_ending_screen", "good_ending_screen")]
+[node name="UIManager" type="Node" unique_id=798929640 node_paths=PackedStringArray("note_ui", "added_thought_notif", "mind_palace_ui", "esc_menu", "game_over_screen", "bad_ending_screen", "good_ending_screen", "black_transition")]
 script = ExtResource("1_4asm2")
 note_ui = NodePath("NoteUI")
 added_thought_notif = NodePath("AddedThoughtNotif")
@@ -24,23 +28,48 @@ esc_menu = NodePath("EscMenu")
 game_over_screen = NodePath("Game Over")
 bad_ending_screen = NodePath("Bad Ending")
 good_ending_screen = NodePath("Good Ending")
+black_transition = NodePath("Black Transition")
+transition_speed = 5.0
+main_scene = ExtResource("4_wtjxn")
 metadata/_custom_type_script = "uid://k7qr63sybur6"
 
 [node name="NoteUI" parent="." unique_id=1191746793 instance=ExtResource("4_1dmpx")]
 
 [node name="AddedThoughtNotif" type="CanvasLayer" parent="." unique_id=1916351234]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="AddedThoughtNotif" unique_id=1414316904]
+[node name="ColorRect" type="ColorRect" parent="AddedThoughtNotif" unique_id=1848041610]
+offset_left = 1544.0
+offset_top = 760.0
+offset_right = 1789.0
+offset_bottom = 850.0
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="AddedThoughtNotif/ColorRect" unique_id=1414316904]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.52900004
 anchor_top = 0.53400004
 anchor_right = 0.52900004
 anchor_bottom = 0.53400004
-offset_left = 329.59192
-offset_top = 212.96799
-offset_right = 491.59192
-offset_bottom = 266.968
+offset_left = -111.60506
+offset_top = -36.060028
+offset_right = 50.394943
+offset_bottom = 17.939972
 text = "Meow Meow Meow"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="AddedThoughtNotif/ColorRect" unique_id=460459448]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.52900004
+anchor_top = 0.53400004
+anchor_right = 0.52900004
+anchor_bottom = 0.53400004
+offset_left = 7.394943
+offset_top = 9.939972
+offset_right = 169.39493
+offset_bottom = 63.939972
+text = "Naciśnij Tab
+"
 
 [node name="MindPalace" type="CanvasLayer" parent="." unique_id=103775942]
 
@@ -56,6 +85,23 @@ offset_right = 575.0
 offset_bottom = 324.0
 script = ExtResource("5_6hyqm")
 thought_ui_scene = ExtResource("2_5x7yg")
+
+[node name="ColorRect" type="ColorRect" parent="MindPalace/Panel" unique_id=1714148622]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 484.0
+offset_right = 1145.0
+offset_bottom = 700.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="MindPalace/Panel/ColorRect" unique_id=1481435375]
+layout_mode = 0
+offset_right = 942.0
+offset_bottom = 66.0
+text = "Zebrane wskazówki"
+label_settings = SubResource("LabelSettings_wtjxn")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ThoughtPaths" type="Panel" parent="MindPalace" unique_id=1683135133]
 anchors_preset = -1
@@ -154,6 +200,15 @@ offset_top = 698.0
 offset_right = 1159.0
 offset_bottom = 776.0
 text = "Kontrolki"
+
+[node name="MainMenu" type="Button" parent="EscMenu/Panel" unique_id=1798165759]
+layout_mode = 0
+offset_left = 762.0
+offset_top = 826.0
+offset_right = 1159.0
+offset_bottom = 904.0
+text = "Wróć do głównego menu
+(STRACISZ POSTĘP!!!)"
 
 [node name="ControlsPanel" parent="EscMenu" unique_id=1667803061 instance=ExtResource("6_msfjg")]
 
@@ -437,3 +492,10 @@ theme_override_font_sizes/normal_font_size = 128
 text = "Brawooo!!!!!!!
 Nie jestes zbrainrotowany/a lol"
 horizontal_alignment = 1
+
+[node name="Black Transition" type="CanvasLayer" parent="." unique_id=348055792]
+
+[node name="ColorRect" type="ColorRect" parent="Black Transition" unique_id=460921685]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)

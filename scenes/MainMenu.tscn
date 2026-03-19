@@ -173,3 +173,19 @@ text = "CLOSE"
 visible = false
 layout_mode = 0
 anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1530.0
+offset_bottom = 875.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="BlackTransition" type="ColorRect" parent="." unique_id=424169526]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)

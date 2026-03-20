@@ -5,8 +5,8 @@ extends CollisionShape3D
 var mesh: Node3D;
 
 func _ready() -> void:
-	var unique_shape = shape.duplicate();
-	shape = unique_shape;
+	# var unique_shape = shape.duplicate();
+	# shape = unique_shape;
 	shape.changed.connect(set_visual_scale);
 	mesh = get_node("DoorVisuals");
 

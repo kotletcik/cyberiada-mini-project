@@ -1,8 +1,16 @@
 [gd_scene format=3 uid="uid://bs1a32ei6y25u"]
 
 [ext_resource type="Script" uid="uid://d2t00or5xmtit" path="res://scripts/MainMenu.gd" id="1"]
+[ext_resource type="Shader" uid="uid://dvrbg2ig3v705" path="res://vignette/vignetteShader.gdshader" id="2_2wh52"]
 [ext_resource type="PackedScene" uid="uid://gld2pf7nmd7u" path="res://prefabs/ui/controls_panel.tscn" id="3_2wh52"]
-[ext_resource type="Material" uid="uid://d0d1kdro15sym" path="res://vignette/vignetteMat.tres" id="3_vignette"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ow34m"]
+shader = ExtResource("2_2wh52")
+shader_parameter/radius = 0.53200002527
+shader_parameter/softness = 0.79200003762
+shader_parameter/intensity = 1.394000066215
+shader_parameter/contrast = 2.2
+shader_parameter/vignette_color = Color(0.9882353, 0, 0, 1)
 
 [node name="MainMenu" type="Control" unique_id=2009846015]
 layout_mode = 3
@@ -23,7 +31,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Vignette" type="ColorRect" parent="." unique_id=2055514373]
-material = ExtResource("3_vignette")
+material = SubResource("ShaderMaterial_ow34m")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

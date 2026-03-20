@@ -56,13 +56,13 @@ albedo_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jik7h"]
 albedo_color = Color(0.27450982, 0.27450982, 0.27450982, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_rf5c3"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_0plmr"]
 size = Vector3(0.5, 2, 1.5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_njve1"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_j12l6"]
 size = Vector3(0.5, 2, 1.5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_xanii"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_4h7xs"]
 size = Vector3(0.5, 2, 1.5)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_lfu3u"]
@@ -85,7 +85,7 @@ size = Vector3(3.3517761, 2.6328125, 7.4286804)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lfu3u"]
 
-[node name="Main_scene" type="Node3D" unique_id=649139474]
+[node name="Build_1_Scene" type="Node3D" unique_id=649139474]
 script = ExtResource("1_xanii")
 
 [node name="Player" parent="." unique_id=2039338456 instance=ExtResource("1_ahihw")]
@@ -860,7 +860,7 @@ move_distance = 1.25
 
 [node name="CollisionShape3D" parent="Location5/Geometry/StaticBody3D2" index="0" unique_id=649342185]
 transform = Transform3D(0.99999994, 0, 3.3407482e-22, 0, 1, 0, 0, 0, 1, 0, -0.21135569, -0.7058456)
-shape = SubResource("BoxShape3D_rf5c3")
+shape = SubResource("BoxShape3D_0plmr")
 
 [node name="DoorVisuals" parent="Location5/Geometry/StaticBody3D2/CollisionShape3D" index="0" unique_id=623114512]
 transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 1.5, 0, 0, -0.040600777)
@@ -871,7 +871,7 @@ move_distance = 1.25
 
 [node name="CollisionShape3D" parent="Location5/Geometry/StaticBody3D3" index="0" unique_id=649342185]
 transform = Transform3D(0.99999994, 0, 3.3407482e-22, 0, 1, 0, 0, 0, 1, 0, -0.21135569, -0.7058456)
-shape = SubResource("BoxShape3D_njve1")
+shape = SubResource("BoxShape3D_j12l6")
 
 [node name="DoorVisuals" parent="Location5/Geometry/StaticBody3D3/CollisionShape3D" index="0" unique_id=623114512]
 transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 1.5, 0, 0, -0.040600777)
@@ -882,7 +882,7 @@ move_distance = 1.25
 
 [node name="CollisionShape3D" parent="Location5/Geometry/StaticBody3D4" index="0" unique_id=649342185]
 transform = Transform3D(0.99999994, 0, 3.3407482e-22, 0, 1, 0, 0, 0, 1, 0, -0.21135569, -0.7058456)
-shape = SubResource("BoxShape3D_xanii")
+shape = SubResource("BoxShape3D_4h7xs")
 
 [node name="DoorVisuals" parent="Location5/Geometry/StaticBody3D4/CollisionShape3D" index="0" unique_id=623114512]
 transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 1.5, 0, 0, -0.040600777)

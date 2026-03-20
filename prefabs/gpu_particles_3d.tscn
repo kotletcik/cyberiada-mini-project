@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cqmv7mxht6o6m"]
+
+[ext_resource type="Script" uid="uid://jnurfjwf8w7c" path="res://scripts/PJ/walking_particles.gd" id="1_55nes"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lq87k"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Curve" id="Curve_6f62q"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, -333.33334), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bd0jf"]
+curve = SubResource("Curve_6f62q")
+
+[sub_resource type="Gradient" id="Gradient_wrf0i"]
+offsets = PackedFloat32Array(0, 0.7220149)
+colors = PackedColorArray(0.41368303, 0.4136831, 0.41368303, 1, 0.80755895, 0.37290668, 3.85046e-07, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kv7qn"]
+gradient = SubResource("Gradient_wrf0i")
+
+[sub_resource type="Curve" id="Curve_j50m7"]
+_limits = [0.0, 7.716049, 0.0, 1.0]
+_data = [Vector2(0, 7.561251), 0.0, -22.10228, 0, 0, Vector2(1, 0), -1.4579623, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ix58x"]
+curve = SubResource("Curve_j50m7")
+
+[sub_resource type="Curve" id="Curve_v4lpa"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.1103697, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cxb1v"]
+curve = SubResource("Curve_v4lpa")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ukenm"]
+emission_shape = 1
+emission_sphere_radius = 0.1
+direction = Vector3(0, 0, 1)
+spread = 180.0
+flatness = 1.0
+initial_velocity_max = 2.0
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = 0.9999839
+angular_velocity_curve = SubResource("CurveTexture_bd0jf")
+gravity = Vector3(0, 0.3, 0)
+linear_accel_min = -1.0000023
+linear_accel_max = -1.0000023
+scale_min = 0.099999994
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_cxb1v")
+color = Color(0.380189, 0.380189, 0.38018897, 1)
+color_initial_ramp = SubResource("GradientTexture1D_kv7qn")
+emission_curve = SubResource("CurveTexture_ix58x")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jco4r"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_opuvl"]
+material = SubResource("StandardMaterial3D_jco4r")
+
+[node name="GPUParticles3D" type="GPUParticles3D" unique_id=207648955]
+material_override = SubResource("StandardMaterial3D_lq87k")
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 0.9
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_ukenm")
+draw_pass_1 = SubResource("SphereMesh_opuvl")
+script = ExtResource("1_55nes")
+interval_time = 3.0
+min_trigger_velocity = 3.0

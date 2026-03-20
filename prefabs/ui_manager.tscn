@@ -250,6 +250,15 @@ offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="GameOver" type="RichTextLabel" parent="Game Over/Panel" unique_id=854070857]
+layout_mode = 0
+offset_left = 541.0
+offset_top = 267.0
+offset_right = 1451.0
+offset_bottom = 579.0
+theme_override_font_sizes/normal_font_size = 128
+text = "Skill issue!!!!!!!"
+
 [node name="Checkpoint" type="Button" parent="Game Over/Panel" unique_id=1711027278]
 layout_mode = 0
 offset_left = 762.0
@@ -266,14 +275,14 @@ offset_right = 1159.0
 offset_bottom = 776.0
 text = "Kontrolki"
 
-[node name="GameOver" type="RichTextLabel" parent="Game Over/Panel" unique_id=854070857]
+[node name="MainMenu" type="Button" parent="Game Over/Panel" unique_id=345581455]
 layout_mode = 0
-offset_left = 541.0
-offset_top = 267.0
-offset_right = 1451.0
-offset_bottom = 579.0
-theme_override_font_sizes/normal_font_size = 128
-text = "Skill issue!!!!!!!"
+offset_left = 762.0
+offset_top = 826.0
+offset_right = 1159.0
+offset_bottom = 904.0
+text = "Wróć do głównego menu
+(STRACISZ POSTĘP!!!)"
 
 [node name="ControlsPanel" type="Panel" parent="Game Over" unique_id=2139818824]
 anchors_preset = 8
@@ -490,6 +499,14 @@ text = "Skill issue!!!!!!!
 Uzależniłeś/aś sie od serum lololololol"
 horizontal_alignment = 1
 
+[node name="MainMenu" type="Button" parent="Bad Ending/Panel" unique_id=2007954657]
+layout_mode = 0
+offset_left = 810.0
+offset_top = 929.0
+offset_right = 1207.0
+offset_bottom = 1007.0
+text = "Wróć do głównego menu"
+
 [node name="Good Ending" type="CanvasLayer" parent="." unique_id=1625429845]
 
 [node name="Panel" type="Panel" parent="Good Ending" unique_id=607485171]
@@ -515,6 +532,14 @@ theme_override_font_sizes/normal_font_size = 128
 text = "Brawooo!!!!!!!
 Nie jestes zbrainrotowany/a lol"
 horizontal_alignment = 1
+
+[node name="MainMenu" type="Button" parent="Good Ending/Panel" unique_id=372326746]
+layout_mode = 0
+offset_left = 810.0
+offset_top = 929.0
+offset_right = 1207.0
+offset_bottom = 1007.0
+text = "Wróć do głównego menu"
 
 [node name="Black Transition" type="CanvasLayer" parent="." unique_id=348055792]
 

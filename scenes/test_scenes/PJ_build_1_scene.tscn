@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://dqoenfwxbkoli" path="res://prefabs/Mobs/Shell.tscn" id="11_01gpf"]
 [ext_resource type="PackedScene" uid="uid://dfiw1ws6ojtp8" path="res://prefabs/PatrolPoint.tscn" id="12_uyulh"]
 [ext_resource type="PackedScene" uid="uid://blsbgq16qsq5d" path="res://prefabs/ui_manager.tscn" id="13_rf5c3"]
-[ext_resource type="PackedScene" uid="uid://bs1a32ei6y25u" path="res://scenes/MainMenu.tscn" id="14_3at83"]
 [ext_resource type="PackedScene" uid="uid://dug2gg4ldjhoc" path="res://prefabs/Mutation_navigation.tscn" id="14_uyulh"]
 [ext_resource type="PackedScene" uid="uid://bl7pr1jrqx1d8" path="res://prefabs/restart_trigger.tscn" id="15_lfu3u"]
 [ext_resource type="PackedScene" uid="uid://bkmfixym7ftg7" path="res://prefabs/Scene Prefabs/scene_clue.tscn" id="16_m1rxk"]
@@ -57,13 +56,13 @@ albedo_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jik7h"]
 albedo_color = Color(0.27450982, 0.27450982, 0.27450982, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_rf5c3"]
+size = Vector3(0.5, 2, 1.5)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_njve1"]
 size = Vector3(0.5, 2, 1.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xanii"]
-size = Vector3(0.5, 2, 1.5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_cnf01"]
 size = Vector3(0.5, 2, 1.5)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_lfu3u"]
@@ -103,6 +102,9 @@ settings = ExtResource("3_rf5c3")
 mutation = ExtResource("4_rf5c3")
 metadata/_custom_type_script = "uid://s47j5s0f3fdy"
 
+[node name="UIManager" parent="." unique_id=798929640 instance=ExtResource("13_rf5c3")]
+transition_speed = 1.0
+
 [node name="GameManager" type="Node" parent="." unique_id=2052087701]
 script = ExtResource("3_u6map")
 metadata/_custom_type_script = "uid://s47j5s0f3fdy"
@@ -115,9 +117,6 @@ metadata/_custom_type_script = "uid://coysphqpo5g2l"
 script = ExtResource("5_7uhkk")
 thought_paths = Array[ExtResource("6_8isj6")]([ExtResource("7_sbrwg"), ExtResource("8_g76yq"), ExtResource("9_e7wky")])
 metadata/_custom_type_script = "uid://bj28ubqcmsltd"
-
-[node name="UIManager" parent="." unique_id=798929640 instance=ExtResource("13_rf5c3")]
-transition_speed = 1.0
 
 [node name="SaveManager" type="Node" parent="." unique_id=1313784305]
 script = ExtResource("17_njve1")
@@ -861,7 +860,7 @@ move_distance = 1.25
 
 [node name="CollisionShape3D" parent="Location5/Geometry/StaticBody3D2" index="0" unique_id=649342185]
 transform = Transform3D(0.99999994, 0, 3.3407482e-22, 0, 1, 0, 0, 0, 1, 0, -0.21135569, -0.7058456)
-shape = SubResource("BoxShape3D_njve1")
+shape = SubResource("BoxShape3D_rf5c3")
 
 [node name="DoorVisuals" parent="Location5/Geometry/StaticBody3D2/CollisionShape3D" index="0" unique_id=623114512]
 transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 1.5, 0, 0, -0.040600777)
@@ -872,7 +871,7 @@ move_distance = 1.25
 
 [node name="CollisionShape3D" parent="Location5/Geometry/StaticBody3D3" index="0" unique_id=649342185]
 transform = Transform3D(0.99999994, 0, 3.3407482e-22, 0, 1, 0, 0, 0, 1, 0, -0.21135569, -0.7058456)
-shape = SubResource("BoxShape3D_xanii")
+shape = SubResource("BoxShape3D_njve1")
 
 [node name="DoorVisuals" parent="Location5/Geometry/StaticBody3D3/CollisionShape3D" index="0" unique_id=623114512]
 transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 1.5, 0, 0, -0.040600777)
@@ -883,7 +882,7 @@ move_distance = 1.25
 
 [node name="CollisionShape3D" parent="Location5/Geometry/StaticBody3D4" index="0" unique_id=649342185]
 transform = Transform3D(0.99999994, 0, 3.3407482e-22, 0, 1, 0, 0, 0, 1, 0, -0.21135569, -0.7058456)
-shape = SubResource("BoxShape3D_cnf01")
+shape = SubResource("BoxShape3D_xanii")
 
 [node name="DoorVisuals" parent="Location5/Geometry/StaticBody3D4/CollisionShape3D" index="0" unique_id=623114512]
 transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 1.5, 0, 0, -0.040600777)

@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dkukaamdo4acb" path="res://scripts/PJ/state_machine/Shell_behaviour.gd" id="6_raqt8"]
 [ext_resource type="Script" uid="uid://ws43rxsp8qki" path="res://scripts/PJ/state_machine/States/Patrol.gd" id="7_ayt5m"]
 [ext_resource type="Script" uid="uid://cch3iwxpn7a6u" path="res://scripts/PJ/state_machine/States/Scream.gd" id="7_lqxc7"]
+[ext_resource type="PackedScene" uid="uid://cqmv7mxht6o6m" path="res://prefabs/gpu_particles_3d.tscn" id="8_6f62q"]
 [ext_resource type="Script" uid="uid://b7ydidx4polw6" path="res://scripts/Valk/shell_disappearance.gd" id="9_jt8f1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lj2st"]
@@ -90,6 +91,7 @@ state_type = 3
 [node name="Patrol" type="Node" parent="State_machine" unique_id=1952931126 node_paths=PackedStringArray("empty_target")]
 script = ExtResource("7_ayt5m")
 empty_target = NodePath("empty_target")
+move_speed = 1.0
 acceleration = 5.0
 metadata/_custom_type_script = "uid://foywhiftl87x"
 
@@ -110,5 +112,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4183241, -0.47043222)
 mesh = SubResource("BoxMesh_raqt8")
 
 [node name="DebugLines" type="MeshInstance3D" parent="." unique_id=2138520060]
+
+[node name="GPUParticles3D" parent="." unique_id=207648955 instance=ExtResource("8_6f62q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.95233065, 0)
 
 [editable path="State_machine"]

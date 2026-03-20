@@ -9,6 +9,62 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yy7vx"]
 albedo_color = Color(0.1661382, 0.16298771, 0.050084077, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hq32h"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Curve" id="Curve_hq32h"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, -333.33334), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hq32h"]
+curve = SubResource("Curve_hq32h")
+
+[sub_resource type="Gradient" id="Gradient_bd0jf"]
+offsets = PackedFloat32Array(0, 0.7220149)
+colors = PackedColorArray(0.41368303, 0.4136831, 0.41368303, 1, 0.80755895, 0.37290668, 3.85046e-07, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bd0jf"]
+gradient = SubResource("Gradient_bd0jf")
+
+[sub_resource type="Curve" id="Curve_x20jq"]
+_limits = [0.0, 7.716049, 0.0, 1.0]
+_data = [Vector2(0, 7.561251), 0.0, -22.10228, 0, 0, Vector2(1, 0), -1.4579623, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kv7qn"]
+curve = SubResource("Curve_x20jq")
+
+[sub_resource type="Curve" id="Curve_h5pgg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.1103697, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x20jq"]
+curve = SubResource("Curve_h5pgg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_udv0p"]
+emission_shape = 1
+emission_sphere_radius = 0.1
+spread = 180.0
+initial_velocity_max = 2.0
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = 0.9999839
+angular_velocity_curve = SubResource("CurveTexture_hq32h")
+gravity = Vector3(0, 0.3, 0)
+linear_accel_min = -3.0000021
+linear_accel_max = -3.0000021
+scale_min = 0.099999994
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_x20jq")
+color_initial_ramp = SubResource("GradientTexture1D_bd0jf")
+emission_curve = SubResource("CurveTexture_kv7qn")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ix58x"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_61yg0"]
+material = SubResource("StandardMaterial3D_ix58x")
+
 [node name="Throwable Rock" type="RigidBody3D" unique_id=653372323]
 collision_layer = 32
 collision_mask = 47
@@ -22,5 +78,15 @@ shape = SubResource("BoxShape3D_t4e8a")
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 mesh = SubResource("BoxMesh_nxxrq")
 surface_material_override/0 = SubResource("StandardMaterial3D_yy7vx")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=246434689]
+material_override = SubResource("StandardMaterial3D_hq32h")
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 0.9
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_udv0p")
+draw_pass_1 = SubResource("SphereMesh_61yg0")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

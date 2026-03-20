@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bs1a32ei6y25u"]
 
 [ext_resource type="Script" uid="uid://d2t00or5xmtit" path="res://scripts/MainMenu.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://df6gi0w1863l1" path="res://scenes/test_scenes/PJ_build_1_scene.tscn" id="2_ow34m"]
 [ext_resource type="PackedScene" uid="uid://gld2pf7nmd7u" path="res://prefabs/ui/controls_panel.tscn" id="3_2wh52"]
 [ext_resource type="Material" uid="uid://d0d1kdro15sym" path="res://vignette/vignetteMat.tres" id="3_vignette"]
 

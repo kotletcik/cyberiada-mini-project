@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 		black_transition.color.a += (1/transition_speed) * delta;
 		if(black_transition.color.a > 1):
 			request_ready();
-			print(get_tree().change_scene_to_file("res://scenes/test_scenes/PJ_build_1_scene.tscn"));
+			print(get_tree().change_scene_to_file("res://scenes/PJ_build_1_scene.tscn"));
 		
 
 func _on_controls_pressed():

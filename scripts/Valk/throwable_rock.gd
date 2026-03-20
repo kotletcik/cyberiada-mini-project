@@ -15,3 +15,5 @@ func _on_body_entered(body: Node) -> void:
 	else:
 		EventBus.sound_emitted_by_player.emit(global_position, 1.0);
 	signal_emmited = true;
+	var particles = $GPUParticles3D
+	particles.restart()

@@ -33,6 +33,7 @@ func reset_signal_subscribers():
 	_disconnect_all("clue_gathered")
 	_disconnect_all("close_final_door")
 	_disconnect_all("bad_ending")
+	_disconnect_all("good_ending")
 
 func _disconnect_all(signal_name: String):
 	var connections = get_signal_connection_list(signal_name)

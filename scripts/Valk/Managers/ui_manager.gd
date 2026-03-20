@@ -84,9 +84,16 @@ func _ready() -> void:
 		button7.pressed.connect(hide_game_over_controls);
 		button7.process_mode = Node.PROCESS_MODE_ALWAYS;
 		game_over_screen.remove_child(game_over_controls);
+		var button11: Button = game_over_screen.get_node("Panel/MainMenu");
+		button11.pressed.connect(go_to_main_menu);
+		button11.process_mode = Node.PROCESS_MODE_ALWAYS;
 		remove_child(game_over_screen);
 
+		var button8: Button = bad_ending_screen.get_node("Panel/MainMenu");
+		button8.pressed.connect(go_to_main_menu);
 		remove_child(bad_ending_screen);
+		var button10: Button = good_ending_screen.get_node("Panel/MainMenu");
+		button10.pressed.connect(go_to_main_menu);
 		remove_child(good_ending_screen);
 
 		EventBus.bad_ending.connect(show_bad_ending_screen);
@@ -122,6 +129,7 @@ func _process(delta: float) -> void:
 	if(transition_to_main_menu_started):
 		black_transition.get_node("ColorRect").color.a += (1/main_menu_transition_speed) * delta;
 		if(black_transition.get_node("ColorRect").color.a >= 1.0):
+			GameManager.instance.unpause_game();
 			print(get_tree().change_scene_to_file("res://scenes/MainMenu.tscn"));
 	if(!transitioned):
 		black_transition.get_node("ColorRect").color.a -= (1/transition_speed) * delta;

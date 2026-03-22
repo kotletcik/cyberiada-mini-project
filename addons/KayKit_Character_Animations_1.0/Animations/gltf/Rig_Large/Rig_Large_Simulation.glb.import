@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://c8y1lkise7b5r"
-path="res://.godot/imported/Rig_Large_Simulation.glb-6ddc45f16d582b36e274df2cd98dc4f0.scn"
+path="res://.godot/imported/Rig_Large_Simulation.glb-6ddc45f16d582b36e274df2cd98dc4f0.res"
 
 [deps]
 
 source_file="res://addons/KayKit_Character_Animations_1.0/Animations/gltf/Rig_Large/Rig_Large_Simulation.glb"
-dest_files=["res://.godot/imported/Rig_Large_Simulation.glb-6ddc45f16d582b36e274df2cd98dc4f0.scn"]
+dest_files=["res://.godot/imported/Rig_Large_Simulation.glb-6ddc45f16d582b36e274df2cd98dc4f0.res"]
 
 [params]
 

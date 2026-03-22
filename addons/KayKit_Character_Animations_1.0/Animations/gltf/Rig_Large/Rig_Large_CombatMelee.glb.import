@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://blw7uxsnrq3ho"
-path="res://.godot/imported/Rig_Large_CombatMelee.glb-87392307257816312b83a36884517d8c.scn"
+path="res://.godot/imported/Rig_Large_CombatMelee.glb-87392307257816312b83a36884517d8c.res"
 
 [deps]
 
 source_file="res://addons/KayKit_Character_Animations_1.0/Animations/gltf/Rig_Large/Rig_Large_CombatMelee.glb"
-dest_files=["res://.godot/imported/Rig_Large_CombatMelee.glb-87392307257816312b83a36884517d8c.scn"]
+dest_files=["res://.godot/imported/Rig_Large_CombatMelee.glb-87392307257816312b83a36884517d8c.res"]
 
 [params]
 

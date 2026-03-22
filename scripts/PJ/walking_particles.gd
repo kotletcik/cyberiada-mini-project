@@ -7,7 +7,6 @@ var timer: = 0.0
 
 func _process(delta: float) -> void:
 	if character_body.velocity.length() > min_trigger_velocity:
-		print(character_body.velocity.length())
 		# print(character_body.velocity.length())
 		if timer < 0:
 			var particles = self

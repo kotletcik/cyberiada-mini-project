@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://bpmost0gtyo4n"
-path="res://.godot/imported/Rig_Medium_MovementAdvanced.glb-014cf6a07936d25147f4e6875bbde5c9.scn"
+path="res://.godot/imported/Rig_Medium_MovementAdvanced.glb-014cf6a07936d25147f4e6875bbde5c9.res"
 
 [deps]
 
 source_file="res://addons/KayKit_Character_Animations_1.0/Animations/gltf/Rig_Medium/Rig_Medium_MovementAdvanced.glb"
-dest_files=["res://.godot/imported/Rig_Medium_MovementAdvanced.glb-014cf6a07936d25147f4e6875bbde5c9.scn"]
+dest_files=["res://.godot/imported/Rig_Medium_MovementAdvanced.glb-014cf6a07936d25147f4e6875bbde5c9.res"]
 
 [params]
 

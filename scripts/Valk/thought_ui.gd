@@ -26,11 +26,11 @@ func set_is_reverse(value: bool) -> void:
 	is_reversed = value;
 	if(is_reversed):
 		var style: StyleBox = get_theme_stylebox("panel").duplicate();
-		style.set_bg_color(Color(0.8, 0.8, 0.8));
+		style.set_bg_color(Color(0.2, 0.2, 0.2));
 		add_theme_stylebox_override("panel", style);
 
-		get_node("DescText").add_theme_color_override("default_color", Color.BLACK);
-		get_node("TitleText").add_theme_color_override("default_color", Color.BLACK);
+		# get_node("DescText").add_theme_color_override("default_color", Color.BLACK);
+		# get_node("TitleText").add_theme_color_override("default_color", Color.BLACK);
 		# print(get_node("DescText").get_theme_color("font_color"));
 		# get_node("DescText").add_theme_color_override("font_color", Color.BLACK);
 		# print(get_node("DescText").get_theme_color("font_color"));
@@ -39,5 +39,5 @@ func set_is_reverse(value: bool) -> void:
 		style.set_bg_color(Color.BLACK);
 		add_theme_stylebox_override("panel", style);
 
-		get_node("DescText").add_theme_color_override("default_color", Color.WHITE);
-		get_node("TitleText").add_theme_color_override("default_color", Color.WHITE);
+		# get_node("DescText").add_theme_color_override("default_color", Color.WHITE);
+		# get_node("TitleText").add_theme_color_override("default_color", Color.WHITE);

@@ -247,6 +247,11 @@ func update_mind_palace_ui():
 			var style: StyleBox = thought_path_ui_instance.get_theme_stylebox("normal").duplicate();
 			style.set_bg_color(Color.WHITE);
 			thought_path_ui_instance.add_theme_stylebox_override("normal", style);
+			thought_path_ui_instance.add_theme_color_override("font_hover_color", Color.BLACK);
+
+			var style_hover: StyleBox = thought_path_ui_instance.get_theme_stylebox("hover").duplicate();
+			style_hover.set_bg_color(Color(0.8,0.8, 0.8));
+			thought_path_ui_instance.add_theme_stylebox_override("hover", style_hover);
 			thought_path_ui_instance.add_theme_color_override("font_color", Color.BLACK);
 
 		instanciated_thought_path_uis[thought_path_uis_count] = thought_path_ui_instance;

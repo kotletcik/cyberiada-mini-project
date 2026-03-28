@@ -97,16 +97,16 @@ autoplay = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AudioStreamPlayer3D2" unique_id=172406709]
 mesh = SubResource("BoxMesh_bd751")
 
-[node name="Sound Test" type="StaticBody3D" parent="." unique_id=1221183155]
+[node name="Sound Test z doczepionym skryptem" type="StaticBody3D" parent="." unique_id=1221183155]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.405422, 1.7601061, -23.698334)
 script = ExtResource("17_fx35l")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Sound Test" unique_id=1586073657]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sound Test z doczepionym skryptem" unique_id=1586073657]
 shape = SubResource("BoxShape3D_t4e8a")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Sound Test" unique_id=791104458]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sound Test z doczepionym skryptem" unique_id=791104458]
 mesh = SubResource("BoxMesh_nxxrq")
 surface_material_override/0 = SubResource("StandardMaterial3D_4hjr6")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Sound Test" unique_id=2024638832]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Sound Test z doczepionym skryptem" unique_id=2024638832]
 stream = ExtResource("18_kucs5")

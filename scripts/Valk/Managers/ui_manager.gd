@@ -324,7 +324,7 @@ func update_mind_palace_ui():
 		mind_palace_ui.get_node("ThoughtPaths").add_child(thought_path_ui_instance);
 		thought_path_ui_instance.text = PalaceManager.instance.thought_paths[i].name;
 		thought_path_ui_instance.pressed.connect(choose_thought_path.bind(PalaceManager.instance.thought_paths[i]));
-		thought_path_ui_instance.position = Vector2(32, 540 - i * 96);
+		thought_path_ui_instance.position = Vector2(32, 768 - i * 96);
 		if(PalaceManager.instance.thought_paths[i] == chosen_thought_path):
 			var style: StyleBox = thought_path_ui_instance.get_theme_stylebox("normal").duplicate();
 			style.set_bg_color(Color(0.9, 0.9, 0.9));
@@ -398,12 +398,15 @@ func show_notes_ui():
 	is_notes_ui_active = true;
 
 func update_notes_ui():
+	notes_ui.get_node("Inventory/Rock").text = str(InventoryManager.instance.itemCount[ITEM_TYPE.ROCK]) + "x Kamieni";
+	notes_ui.get_node("Inventory/Serum").text = str(InventoryManager.instance.itemCount[ITEM_TYPE.SERUM]) + "x Serum";
+
 	for i in range(0, PalaceManager.instance.first_note_free_index):
 		var thought_path_ui_instance = thought_path_ui.instantiate();
 		notes_ui.get_node("ThoughtPaths").add_child(thought_path_ui_instance);
 		thought_path_ui_instance.text = PalaceManager.instance.gathered_notes[i].title;
 		thought_path_ui_instance.pressed.connect(choose_note_ui.bind(PalaceManager.instance.gathered_notes[i]));
-		thought_path_ui_instance.position = Vector2(32, 540 - i * 96);
+		thought_path_ui_instance.position = Vector2(32, 768 - i * 96);
 		if(PalaceManager.instance.gathered_notes[i] == chosen_note):
 			var style: StyleBox = thought_path_ui_instance.get_theme_stylebox("normal").duplicate();
 			style.set_bg_color(Color(0.9, 0.9, 0.9));
@@ -420,7 +423,11 @@ func update_notes_ui():
 		if(instanciated_thought_path_uis.size() == thought_path_uis_count):
 			instanciated_thought_path_uis.resize(thought_path_uis_count * 2);
 	
-	if(chosen_note == null): return;
+	if(chosen_note == null): 
+		notes_ui.get_node("CurrentNoteUI").visible = false;
+		notes_ui.get_node("Panel2/Title").text = "Nie zebrano żadnej notatki"
+		return;
+	notes_ui.get_node("CurrentNoteUI").visible = true;
 	notes_ui.get_node("CurrentNoteUI/RichTextLabel").text = chosen_note.content;
 
 	var note_title: Label = notes_ui.get_node("Panel2/Title");

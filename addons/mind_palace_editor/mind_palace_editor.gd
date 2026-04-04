@@ -22,6 +22,8 @@ var root_path = "res://resources/thoughts/";
 
 var current_folder = "shell";
 
+var is_loading = false;
+
 # func _enable_plugin():
 # 	# add_autoload_singleton("EditorEventBus", "res://scripts/Valk/Tools/editor_event_bus.gd")
 
@@ -59,29 +61,42 @@ func create_folder_ui(name: String):
 
 func change_current_folder(folder: String):
 	current_folder = folder
-	update_plugin_ui();
+	update_plugin_ui("change_current_folder");
 
 func update_folders_ui():
+
+
+	# var dir = DirAccess.open(root_path)
+	# if dir:
+	# 	dir.list_dir_begin()
+	# 	var file_name = dir.get_next()
+	# 	while file_name != "":
+	# 		if dir.current_is_dir():
+	# 			# print("Found directory: " + file_name)
+	# 			create_folder_ui(file_name);
+	# 		else:
+	# 			pass
+	# 			# print("Found file: " + file_name)
+	# 		file_name = dir.get_next()
+	# else:
+	# 	print("An error occurred when trying to access the path.")
+
+	var directories = DirAccess.get_directories_at(root_path);
+	# print("file names:");
+	# for i in range(0, files.size()):
+	# 	print("	" + files[i]);
+
+	var length = directories.size();
+	for i in range(0, length):
+		create_folder_ui(directories[i]);
+
 	var dock_control = dock as Control
 	var width = dock_control.size.x;
+	print(width);
 	dock.get_node("PluginUI/HBoxContainer").size.x = width;
 
-	var dir = DirAccess.open(root_path)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if dir.current_is_dir():
-				# print("Found directory: " + file_name)
-				create_folder_ui(file_name);
-			else:
-				pass
-				# print("Found file: " + file_name)
-			file_name = dir.get_next()
-	else:
-		print("An error occurred when trying to access the path.")
-
-func update_plugin_ui():
+func update_plugin_ui(caller: String):
+	print(caller);
 	y_pos = clue_ui_start_y_pos;
 	# print("plugin ui updated");
 	clear_plugin_ui();
@@ -89,22 +104,56 @@ func update_plugin_ui():
 	update_content_ui();
 
 func update_content_ui():
-	# print("updating content ui");
-	var dir = DirAccess.open(root_path + current_folder)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if dir.current_is_dir():
-				pass
-				# print("Found directory: " + file_name)
-			else:
-				# print("Found file: " + file_name)
-				var clue: Clue = ResourceLoader.load(root_path + current_folder + "/" + file_name);
-				create_field(clue);
-			file_name = dir.get_next()
-	else:
-		print("An error occurred when trying to access the path.")
+	if(is_loading): return;
+	# print("	UPDATING CONTENT UI");
+	index = 0;
+
+	# var dir = DirAccess.open(root_path + current_folder)
+	# if dir:
+	# 	dir.list_dir_begin()
+	# 	var file_name = dir.get_next()
+	# 	while file_name != "":
+	# 		if dir.current_is_dir():
+	# 			pass
+	# 			# print("Found directory: " + file_name)
+	# 		else:
+	# 			# print("Found file: " + file_name)
+	# 			print(ResourceLoader.exists(root_path + current_folder + "/" + file_name))
+	# 			var clue: Clue = ResourceLoader.load(root_path + current_folder + "/" + file_name, "", 0);
+	# 			create_field(clue);
+	# 		file_name = dir.get_next()
+	# else:
+	# 	print("An error occurred when trying to access the path.")
+
+	var clues: Array[Clue] = [null];
+	is_loading = true;
+	var files = DirAccess.get_files_at(root_path + current_folder);
+	# print("file names:");
+	# for i in range(0, files.size()):
+	# 	print("	" + files[i]);
+
+	var length = files.size();
+	clues.resize(length);
+	for i in range(0, length):
+		# print("index: " + str(i));
+		# print("file exists: " + str(ResourceLoader.exists(root_path + current_folder + "/" + files[i])));
+		var clue: Clue = ResourceLoader.load(root_path + current_folder + "/" + files[i]);
+		# if(clue == null): continue;
+		# print("creating field: " + str(i));
+		clues[i] = clue;
+	is_loading = false;
+	for i in range(0, length):
+		create_field(clues[i]);
+
+func refresh_content_ui():
+	print("signal refresh");
+	for i in range(first_free_index - 1, -1, -1):
+		clue_ui_instances[i].queue_free();
+	clue_ui_instances = [null];
+	first_free_index = 0;
+
+	y_pos = clue_ui_start_y_pos;
+	update_content_ui();
 
 func clear_plugin_ui():
 	for i in range(first_free_index - 1, -1, -1):
@@ -129,7 +178,7 @@ func _enter_tree():
 
 	clue_ui = preload("res://addons/mind_palace_editor/ui/clue_ui.tscn");
 	folder_ui = preload("res://addons/mind_palace_editor/ui/folder_ui.tscn");
-	update_plugin_ui();
+	update_plugin_ui("enter_tree");
 
 	# Note that LEFT_UL means the left of the editor, upper-left dock.
 	dock.default_slot = EditorDock.DOCK_SLOT_LEFT_UL
@@ -138,11 +187,11 @@ func _enter_tree():
 	dock.available_layouts = EditorDock.DOCK_LAYOUT_VERTICAL | EditorDock.DOCK_LAYOUT_FLOATING
 
 	add_dock(dock)
-	EditorEventBus.mind_palace_editor_refresh.connect(update_plugin_ui);
+	EditorEventBus.mind_palace_editor_refresh.connect(refresh_content_ui);
 
     
 func _exit_tree():
-	EditorEventBus.mind_palace_editor_refresh.disconnect(update_plugin_ui);
+	EditorEventBus.mind_palace_editor_refresh.disconnect(refresh_content_ui);
 	# Clean-up of the plugin goes here.
 	# Remove the dock.
 	remove_dock(dock)

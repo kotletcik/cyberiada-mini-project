@@ -25,7 +25,7 @@ func set_thought_ui_instance(title: String, desc: String, x_pos: int, y_pos: int
 		position = clue.ui_pos;
 	thought_clue = clue;
 	is_on_thought_path = is_on_path;
-	if(connected_note == null): return
+	if(connected_note == null || !is_on_path): return
 	note_button.text = "Przejdź do notatki: " + str(connected_note.title);
 	note_button.pressed.connect(go_to_note.bind(connected_note));
 	note_button.visible = true;

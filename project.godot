@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 EventBus="*res://scripts/PJ/Event_bus.gd"
+EditorEventBus="*uid://dh2ir3fht06a1"
 
 [debug_draw_3d]
 
@@ -33,6 +34,10 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/resizable=false
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/mind_palace_editor/plugin.cfg")
 
 [global_group]
 

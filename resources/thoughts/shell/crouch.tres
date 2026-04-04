@@ -1,11 +1,12 @@
 [gd_resource type="Resource" script_class="Clue" format=3 uid="uid://cb4rs16k73lop"]
 
-[ext_resource type="Script" uid="uid://q760mct2evav" path="res://scripts/Valk/Resource Types/clue.gd" id="1_18pgv"]
+[ext_resource type="Script" uid="uid://q760mct2evav" path="res://scripts/Valk/Resource Types/clue.gd" id="1_g5lyy"]
 
 [resource]
-script = ExtResource("1_18pgv")
+script = ExtResource("1_g5lyy")
 name = "Kucanie"
 description = "Widocznie powinnam kucać by shelle mnie nie wykryły"
 ui_pos = Vector2(256, 30)
+automatically_unlock = true
 required_for_realization = false
 metadata/_custom_type_script = "uid://q760mct2evav"

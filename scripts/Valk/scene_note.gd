@@ -8,7 +8,7 @@ func player_interact() -> void:
 	# print(note_to_hold.title);
 	# print(note_to_hold.content);
 	PalaceManager.instance.gather_note(note_to_hold);
-	if(clue_to_gather == null): return;
-	if(!clue_gathered): 
-		PalaceManager.instance.add_gathered_clue(clue_to_gather);
-		clue_gathered = true;
+	
+	if(clue_to_gather == null || clue_gathered): return;
+	PalaceManager.instance.add_gathered_clue(clue_to_gather);
+	clue_gathered = true;

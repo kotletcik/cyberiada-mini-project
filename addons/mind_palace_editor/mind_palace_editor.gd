@@ -2,6 +2,7 @@
 extends EditorPlugin
 
 var dock
+var dock_control
 var clue_ui
 var clue_ui_start_y_pos = 32;
 var y_pos = 32;
@@ -21,6 +22,9 @@ var root_path = "res://resources/thought_paths/";
 var current_thought_path = null;
 
 var is_loading = false;
+
+var last_width;
+var hbox: HBoxContainer;
 
 # func _enable_plugin():
 # 	# add_autoload_singleton("EditorEventBus", "res://scripts/Valk/Tools/editor_event_bus.gd")
@@ -82,10 +86,7 @@ func update_folders_ui():
 	if(current_thought_path == null && length > 0):
 		current_thought_path = thoughts_paths[0];
 	
-	var dock_control = dock as Control
-	var width = dock_control.size.x;
-	# print(width);
-	dock.get_node("PluginUI/HBoxContainer").size.x = width;
+	dock.get_node("PluginUI/HBoxContainer").size.x = dock_control.size.x;
 
 func update_plugin_ui(caller: String):
 	# print(caller);
@@ -123,12 +124,22 @@ func clear_plugin_ui():
 	folder_ui_instances = [null];
 	first_folder_free_index = 0;
 
+func _ready():
+	hbox = dock.get_node("PluginUI/HBoxContainer");
+
+func _process(delta: float):
+	var width = dock_control.size.x;
+	if(width != last_width):
+		hbox.size.x = width;
+		last_width = width;
+
 func _enter_tree():
 	dock = EditorDock.new()
 	dock.title = "Mind Palace Editor"
 	var plugin_ui = preload("res://addons/mind_palace_editor/ui/plugin_ui.tscn").instantiate() as Control;
 	dock.add_child(plugin_ui);
 
+	dock_control = dock as Control
 	clue_ui = preload("res://addons/mind_palace_editor/ui/clue_ui.tscn");
 	folder_ui = preload("res://addons/mind_palace_editor/ui/folder_ui.tscn");
 	update_plugin_ui("enter_tree");
@@ -139,7 +150,6 @@ func _enter_tree():
 	add_dock(dock)
 	EditorEventBus.mind_palace_editor_refresh.connect(refresh_content_ui);
 
-    
 func _exit_tree():
 	EditorEventBus.mind_palace_editor_refresh.disconnect(refresh_content_ui);
 	remove_dock(dock)

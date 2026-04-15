@@ -39,6 +39,7 @@
 [ext_resource type="Resource" uid="uid://dwbrn5l1ernyw" path="res://resources/thoughts/shell/first_shell.tres" id="34_0plmr"]
 [ext_resource type="PackedScene" uid="uid://cwpnmj2jjqjcg" path="res://prefabs/triggers/checkpoint_trigger.tscn" id="37_l3ixd"]
 [ext_resource type="Script" uid="uid://bc2ji67pooap7" path="res://scripts/Valk/Scene Triggers/save_trigger.gd" id="38_3at83"]
+[ext_resource type="PackedScene" uid="uid://disyay20hbkli" path="res://assets/models/Pudełko otwarte.fbx" id="40_jumma"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13hkq"]
 albedo_color = Color(0.27450982, 0.27450982, 0.27450982, 1)
@@ -2284,6 +2285,12 @@ light_energy = 16.0
 spot_range = 4.024
 spot_attenuation = 0.01
 spot_angle = 23.439608
+
+[node name="Pudełko otwarte" parent="." unique_id=130765637 instance=ExtResource("40_jumma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.620514, 0.4460001, 12.600686)
+
+[node name="Pudełko otwarte2" parent="." unique_id=99030861 instance=ExtResource("40_jumma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.720848, 0.44599998, 13.702424)
 
 [editable path="Location5/ShellNavRegion/Geometry/StaticBody3D"]
 [editable path="Location5/ShellNavRegion/Geometry/StaticBody3D2"]

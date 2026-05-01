@@ -115,7 +115,7 @@ size = Vector3(0.4, 0.2, 0.2)
 script = ExtResource("1_xanii")
 
 [node name="Player" parent="." unique_id=2039338456 instance=ExtResource("1_ahihw")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -54.537106, 1.6258812, -21.268826)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 17.123787, 1.6258812, -21.268826)
 SOBER_WALK_SPEED = 6.9
 CROUCH_SPEED_MULTIPLIER = 0.3
 crouching_noise_volume = 1.5
@@ -2180,6 +2180,9 @@ size = Vector3(5.658432, 5, 1)
 
 [node name="DoubleDoor4" parent="Location10/ShellNavRegion/Geometry" unique_id=340185522 instance=ExtResource("8_vcjj7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4178581, 2.425858, -32.759293)
+isDisposable = true
+is_lift_door = true
+print_debug = true
 
 [node name="DoubleDoor5" parent="Location10/ShellNavRegion/Geometry" unique_id=1977353845 instance=ExtResource("8_vcjj7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.644478, 2.425858, -32.759293)
@@ -2221,7 +2224,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.753912, 1.0424604, 12.27761
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.083115, 1.2641665, 21.79506)
 
 [node name="Shell" parent="Location10" unique_id=1535932504 node_paths=PackedStringArray("patrol_points") instance=ExtResource("11_01gpf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6356087, 1.4558756, -25.258167)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6356068, 1.4558756, -13.183457)
 hearing_range = 16.0
 patrol_time = 1.0
 patrol_points = [NodePath("../ShellNavRegion/Patrol Points/Patrol Point 1"), NodePath("../ShellNavRegion/Patrol Points/Patrol Point 2")]

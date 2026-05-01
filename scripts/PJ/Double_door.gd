@@ -24,6 +24,20 @@ func _ready() -> void:
 	# if(is_final_door):
 	# 	EventBus.close_final_door.connect(close_door);
 
+
+func _process(delta: float) -> void:
+	if(!is_lift_door): return;
+	var is_player_in_front: bool = false;
+	var subtracted_vector: Vector3 = first_door.global_position - GameManager.instance.player.global_position;
+	var direction = subtracted_vector.normalized();
+	var dot: float = -first_door.global_basis.x.dot(direction);
+	var is_player_inside: bool = dot > 0.0;
+	if(is_player_inside == isOpened && !isMoving && interacted):
+		isMoving = true;
+		switch_open();
+	if(is_player_inside):
+		UIManager.instance.start_transition_to_black(5.0, func(): print("MEOWOOOW"))
+
 func player_interact():
 	if(unlock_if_clue_realized != null):
 		if(!PalaceManager.instance.is_clue_realized(unlock_if_clue_realized)): return;
@@ -32,8 +46,8 @@ func player_interact():
 		if (isDisposable && interacted): return
 		else: 
 			interacted = true;
-		isMoving = true
-		switch_open()
+			isMoving = true
+			switch_open()
 
 func switch_open():
 	if (isMoving):

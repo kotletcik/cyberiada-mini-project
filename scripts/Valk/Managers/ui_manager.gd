@@ -148,7 +148,6 @@ func show_bad_ending_screen():
 	add_child(bad_ending_screen);
 
 func show_good_ending_screen():
-	await get_tree().create_timer(5.0, false).timeout;
 	PsycheManager.instance.set_vignette_parameters(0, Color.ALICE_BLUE, 0);
 	GameManager.instance.is_game_over = true;
 	GameManager.instance.pause_game();
@@ -160,13 +159,11 @@ func start_transition_to_black(speed: float, transition_call: Callable) -> void:
 	transition_to_black_speed = speed;
 	transition_to_black_active = true;
 	transition_to_black_call = transition_call;
-	add_child(black_transition);
 
 func start_transition_to_white(speed: float, transition_call: Callable) -> void:
 	transition_to_white_speed = speed;
 	transition_to_white_active = true;
 	transition_to_white_call = transition_call;
-	add_child(black_transition);
 
 func load_main_menu():
 	GameManager.instance.unpause_game();
@@ -174,19 +171,18 @@ func load_main_menu():
 
 func _process(delta: float) -> void:
 
-	if(transition_to_black_active):
-		black_transition.get_node("ColorRect").color.a += (1/transition_to_black_speed) * delta;
-		if(black_transition.get_node("ColorRect").color.a >= 1.0):
-			if(!transition_to_black_call.is_null()): transition_to_black_call.call();
-			remove_child(black_transition);
-			transition_to_black_active = false;
-
-	if(transition_to_white_active):
-		black_transition.get_node("ColorRect").color.a -= (1/transition_to_white_speed) * delta;
-		if(black_transition.get_node("ColorRect").color.a < 0):
-			if(!transition_to_white_call.is_null()): transition_to_white_call.call();
-			remove_child(black_transition);
-			transition_to_white_active = false;
+	if(!get_tree().paused):
+		if(transition_to_black_active):
+			black_transition.get_node("ColorRect").color.a += (1/transition_to_black_speed) * delta;
+			if(black_transition.get_node("ColorRect").color.a >= 1.0):
+				if(!transition_to_black_call.is_null()): transition_to_black_call.call();
+				transition_to_black_active = false;
+	
+		if(transition_to_white_active):
+			black_transition.get_node("ColorRect").color.a -= (1/transition_to_white_speed) * delta;
+			if(black_transition.get_node("ColorRect").color.a < 0):
+				if(!transition_to_white_call.is_null()): transition_to_white_call.call();
+				transition_to_white_active = false;
 
 	if(Input.is_action_just_pressed("Mind Palace") && !is_in_esc_menu):
 		if(is_mind_palace_ui_active): 

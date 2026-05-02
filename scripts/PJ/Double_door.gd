@@ -76,7 +76,7 @@ func switch_open():
 	var second_door_final_local_pos_z = second_door.position.z - move_distance if !isOpened else second_door.position.z + move_distance;
 	var start_time = Time.get_ticks_msec()
 	
-	while(abs(first_door.position.z - first_door_final_local_pos_z) > 0.01):
+	while(abs(first_door.position.z - first_door_final_local_pos_z) > 0.1):
 		var now = Time.get_ticks_msec()
 		var delta = (now - start_time) / 1000.0
 		var opened_bool_coeff: = 1 if !isOpened else -1;

@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://b7gbyq5owgnoo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_11pn5"]
+albedo_color = Color(0.27450982, 0.27450982, 0.27450982, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f0ip2"]
+albedo_color = Color(0.27450982, 0.27450982, 0.27450982, 1)
+
+[node name="Level3_tscn" type="Node3D" unique_id=204905205]
+
+[node name="Location13" type="Node3D" parent="." unique_id=450671911]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 127.07003, 1.9073486e-06, 22.797192)
+
+[node name="Geometry" type="Node3D" parent="Location13" unique_id=1016040909]
+
+[node name="floor" type="CSGBox3D" parent="Location13/Geometry" unique_id=2145114348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3293114, -0.11825132, -3.6719742)
+material_override = SubResource("StandardMaterial3D_11pn5")
+use_collision = true
+collision_layer = 2
+size = Vector3(10.75, 1, 7.202881)
+
+[node name="wall1" type="CSGBox3D" parent="Location13/Geometry" unique_id=2029560307]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9126396, 2, -24.290564)
+material_override = SubResource("StandardMaterial3D_11pn5")
+use_collision = true
+collision_layer = 4
+size = Vector3(5.76062, 5, 1)
+
+[node name="wall3" type="CSGBox3D" parent="Location13/Geometry" unique_id=1040276777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8708229, 2, -30.323217)
+material_override = SubResource("StandardMaterial3D_11pn5")
+use_collision = true
+collision_layer = 4
+size = Vector3(6.074585, 5, 1)
+
+[node name="wall8" type="CSGBox3D" parent="Location13/Geometry" unique_id=1106608891]
+transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, 0.48217964, 2, -27.560486)
+material_override = SubResource("StandardMaterial3D_f0ip2")
+use_collision = true
+collision_layer = 4
+size = Vector3(6.836075, 5, 1)
+
+[node name="Light" type="Node3D" parent="Location13" unique_id=2093190654]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Location13/Light" unique_id=2019003570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.703659, 4.126359, -28.068596)
+light_energy = 16.0
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 1.33
+light_size = 0.42
+omni_range = 30.271
+
+[node name="Serums" type="Node3D" parent="Location13" unique_id=931029079]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11294556, -0.01115036, -42.314934)
+
+[node name="Level2StartPoint" type="Node3D" parent="Location13" unique_id=1938952867]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -1.4545288, 0.34464073, -27.218082)
